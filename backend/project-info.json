@@ -1,0 +1,49 @@
+{
+    "name": "project-structure-backend",
+    "version": "1.0.0",
+    "description": "This project contains the backend structure for the application using NestJS.",
+    "external": {
+        "libraries": [
+            {
+                "name": "Swagger",
+                "reason": "API documentation and REST API creation",
+                "installation": "npm install --save @nestjs/swagger",
+                "version": "^7.4.0"
+            },
+            {
+                "name": "Mysql and TypeOrm",
+                "reason": "Database for Relational Entities with ORM",
+                "installation": "npm install --save @nestjs/typeorm typeorm mysql2",
+                "version(Mysql)": "^3.11.0",
+                "version(TypeORM)": "^0.3.20"
+            },
+            {
+                "name": "MongoDB Mongoose",
+                "reason": "Database for Non Relational Entities",
+                "installation": "npm i @nestjs/mongoose mongoose",
+                "version": "^10.0.10"
+            },
+            {
+                "name": "Nestjs Configuration",
+                "reason": "Configuration for Nestjs App",
+                "installation": "npm i --save @nestjs/config",
+                "version": "^3.2.3"
+            }
+        ]
+    },
+    "scripts": {
+        "start": "npm run start",
+        "start:dev": "npm run start:dev",
+        "build": "npm run build"
+    },
+    "maintainers": [
+        {
+            "name": "Talih Duran",
+            "email": "duran.talih@gmail.com"
+        }
+    ],
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/ancyra2/angular-18.1-nest-10.4-complete.git"
+    }
+}
