@@ -1,0 +1,23 @@
+@import '../../../styles/variables';
+.search-bar-wrapper{
+    inline-size: 600px;
+    block-size: 46px;
+    display: flex;
+    align-items: center;
+    position: relative;
+    input{
+        inline-size: 100%;
+        block-size: 100%;
+        border: 2px solid $first-color;
+        border-radius: 10px;
+    }
+    button{
+        background-color: $first-color;
+        color: $text-white-color;
+        block-size: 42px;
+        inline-size: 42px;
+        position: absolute;
+        right: 5px;
+        border-radius: 10px;
+    }
+}
