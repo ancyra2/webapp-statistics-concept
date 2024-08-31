@@ -1,3 +1,4 @@
+@import '../../styles/variables';
 .main-container{
     .search-bar-container{
         margin-block-start: 1.5rem;
@@ -14,5 +15,21 @@
         block-size: 350px;
         display: flex;
         justify-content: center;
+    }
+    .hero-2-container{
+        inline-size: 100%;
+        color: $text-first-color;
+        text-align: center;
+        margin-block-start: 6rem;
+        font-size: 2.25rem;
+        font-weight: 500;
+    }
+    .card-statistics-container{
+        block-size: 300px;
+        display: flex;
+        justify-content: center;
+        margin-block-start: 2rem;
+        flex-wrap: wrap;
+        gap: 80px;
     }
 }

@@ -1,0 +1,32 @@
+@import '../../../styles/variables';
+.card-statistics-wrapper{
+    inline-size: 360px;
+    display: flex;
+    mat-card{
+     inline-size: 100%;
+     min-block-size: 120px;
+     flex-direction: row;
+     border: 0;
+     background-color: #fff;
+     .mat-card-image{
+        inline-size: 30%;
+        block-size: 100%;
+     }
+     .mat-card-statistics-wrapper{
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        mat-card-header{
+            font-weight: 500;
+            padding-bottom: 8px;
+        }
+        mat-card-content{ 
+            padding: 0 0 0 16px;
+            line-height: 3ch;
+            p{
+                font-size: 0.85rem;
+            }
+        }
+     }
+    }
+}
