@@ -1,12 +1,12 @@
 @import '../../styles/variables';
 .main-container{
     .search-bar-container{
-        margin-block-start: 1.5rem;
+        margin-block-start: 2.5rem;
         display: flex;
         justify-content: center;
     }
     .search-links-container{
-        margin-block-start: 1.5rem;
+        margin-block-start: 1.75rem;
         display: flex;
         justify-content: center;
     }
@@ -21,7 +21,7 @@
         color: $text-first-color;
         text-align: center;
         margin-block-start: 6rem;
-        font-size: 2.25rem;
+        font-size: 1.75rem;
         font-weight: 500;
     }
     .card-statistics-container{

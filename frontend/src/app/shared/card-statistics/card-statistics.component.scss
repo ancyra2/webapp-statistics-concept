@@ -10,6 +10,7 @@
      background-color: #fff;
      .mat-card-image{
         inline-size: 30%;
+        min-inline-size: 100px;
         block-size: 100%;
      }
      .mat-card-statistics-wrapper{
