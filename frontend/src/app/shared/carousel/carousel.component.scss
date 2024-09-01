@@ -1,0 +1,30 @@
+@import '../../../styles/variables';
+.carousel-wrapper{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    .carousel-screen{
+        width: 80%;
+        height: 100%;
+        display: flex;
+    }
+    button:first-of-type{
+        background-color: $first-color;
+        color: $text-white-color;
+        position: absolute;
+        top: 45%;
+        left: 7.5%;
+        inline-size: 36px;
+        block-size: 36px;
+       
+    } 
+    button:last-of-type{
+        background-color: $first-color;
+        color: $text-white-color;
+        position: absolute;
+        top: 45%;
+        right: 7.5%;
+        inline-size: 36px;
+        block-size: 36px;
+    }
+}

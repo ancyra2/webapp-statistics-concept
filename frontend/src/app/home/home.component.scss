@@ -39,4 +39,14 @@
         flex-wrap: wrap;
         gap: 30px;
     }
+    .last-studies-carousel-container{
+        display: flex;
+        justify-content: center;
+        block-size: 400px;
+        app-carousel{
+            display: flex;
+            justify-content: center;
+            flex: 100% 1 1;
+        }
+    }
 }
