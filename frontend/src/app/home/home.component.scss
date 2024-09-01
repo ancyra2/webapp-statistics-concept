@@ -32,4 +32,11 @@
         flex-wrap: wrap;
         gap: 80px;
     }
+    .last-studies-container{
+        display: flex;
+        justify-content: center;
+        margin-block-start: 2rem;
+        flex-wrap: wrap;
+        gap: 30px;
+    }
 }
