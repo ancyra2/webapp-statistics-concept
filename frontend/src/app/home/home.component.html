@@ -21,7 +21,12 @@
         <h3 class="hero-2-container">Last Studies</h3>
     </div>
     <div class="last-studies-carousel-container">
-        <app-carousel [width]="'800px'" [height]="'400px'">
+        <app-carousel [width]="'800px'" [height]="'400px'" [itemWidth]="(275)" [itemHeight]="400"
+            (currentIndexEvent)="currentIndexChange($event)">
+            <app-last-studies></app-last-studies>
+            <app-last-studies></app-last-studies>
+            <app-last-studies></app-last-studies>
+            <app-last-studies></app-last-studies>
             <app-last-studies></app-last-studies>
             <app-last-studies></app-last-studies>
             <app-last-studies></app-last-studies>

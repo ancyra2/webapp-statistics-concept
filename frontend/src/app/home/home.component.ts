@@ -17,5 +17,9 @@ import { CarouselComponent } from '../shared/carousel/carousel.component';
   styleUrl: './home.component.scss'
 })
 export class HomeComponent {
+  carouselCurrentIndex!: number;
 
+  currentIndexChange(currentIndex: number){
+    this.carouselCurrentIndex = currentIndex;
+  }
 }

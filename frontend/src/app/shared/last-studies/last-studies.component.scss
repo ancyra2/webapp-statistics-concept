@@ -1,7 +1,9 @@
 @import '../../../styles/variables';
 .last-studies-wrapper{
-    inline-size: calc(800px / 3 - 56px);
+    inline-size: calc(250px);
+    height: 100%;
     display: flex;
+    margin-right: 25px;
     mat-card{
      inline-size: 100%;
      min-block-size: 120px;

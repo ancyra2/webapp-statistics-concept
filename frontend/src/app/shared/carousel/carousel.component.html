@@ -1,11 +1,13 @@
-<div class="carousel-wrapper" [style.width] = "width" [style.height]="height">
-    <div class="carousel-screen" >
-       <ng-content></ng-content>
+<div class="carousel-wrapper" [style.width]="width" [style.height]="height">
+    <div class="carousel-screen">
+        <div #slider class="carousel-slider">
+            <ng-content></ng-content>
+        </div>
     </div>
-    <button mat-fab>
+    <button mat-fab (click)="prev(itemWidth)">
         <mat-icon>chevron_left</mat-icon>
     </button>
-    <button mat-fab>
+    <button mat-fab (click)="next(itemWidth)">
         <mat-icon>chevron_right</mat-icon>
-    </button>  
+    </button>
 </div>
