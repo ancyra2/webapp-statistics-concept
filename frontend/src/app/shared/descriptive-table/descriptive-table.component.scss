@@ -1,0 +1,21 @@
+@import '../../../styles/variables';
+
+.mat-table-wrapper{
+    table{
+        background-color: $first-white-color;
+        th{
+            text-align: center;
+            &:first-child{
+                text-align: left;
+            }
+        }
+    
+        td {
+            text-align: center;
+            &:first-child{
+                text-align: left;
+            }
+        }
+    }
+    
+}
