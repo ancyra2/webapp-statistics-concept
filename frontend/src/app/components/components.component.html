@@ -10,10 +10,65 @@
 
 <mat-card appearance="outlined">
     <mat-card-header>
+        <mat-card-title>Card Statistics</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-card-statistics></app-card-statistics>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Last Studies</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-last-studies></app-last-studies>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Carousel</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <div class="last-studies-carousel-container">
+            <app-carousel [width]="'800px'" [height]="'400px'" [itemWidth]="(275)" [itemHeight]="400"
+                (currentIndexEvent)="currentIndexChange($event)">
+                <app-last-studies></app-last-studies>
+                <app-last-studies></app-last-studies>
+                <app-last-studies></app-last-studies>
+                <app-last-studies></app-last-studies>
+                <app-last-studies></app-last-studies>
+                <app-last-studies></app-last-studies>
+                <app-last-studies></app-last-studies>
+            </app-carousel>
+        </div>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Search Bar</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-search-bar></app-search-bar>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+    <mat-card-header>
+        <mat-card-title>Search Links</mat-card-title>
+    </mat-card-header>
+    <mat-card-content>
+        <app-search-links></app-search-links>
+    </mat-card-content>
+</mat-card>
+
+<mat-card appearance="outlined">
+    <mat-card-header>
         <mat-card-title>Google Pie Chart</mat-card-title>
     </mat-card-header>
     <mat-card-content>
         <app-pie-chart></app-pie-chart>
     </mat-card-content>
 </mat-card>
-

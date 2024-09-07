@@ -2,4 +2,19 @@
 mat-card{
  background-color: $first-white-color;
  margin-top: 3rem;
+ mat-card-header{
+    margin: 1rem;
+ }
+}
+
+.last-studies-carousel-container{
+    display: flex;
+    justify-content: center;
+    block-size: 400px;
+    app-carousel{
+        display: flex;
+        justify-content: center;
+        overflow-x: hidden;
+    }
+       
 }
