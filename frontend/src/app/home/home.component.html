@@ -12,10 +12,9 @@
         <h2 class="hero-2-container">Top World Statistics</h2>
     </div>
     <div class="card-statistics-container">
-        <app-card-statistics></app-card-statistics>
-        <app-card-statistics></app-card-statistics>
-        <app-card-statistics></app-card-statistics>
-        <app-card-statistics></app-card-statistics>
+        @for (item of cardData; track $index) {
+            <app-card-statistics [imgSrc]="item.cardImg" [contentHeader]="item.cardHeader" [content]="item.cardContent"></app-card-statistics>
+        }
     </div>
     <div>
         <h3 class="hero-2-container">Last Studies</h3>
@@ -23,13 +22,9 @@
     <div class="last-studies-carousel-container">
         <app-carousel [width]="'800px'" [height]="'400px'" [itemWidth]="(275)" [itemHeight]="400"
             (currentIndexEvent)="currentIndexChange($event)">
-            <app-last-studies></app-last-studies>
-            <app-last-studies></app-last-studies>
-            <app-last-studies></app-last-studies>
-            <app-last-studies></app-last-studies>
-            <app-last-studies></app-last-studies>
-            <app-last-studies></app-last-studies>
-            <app-last-studies></app-last-studies>
+            @for (item of cardData; track $index) {
+            <app-last-studies [imgSrc]="item.cardImg" [contentHeader]="item.cardHeader" [content]="item.cardContent"></app-last-studies>
+        }
         </app-carousel>
     </div>
 </div>

@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import {MatCardModule} from '@angular/material/card';
 
 @Component({
@@ -9,5 +9,7 @@ import {MatCardModule} from '@angular/material/card';
   styleUrl: './card-statistics.component.scss'
 })
 export class CardStatisticsComponent {
-
+@Input() imgSrc : string = "";
+@Input() content: string = "";
+@Input() contentHeader: string = "";  
 }

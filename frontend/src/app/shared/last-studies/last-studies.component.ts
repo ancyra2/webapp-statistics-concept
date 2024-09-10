@@ -1,5 +1,5 @@
-import { Component, Input} from '@angular/core';
-import {MatCardModule} from '@angular/material/card';
+import { Component, Input } from '@angular/core';
+import { MatCardModule } from '@angular/material/card';
 
 @Component({
   selector: 'app-last-studies',
@@ -9,4 +9,7 @@ import {MatCardModule} from '@angular/material/card';
   styleUrl: './last-studies.component.scss'
 })
 export class LastStudiesComponent {
+  @Input() imgSrc: string = "";
+  @Input() content: string = "";
+  @Input() contentHeader: string = "";
 }

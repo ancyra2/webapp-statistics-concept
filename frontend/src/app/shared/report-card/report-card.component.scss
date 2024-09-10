@@ -1,0 +1,6 @@
+@import '../../../styles/variables';
+.report-card-wrapper{
+    mat-card{
+        background-color: $component-bg-color !important;
+    }
+}

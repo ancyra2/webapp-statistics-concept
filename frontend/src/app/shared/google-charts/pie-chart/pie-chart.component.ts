@@ -23,15 +23,14 @@ export class PieChartComponent implements OnInit{
   drawChart = () => {
     const data = google.visualization.arrayToDataTable([
       ['Browser', 'Percentage'],
-      ['Chrome', 62.74],
-      ['Safari', 13.39],
-      ['Firefox', 10.85],
-      ['Edge', 4.67],
-      ['Others', 8.35]
+      ['Getir', 27.5],
+      ['Yemeksepeti', 22.5],
+      ['Trendyol Yemek', 35],
+      ['Migros Yemek', 15],
     ]);
 
     const options = {
-      title: 'Browser Market Share',
+      title: 'Electronic Food Market Share',
       pieHole: 0.4,
     };
 
