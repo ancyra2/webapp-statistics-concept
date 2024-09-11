@@ -1,10 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { PieChartComponent } from '../shared/google-charts/pie-chart/pie-chart.component';
 import { MatCardModule } from '@angular/material/card';
-import { DescriptiveTableComponent } from '../shared/descriptive-table/descriptive-table.component';
-import { ReportCardComponent } from "../shared/report-card/report-card.component";
-import { RankingComponent } from "../shared/reports/ranking/ranking.component";
-import { FootballService } from '../services/sport/football.service';
+import { PieChartComponent } from '../../shared/google-charts/pie-chart/pie-chart.component';
+import { DescriptiveTableComponent } from '../../shared/descriptive-table/descriptive-table.component';
+import { ReportCardComponent } from '../../shared/report-card/report-card.component';
+import { RankingComponent } from '../../shared/reports/ranking/ranking.component';
+import { FootballService } from '../../services/sport/football.service';
+
 declare var google: any;
 @Component({
   selector: 'app-report',

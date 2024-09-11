@@ -1,11 +1,28 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from './home/home.component';
-import { ReportComponent } from './report/report.component';
-import { ComponentsComponent } from './components/components.component';
+import { MainLayoutComponent } from './main-layout/main-layout.component';
+import { AdminLayoutComponent } from './admin-layout/admin-layout.component';
+import { PanelComponent } from './admin-layout/panel/panel.component';
+import { HomeComponent } from './main-layout/home/home.component';
+import { ReportComponent } from './main-layout/report/report.component';
+import { ComponentsComponent } from './main-layout/components/components.component';
 
 export const routes: Routes = [
-    {path: '', component: HomeComponent },
-    {path: 'home', component: HomeComponent },
-    {path: 'reports', component: ReportComponent },
-    {path: 'components', component: ComponentsComponent },
+    {
+        path:'',
+        component: MainLayoutComponent,
+        children:[
+            {path: '', component: HomeComponent },
+            {path: 'home', component: HomeComponent },
+            {path: 'reports', component: ReportComponent },
+            {path: 'components', component: ComponentsComponent },
+        ]
+    },
+    {
+        path:'admin',
+        component: AdminLayoutComponent,
+        children:[
+            {path: 'admin', component: PanelComponent}
+        ]
+    }
+   
 ];
