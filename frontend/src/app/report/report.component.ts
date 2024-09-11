@@ -4,6 +4,7 @@ import { MatCardModule } from '@angular/material/card';
 import { DescriptiveTableComponent } from '../shared/descriptive-table/descriptive-table.component';
 import { ReportCardComponent } from "../shared/report-card/report-card.component";
 import { RankingComponent } from "../shared/reports/ranking/ranking.component";
+import { FootballService } from '../services/sport/football.service';
 declare var google: any;
 @Component({
   selector: 'app-report',
@@ -13,9 +14,24 @@ declare var google: any;
   styleUrl: './report.component.scss'
 })
 export class ReportComponent  implements OnInit{
+  
+  personData: any;
 
+  constructor(private footballService: FootballService) {}
   ngOnInit(): void {
     this.loadGoogleCharts();
+    this.getPersonData();
+
+  }
+  getPersonData(): void{
+    this.footballService.getPersonData().subscribe(data => {
+      this.personData = data;
+      console.log(this.personData);
+    },
+    error =>{
+      console.log('fetch error', error)
+    }
+  )
   }
   loadGoogleCharts() {
     google.charts.load('current', { 'packages': ['corechart'] });
