@@ -1,0 +1,129 @@
+@import "../../../styles/layouts";
+@import "../../../styles/variables";
+
+.layout-col {
+  background-color: $alice-blue;
+  border-radius: 10px;
+  border: 1px solid $gray-color;
+}
+
+.pages-wrapper {
+  height: calc(100vh - 90px);
+  margin-top: 75px;
+  position: relative;
+}
+.pages-panel {
+  width: 100%;
+  height: 100%;
+}
+.table-container {
+  width: 100%;
+  height: 100%;
+  table {
+    background-color: $alice-blue;
+    border-radius: 10px;
+    border-spacing: 2px;
+  }
+}
+.paginator-wrapper {
+  width: 100%;
+  height: 100%;
+  mat-paginator {
+    background-color: transparent;
+    border-radius: 10px;
+  }
+}
+.filter-wrapper {
+  mat-form-field {
+    width: 100%;
+  }
+}
+
+.page-addition {
+  button {
+    width: 100%;
+    height: 100%;
+    background-color: #005cbb;
+    border-radius: 10px;
+    border: 1px solid #005cbb;
+    color: $white-color;
+    padding: 0;
+    margin: 0;
+    &:hover {
+      cursor: pointer;
+      color: $gray-color;
+    }
+  }
+}
+
+.page-form-container {
+  position: absolute;
+  left: 0;
+  top: 0;
+  transform: translateX(50%);
+  height: calc(100vh - 90px);
+  z-index: 1001;
+  width: 50%;
+  .layout-row {
+    height: 100%;
+    .layout-col {
+      height: 100%;
+      .page-form{
+        height: 100%;
+        border: 1px solid $gray-color;
+        border-radius: 10px;
+        .form-close-btn{
+          position: absolute;
+          right: 15px;
+          top: 0;
+          border-top-right-radius: 10px;
+          color: $white-color;
+          background-color: crimson;
+          border: 0;
+          &:hover{
+            cursor: pointer;
+          }
+        }
+      .form-field{
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        margin-top: 50px;
+        position: relative;
+        z-index: 1002;
+        mat-option{
+          height: 60px;
+        }
+      }
+      }
+    }
+  }
+}
+
+.overlay{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+}
+::ng-deep .cdk-overlay-container {
+  z-index: 1002 !important;
+}
+//Mat Form field için
+::ng-deep .mat-mdc-text-field-wrapper {
+  border-radius: 10px; /* İstediğiniz border-radius değeri */
+  background-color: $alice-blue; /* Arkaplanı transparan yapar */
+}
+
+::ng-deep .mat-mdc-input-element {
+  border-radius: 10px; /* İstediğiniz radius */
+  background-color: $alice-blue; /* Girdi alanının arkaplanını şeffaf yapar */
+}
+::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
+  background-color: $alice-blue !important;
+  border-spacing: 2px;
+  border-radius: 10px;
+}

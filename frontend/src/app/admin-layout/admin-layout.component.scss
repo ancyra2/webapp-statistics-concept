@@ -1,0 +1,10 @@
+.app-admin-container{
+    display: flex;
+    overflow-x:hidden;
+    nav{
+        max-width: 200px;
+    }
+    main{
+        flex: 1 1 auto;
+    }
+}

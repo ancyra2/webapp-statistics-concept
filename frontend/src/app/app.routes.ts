@@ -5,6 +5,7 @@ import { PanelComponent } from './admin-layout/panel/panel.component';
 import { HomeComponent } from './main-layout/home/home.component';
 import { ReportComponent } from './main-layout/report/report.component';
 import { ComponentsComponent } from './main-layout/components/components.component';
+import { PagesComponent } from './admin-layout/pages/pages.component';
 
 export const routes: Routes = [
     {
@@ -21,7 +22,8 @@ export const routes: Routes = [
         path:'admin',
         component: AdminLayoutComponent,
         children:[
-            {path: 'admin', component: PanelComponent}
+            {path: '', component: PanelComponent},
+            {path: 'pages', component: PagesComponent}
         ]
     }
    

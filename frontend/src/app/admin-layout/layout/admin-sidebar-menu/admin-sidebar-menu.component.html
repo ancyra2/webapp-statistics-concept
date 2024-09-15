@@ -1,0 +1,18 @@
+<div class="sidenav-wrapper">
+    <mat-sidenav-container class="sidenav-container">
+      <mat-sidenav 
+        #sidenav 
+        mode="side" 
+        [(opened)]="opened" >
+        <div class="sidenav-list">
+          <ul>
+            <li><a [routerLink] = "['/admin']"><span>Dashboard</span><mat-icon>dashboard</mat-icon></a></li>
+            <li><a [routerLink] = "['/admin/pages']"><span>Pages Management</span><mat-icon>description</mat-icon></a></li>  
+          </ul>
+        </div>
+      </mat-sidenav>
+      <mat-sidenav-content>
+        <!-- Main content goes here -->
+      </mat-sidenav-content>
+    </mat-sidenav-container>
+  </div>

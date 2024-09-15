@@ -1,0 +1,106 @@
+<div class="pages-wrapper">
+  <div class="layout-container">
+    <!-- Row1 -->
+    <div class="layout-row">
+      <div class="layout-col">
+        <div class="pages-panel">
+          <div class="table-container">
+            <table mat-table [dataSource]="dataSource" matSort>
+
+              <!-- ID Kolonu -->
+              <ng-container matColumnDef="id">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>ID</th>
+                <td mat-cell *matCellDef="let element">{{ element.id }}</td>
+              </ng-container>
+
+              <!-- Ad Kolonu -->
+              <ng-container matColumnDef="name">
+                <th mat-header-cell *matHeaderCellDef mat-sort-header>Ad</th>
+                <td mat-cell *matCellDef="let element">{{ element.name }}</td>
+              </ng-container>
+
+              <!-- Eylemler (Düzenle/Sil) Kolonu -->
+              <ng-container matColumnDef="actions">
+                <th mat-header-cell *matHeaderCellDef>Eylemler</th>
+                <td mat-cell *matCellDef="let element">
+                  <button mat-icon-button color="primary" (click)="edit(element)">
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button mat-icon-button color="warn" (click)="delete(element)">
+                    <mat-icon>delete</mat-icon>
+                  </button>
+                </td>
+              </ng-container>
+
+              <!-- Tablo Başlık ve Hücreleri -->
+              <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+              <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+            </table>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row2 -->
+    <div class="layout-row">
+      <div class="layout-col">
+        <div class="paginator-wrapper">
+          <mat-paginator [pageSizeOptions]="[5, 10, 15, 20]" showFirstLastButtons></mat-paginator>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row3 -->
+    <div class="layout-row">
+      <div class="layout-col">
+        <div class="filter-wrapper">
+          <mat-form-field>
+            <mat-label>Filter</mat-label>
+            <input matInput (keyup)="applyFilter($event.target)" placeholder="Filtrele">
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+
+    <!-- Row4 -->
+    <div class="layout-row">
+      <div class="layout-col">
+        <div class="page-addition">
+          <button mat-flat-button (click)="showForm()">
+            <mat-icon>
+              add
+            </mat-icon>
+          </button>
+        </div>
+      </div>
+    </div>
+
+  </div>
+
+  <!-- Form Background Overlay -->
+  <div class="overlay" *ngIf="showFormContainer">
+   
+  </div>
+
+  <!-- Form -->
+  <div class="layout-container page-form-container" *ngIf="showFormContainer">
+    <!-- Row1 -->
+    <div class="layout-row">
+      <div class="layout-col">
+        <div class="page-form">
+          <button mat-flat-button class="form-close-btn" (click)="closeForm()">
+            <mat-icon>close</mat-icon>
+          </button>
+          <mat-form-field class="form-field">
+            <mat-label>Chose Type</mat-label>
+            <mat-select>
+              <mat-option value="report">Report</mat-option>
+              <mat-option value="statistics">Statistics</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>

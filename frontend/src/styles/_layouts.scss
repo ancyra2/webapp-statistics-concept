@@ -1,0 +1,19 @@
+.layout-container{
+    width: 100%;    
+    height: calc(100%);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;  
+}
+.layout-row{
+    display: flex;
+    width: calc(100% - 30px);
+    gap: 10px;
+    padding-left: 15px;
+    padding-right: 15px;
+}
+.layout-col{
+    display: flex;
+    flex-basis: 100%;
+    flex-direction: column;
+}
