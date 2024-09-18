@@ -10,7 +10,6 @@
 .pages-wrapper {
   height: calc(100vh - 90px);
   margin-top: 75px;
-  position: relative;
 }
 .pages-panel {
   width: 100%;
@@ -43,6 +42,7 @@
   button {
     width: 100%;
     height: 100%;
+
     background-color: #005cbb;
     border-radius: 10px;
     border: 1px solid #005cbb;
@@ -59,20 +59,20 @@
 .page-form-container {
   position: absolute;
   left: 0;
-  top: 0;
+  top: 60px;
   transform: translateX(50%);
-  height: calc(100vh - 90px);
   z-index: 1001;
   width: 50%;
+  min-height: 500px;
+  height: calc(100vh - 120px);
   .layout-row {
     height: 100%;
+    min-height: 500px;
     .layout-col {
       height: 100%;
-      .page-form{
-        height: 100%;
-        border: 1px solid $gray-color;
+      .page-form {
         border-radius: 10px;
-        .form-close-btn{
+        .form-close-btn {
           position: absolute;
           right: 15px;
           top: 0;
@@ -80,27 +80,91 @@
           color: $white-color;
           background-color: crimson;
           border: 0;
-          &:hover{
+          &:hover {
             cursor: pointer;
           }
         }
-      .form-field{
-        display: flex;
-        flex-direction: column;
-        align-items: flex-start;
-        margin-top: 50px;
-        position: relative;
-        z-index: 1002;
-        mat-option{
-          height: 60px;
+        .page-form-1,.page-form-2 {
+          margin-top: 30px;
+          padding-left: 15px;
+          padding-right: 15px;
+          margin-left: 15px;
+          margin-right: 15px;
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: calc(100% - 60px);
+          transition: transform 0.5s ease-in;
+          z-index: 0;
         }
-      }
+         .page-form-1.active{
+          transform: translateX(0); 
+          z-index: 1; 
+         }
+         .page-form-2{
+          transform: translateX(0%);
+         }
+         .page-form-2.active{
+          transform: translateX(0);
+          z-index: 1;
+         }
+
+        .form-slider-btn-container {
+          display: flex;
+          gap: 3px;
+          position: absolute;
+          bottom: 0;
+          right: 100px;
+
+          button {
+            width: 32px;
+            height: 32px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: transparent;
+            border: none;
+            &:hover {
+              cursor: pointer;
+            }
+            mat-icon {
+              font-size: 16px;
+              color: $gray-color;
+            }
+            
+          }
+          button.active {
+            mat-icon {
+              color: $first-color;
+            }
+          }
+         
+        }
+        .form-field {
+          display: flex;
+          flex-direction: column;
+          align-items: flex-start;
+          position: relative;
+          z-index: 1002;
+          mat-option {
+            height: 60px;
+          }
+        }
+        .form-editor {
+          width: 100%;
+          min-height: 300px;
+          textarea {
+            resize: none;
+            min-height: 300px;
+            width: 100%;
+          }
+        }
       }
     }
   }
 }
 
-.overlay{
+.overlay {
   position: fixed;
   top: 0;
   left: 0;

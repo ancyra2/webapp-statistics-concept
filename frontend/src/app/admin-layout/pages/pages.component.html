@@ -79,25 +79,114 @@
 
   <!-- Form Background Overlay -->
   <div class="overlay" *ngIf="showFormContainer">
-   
+
   </div>
 
   <!-- Form -->
   <div class="layout-container page-form-container" *ngIf="showFormContainer">
     <!-- Row1 -->
     <div class="layout-row">
+
       <div class="layout-col">
+
         <div class="page-form">
           <button mat-flat-button class="form-close-btn" (click)="closeForm()">
             <mat-icon>close</mat-icon>
           </button>
-          <mat-form-field class="form-field">
-            <mat-label>Chose Type</mat-label>
-            <mat-select>
-              <mat-option value="report">Report</mat-option>
-              <mat-option value="statistics">Statistics</mat-option>
-            </mat-select>
-          </mat-form-field>
+          <!-- Form 1 -->
+          <form [formGroup]="pageForm" class="page-form-1" [class.active] = "activeFormIndex === 0">
+            <!-- Page Headr -->
+            <mat-form-field class="form-field">
+              <mat-label>Page Header</mat-label>
+              <input matInput formControlName="pageHeader">
+            </mat-form-field>
+            <!-- Page Summary -->
+            <mat-form-field class="form-field">
+              <mat-label>Page Summary</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <!-- Page Url -->
+            <mat-form-field class="form-field">
+              <mat-label>Page Url</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <!-- Category -->
+            <mat-form-field>
+              <mat-label>Select Category</mat-label>
+              <mat-select>
+                <mat-option value="food">Food</mat-option>
+                <mat-option value="world">World</mat-option>
+                <mat-option value="football">Football</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- Sub Category -->
+            <mat-form-field>
+              <mat-label>Sub Category</mat-label>
+              <mat-select>
+                <mat-option value="sub1">Sub1</mat-option>
+                <mat-option value="sub2">Sub2</mat-option>
+                <mat-option value="sub3">Sub3</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- Page Content -->
+            <mat-form-field class="form-editor">
+              <mat-label>Create Html Content</mat-label>
+              <textarea matInput placeholder="&lt;h1&gt; Content Header &lt;/h1&gt;"></textarea>
+            </mat-form-field>
+          </form>
+
+          <!-- Form 2 -->
+          <form [formGroup]="pageForm" class="page-form-2" [class.active] = "activeFormIndex === 1">
+            <!-- Page Headr -->
+            <mat-form-field class="form-field">
+              <mat-label>Page Header2</mat-label>
+              <input matInput formControlName="pageHeader">
+            </mat-form-field>
+            <!-- Page Summary -->
+            <mat-form-field class="form-field">
+              <mat-label>Page Summary2</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <!-- Page Url -->
+            <mat-form-field class="form-field">
+              <mat-label>Page Url2</mat-label>
+              <input matInput>
+            </mat-form-field>
+            <!-- Category -->
+            <mat-form-field>
+              <mat-label>Select Category2</mat-label>
+              <mat-select>
+                <mat-option value="food">Food</mat-option>
+                <mat-option value="world">World</mat-option>
+                <mat-option value="football">Football</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- Sub Category -->
+            <mat-form-field>
+              <mat-label>Sub Category2</mat-label>
+              <mat-select>
+                <mat-option value="sub1">Sub1</mat-option>
+                <mat-option value="sub2">Sub2</mat-option>
+                <mat-option value="sub3">Sub3</mat-option>
+              </mat-select>
+            </mat-form-field>
+            <!-- Page Content -->
+            <mat-form-field class="form-editor">
+              <mat-label>Create Html Content2</mat-label>
+              <textarea matInput placeholder="&lt;h1&gt; Content Header &lt;/h1&gt;"></textarea>
+            </mat-form-field>
+
+          </form>
+
+          <div class="form-slider-btn-container">
+            <button mat-mat-flat-button class="form-slider-btn " (click)="setActiveButton(0)"  [class.active] = "activeFormIndex === 0">
+              <mat-icon>circle</mat-icon>
+            </button>
+            <button mat-mat-flat-button class="form-slider-btn" (click)="setActiveButton(1)" [class.active] = "activeFormIndex === 1">
+              <mat-icon>circle</mat-icon>
+            </button>
+          </div>
+
         </div>
       </div>
     </div>

@@ -1,5 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
@@ -32,7 +33,7 @@ const ELEMENT_DATA = [
   imports: [
     MatPaginatorModule, MatFormFieldModule, MatIconModule,
     MatTableModule, MatSortModule, MatInputModule, CommonModule,
-    MatSelectModule
+    MatSelectModule, MatFormFieldModule, ReactiveFormsModule
   ],
   templateUrl: './pages.component.html',
   styleUrl: './pages.component.scss'
@@ -42,9 +43,18 @@ export class PagesComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource = new MatTableDataSource(ELEMENT_DATA); // Örnek veri
   showFormContainer: boolean = true; // Form görünürlüğü kontrolü için boolean değişken
+  pageForm: FormGroup;
+  activeFormIndex = 0;
 
   @ViewChild(MatPaginator) paginator!: MatPaginator;
   @ViewChild(MatSort) sort!: MatSort;
+
+  constructor(private fb: FormBuilder) {
+    this.pageForm = this.fb.group({
+      
+    })
+    
+  }
 
   ngAfterViewInit(): void {
     this.dataSource.paginator = this.paginator;
@@ -72,5 +82,9 @@ export class PagesComponent implements AfterViewInit {
   }
   closeForm() {
     this.showFormContainer = !this.showFormContainer;
+  }
+
+  setActiveButton(index: number){
+    this.activeFormIndex = index;
   }
 }
