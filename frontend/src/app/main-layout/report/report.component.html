@@ -1,35 +1,125 @@
-<div class="report-wrapper">
-    <div class="breadcum">
-        <ul>
-            <li>
-                <a href="#">E-Commerce</a>
-                <span>></span>
-                <ul>
-                    <li><a href="#">Food Prices</a></li>
-                </ul>
-            </li>
-        </ul>
-    </div>
-    <div class="report-header">
-        <h1>Türkiye'de elektronik uygulamalardaki restoranların yemek fiyatlarının yerinde yenilen yemek fiyatları ile
-            karşılaştırılması </h1>
-    </div>
-    <div class="report-chart-wrapper">
-        <app-pie-chart></app-pie-chart>
-    </div>
-    <div class="report-summary-wrapper">
-        <app-report-card></app-report-card>
-        <div style="margin-top: 2rem;">
-            <p>Yemek istatistikleri, farklı yemek türlerinin popülerliğini ve tüketim eğilimlerini analiz eder. Bu veriler, hangi yemeklerin en çok tercih edildiğini ve hangi besin maddelerinin daha fazla tüketildiğini gösterir. Ayrıca, bölgesel farklılıklar ve demografik özellikler göz önünde bulundurularak yemek alışkanlıklarını anlamaya yardımcı olur. Sonuçlar, restoranlar ve gıda endüstrisi için stratejik kararlar almak ve menüleri optimize etmek için değerli bilgiler sağlar. Bu istatistikler, sağlıklı beslenme trendlerini takip etmek isteyen bireyler için de önemli bir kaynak olabilir.</p>
+<main class="report-wrapper">
+
+    <div class="layout-container ">
+
+        <div class="layout-row">
+
+            <div class="layout-col">
+                <article>
+
+                    <header class="report-header">
+                        <h1>Which countries have the critical minerals needed for the energy transition?</h1>
+                        <h2>An overview of the distribution of critical minerals for clean energy.</h2>
+                    </header>
+
+                    <section class="report-section">
+                        <p>
+                            The world’s energy system today is mainly powered by fossil fuels. The transition to a
+                            low-carbon one will shift its underpinnings away from coal, oil, and gas to the minerals
+                            needed
+                            for solar, wind, nuclear, batteries, and other technologies. The dynamics of the energy
+                            system
+                            will shift dramatically.
+                        </p>
+                        <p>
+                            Who currently produces critical minerals such as cobalt, lithium, nickel, and copper?
+                            Which
+                            countries have reserves that can be mined in the future?
+                        </p>
+                        <p>
+                            These questions are crucial to deploying low-carbon energy at speed and scale and
+                            managing
+                            geopolitical and energy security risks along the way.
+                        </p>
+                        <p>
+                            The data is there to answer some of these questions. Institutions such as the US
+                            Geological
+                            Survey, the British Geological Survey, the International Energy Agency, and the Payne
+                            Institute
+                            publish it. But it’s still hard to get a quick overview of global production and
+                            reserves.
+                        </p>
+                        <p>
+                            To help bridge this gap, we’ve published a data explorer on Minerals and Metals, where
+                            you
+                            can
+                            dig into the numbers for a wide range of materials.
+                        </p>
+                        <p>
+                            Here, we wanted to give a more focused overview of some of the most essential minerals
+                            to
+                            the
+                            energy transition. This is not an exhaustive list, but it should cover most of them in
+                            one
+                            place.
+                        </p>
+                        <p>
+                            Note that this list is focused on minerals specific to the energy transition. Countries
+                            and
+                            regions will have their own lists of “critical minerals”. The European Union, for
+                            example,
+                            has a
+                            different list of minerals it considers
+                        </p>
+
+                    </section>
+
+                    <section class="report-section">
+
+                        <h1>A quick note on terminology</h1>
+                        <p>The focus of this article will be on mineral production and reserves.</p>
+                        <p>The first is mine production. As the name suggests, this is what’s directly mined out of
+                            the
+                            ground. This is often impure and mixed with other minerals or rocks. It usually needs to
+                            be
+                            refined to get it into a usable or final form.
+                        </p>
+                        <p>That’s the second form of production. Refined production is the conversion and separation
+                            of
+                            the
+                            raw mineral into a pure or final form used in manufacturing. As we’ll see, the countries
+                            that do
+                            the mining are often different from those doing the refining.</p>
+                        <p>The second key metric to focus on is reserves. Reserves tell us how much known and
+                            assessed
+                            mineral deposits can be mined economically with current technologies and market
+                            conditions.
+                            These are not to be confused with “resources”, which describes the total amount of
+                            available
+                            minerals. Reserves are resources that are economically viable today. We have a short
+                            explainer
+                            on this.</p>
+                        <p>Both metrics — reserves and resources — can change over time as we find new deposits and
+                            known
+                            ones become more economical.</p>
+
+                    </section>
+
+                    <figure>
+                        <app-pie-chart></app-pie-chart>
+                        <figcaption>Pie chart showing the distribution of critical minerals.</figcaption>
+                    </figure>
+
+                    <section>
+                        <h2>Reserves</h2>
+                        <p>
+                            Bauxite reserves show a very different geographical pattern. Guinea had the largest reserves
+                            in 2023, followed by Vietnam (which is a very small producer of bauxite).
+                        </p>
+                        <p>
+                            China, the third largest producer of bauxite, has only a small amount of the world’s
+                            reserves.
+                        </p>
+                        <p>
+                            You can see the distribution of reserves in the chart and map below.
+                        </p>
+                    </section>
+
+                </article>
+
+            </div>
+
         </div>
-        <div>
-            <div id="barchart_values" style="width: 600px; height: 400px;"></div>
-        </div>
+
     </div>
-    <div style="margin-top: 2rem;">
-        <app-ranking></app-ranking>
-    </div>
-    <div style="margin-top: 2rem; text-align: justify;">
-        <p>Yemek istatistikleri, farklı yemek türlerinin popülerliğini ve tüketim eğilimlerini analiz eder. Bu veriler, hangi yemeklerin en çok tercih edildiğini ve hangi besin maddelerinin daha fazla tüketildiğini gösterir. Ayrıca, bölgesel farklılıklar ve demografik özellikler göz önünde bulundurularak yemek alışkanlıklarını anlamaya yardımcı olur. Sonuçlar, restoranlar ve gıda endüstrisi için stratejik kararlar almak ve menüleri optimize etmek için değerli bilgiler sağlar. Bu istatistikler, sağlıklı beslenme trendlerini takip etmek isteyen bireyler için de önemli bir kaynak olabilir.</p>
-    </div>
-</div>
+</main>

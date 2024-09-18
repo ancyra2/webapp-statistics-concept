@@ -2,6 +2,23 @@
 @import 'styles/variables';
 
 html, body { height: 100%; }
-body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: $text-first-color; background-color: $bg-color;}
+body { 
+    margin: 0; 
+    font-family: Roboto, "Helvetica Neue", sans-serif;
+    color: $text-first-color; 
+    background-color: $bg-color;
+}
+h1{
+    font-size: 2.5rem !important;
+    font-weight: 500 !important;
+    line-height: 1.25 !important;
+}
+h2{
+    font-size: 2rem !important;
+    line-height: 1.25 !important;
+}
+p{
+    line-height: 1.75 !important;
+}
 
 
