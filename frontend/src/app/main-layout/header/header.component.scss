@@ -1,6 +1,14 @@
-.header-container{
+.header-wrapper{
+    max-width: 1140px;
     block-size: 120px;
     display: flex;
     justify-content: space-between;
     align-items: center;
+}
+
+:host{
+    max-width: 1140px; /* Bileşen için maksimum genişlik belirle */
+    display: block;    /* Bileşeni blok seviyesinde göster */
+    margin-left: auto; /* Ortalamak için */
+    margin-right: auto; /* Ortalamak için */
 }

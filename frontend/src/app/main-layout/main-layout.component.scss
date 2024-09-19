@@ -1,4 +1,8 @@
-.app-main-container{
+.app-content-container{
     max-inline-size: 1140px;
     margin: 0 auto;
+    
+}
+:host{
+    position: relative;
 }
