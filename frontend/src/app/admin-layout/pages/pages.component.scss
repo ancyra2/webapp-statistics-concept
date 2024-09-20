@@ -2,7 +2,7 @@
 @import "../../../styles/variables";
 
 .layout-col {
-  background-color: $alice-blue;
+  background-color: $alice-blue-color;
   border-radius: 10px;
   border: 1px solid $gray-color;
 }
@@ -19,7 +19,7 @@
   width: 100%;
   height: 100%;
   table {
-    background-color: $alice-blue;
+    background-color: $alice-blue-color;
     border-radius: 10px;
     border-spacing: 2px;
   }
@@ -179,15 +179,15 @@
 //Mat Form field için
 ::ng-deep .mat-mdc-text-field-wrapper {
   border-radius: 10px; /* İstediğiniz border-radius değeri */
-  background-color: $alice-blue; /* Arkaplanı transparan yapar */
+  background-color: $alice-blue-color; /* Arkaplanı transparan yapar */
 }
 
 ::ng-deep .mat-mdc-input-element {
   border-radius: 10px; /* İstediğiniz radius */
-  background-color: $alice-blue; /* Girdi alanının arkaplanını şeffaf yapar */
+  background-color: $alice-blue-color; /* Girdi alanının arkaplanını şeffaf yapar */
 }
 ::ng-deep .mdc-text-field--filled:not(.mdc-text-field--disabled) {
-  background-color: $alice-blue !important;
+  background-color: $alice-blue-color !important;
   border-spacing: 2px;
   border-radius: 10px;
 }

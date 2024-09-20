@@ -1,0 +1,162 @@
+<main class="statistics-container">
+
+    <div class="layout-container">
+
+        <div class="layout-row">
+
+            <div class="layout-col">
+
+                <article>
+
+                    <header class="data-header">
+                        <h1>Child mortality rate , ages 0-4</h1>
+                    </header>
+
+                    <section class="data-detail-section">
+
+                        <h2>Child mortality rate</h2>
+                        <span class="data-detail-text">The estimated share of newborns who die before reaching the age
+                            of five.</span>
+
+                        <div class="data-detail-btn-container">
+
+                            <button mat-stroked-button [class.active]="dataDetailIndex === 0"
+                                (click)="setDetailIndex(0)">
+                                <mat-icon>insert_chart</mat-icon>
+                                <span>Chart</span>
+                            </button>
+
+                            <button mat-stroked-button [class.active]="dataDetailIndex === 1"
+                                (click)="setDetailIndex(1)">
+                                <mat-icon>public</mat-icon>
+                                <span>Map</span>
+                            </button>
+
+                            <button mat-stroked-button [class.active]="dataDetailIndex === 2"
+                                (click)="setDetailIndex(2)">
+                                <mat-icon>table_chart</mat-icon>
+                                <span>Table</span>
+                            </button>
+
+                        </div>
+
+                        <figure class="data-figure-container">
+                            <app-pie-chart *ngIf="dataDetailIndex === 0"></app-pie-chart>
+                            <app-descriptive-table *ngIf="dataDetailIndex === 2"></app-descriptive-table>
+                            <app-geo-chart *ngIf="dataDetailIndex === 1"></app-geo-chart>
+                        </figure>
+                    </section>
+
+
+                    <section class="data-about-section">
+
+                        <div class="layout-container">
+
+                            <div class="layout-row">
+
+                                <div class="layout-col data-about-header">
+                                    <h2>About this data</h2>
+                                </div>
+
+                                <div class="layout-col data-about-content">
+
+                                    <div class="data-about-content-header">
+                                        <div>CHILD MORTALITY RATE, AGES 0-4</div>
+                                        <div>The share of children who die before reaching the age of 5.</div>
+                                    </div>
+
+                                    <div class="data-about-content-source">
+                                        <div>Source</div>
+                                        <div>UN, World Population Prospects (2024) - processed by Our World in Data
+                                        </div>
+                                    </div>
+
+                                    <div class="data-about-content-date">
+
+                                        <div>
+                                            <div>Last updated</div>
+                                            <div>July 12, 2024</div>
+                                        </div>
+
+
+                                        <div>
+                                            <div>Date range</div>
+                                            <div>1950 - 2023</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="data-about-content-unit">
+                                        <div>Source</div>
+                                        <div>UN, World Population Prospects (2024) - processed by Our World in Data
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+                    <section class="data-statistics-section">
+
+                        <div class="layout-container">
+
+                            <div class="layout-row">
+
+                                <div class="layout-col data-statistics-header">
+                                    <h2>Data statistics</h2>
+                                </div>
+
+                                <div class="layout-col data-about-content">
+
+                                    <div class="data-about-content-header">
+                                        <div>CHILD MORTALITY RATE, AGES 0-4</div>
+                                        <div>The share of children who die before reaching the age of 5.</div>
+                                    </div>
+
+                                    <div class="data-about-content-source">
+                                        <div>Source</div>
+                                        <div>UN, World Population Prospects (2024) - processed by Our World in Data
+                                        </div>
+                                    </div>
+
+                                    <div class="data-about-content-date">
+
+                                        <div>
+                                            <div>Last updated</div>
+                                            <div>July 12, 2024</div>
+                                        </div>
+
+
+                                        <div>
+                                            <div>Date range</div>
+                                            <div>1950 - 2023</div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="data-about-content-unit">
+                                        <div>Source</div>
+                                        <div>UN, World Population Prospects (2024) - processed by Our World in Data
+                                        </div>
+                                    </div>
+
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </section>
+
+
+                </article>
+
+            </div>
+        </div>
+    </div>
+
+</main>

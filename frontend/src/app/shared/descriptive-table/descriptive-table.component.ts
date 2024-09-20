@@ -21,7 +21,21 @@ export interface PeriodicElement {
 export class DescriptiveTableComponent {
 
   ELEMENT_DATA: PeriodicElement[] = [
-    { variable: "Sample Variable", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Turkey", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Russia", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "France", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "United States", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Canada", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Turkey", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Russia", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "France", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "United States", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Canada", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Turkey", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Russia", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "France", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "United States", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
+    { variable: "Canada", minStatistic: 15, maxStatistic: 108, meanStatistic: 48 },
     
   ];
 

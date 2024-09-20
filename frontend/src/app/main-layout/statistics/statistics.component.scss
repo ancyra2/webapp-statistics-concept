@@ -1,0 +1,116 @@
+@import "../../../styles/variables";
+@import "../../../styles/layouts";
+
+.statistics-container {
+  max-width: 800px;
+  min-width: 800px;
+  background-color: $white-color;
+  padding-left: 30px;
+  padding-right: 30px;
+}
+:host {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.data-header {
+  height: 120px;
+  display: flex;
+  align-items: center;
+}
+.data-detail-section {
+  width: 100%;
+  border: 1px solid $border-color;
+  padding: 16px;
+  box-sizing: border-box;
+  h2 {
+    margin-bottom: 0;
+  }
+}
+.data-detail-text {
+  font-size: 0.75rem;
+}
+.data-detail-btn-container {
+  margin-top: 12px;
+  button {
+    margin-right: 8px;
+  }
+  button.active {
+    background-color: $first-color;
+    color: $white-color;
+  }
+}
+.data-figure-container {
+  margin: 0;
+  margin-top: 1rem;
+  height: 400px;
+}
+
+.data-about-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
+}
+.data-about-header {
+  flex: 1;
+  h2 {
+    font-size: 1.75rem !important;
+  }
+}
+.data-about-content {
+  flex: 2;
+}
+
+.data-about-content-header > div:first-child,
+.data-about-content-source > div:first-child,
+.data-about-content-unit > div:first-child {
+  font-size: 0.85em;
+  font-weight: 500;
+  color: $text-gray-color;
+}
+
+.data-about-content-header > div:nth-child(2),
+.data-about-content-source > div:nth-child(2),
+.data-about-content-unit > div:nth-child(2) {
+  font-size: 0.85em;
+  color: $text-first-color;
+}
+
+.data-about-content-date {
+  display: flex;
+
+  > div {
+    div:first-child {
+      font-size: 0.85em;
+      font-weight: 500;
+      color: $text-gray-color;
+    }
+
+    div:nth-child(2) {
+      font-size: 0.85em;
+      color: $text-first-color;
+    }
+
+    &:nth-of-type(2) {
+      margin-left: 3rem;
+    }
+  }
+}
+
+.data-about-content-source,
+.data-about-content-date,
+.data-about-content-unit {
+    margin-top: 1rem;
+}
+
+.data-statistics-section{
+    margin-top: 2rem;
+    margin-bottom: 2rem;
+}
+
+.data-statistics-header{
+    flex: 1;
+  h2 {
+    font-size: 1.75rem !important;
+  }
+}

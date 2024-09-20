@@ -1,13 +1,16 @@
 @import '../../../styles/variables';
 
 .mat-table-wrapper{
+    overflow: scroll;
+    max-height: 400px;
     table{
-        background-color: $first-white-color;
+        background-color: $white-color;
         th{
             text-align: center;
             &:first-child{
                 text-align: left;
             }
+            background-color:  #cce5ff;
         }
     
         td {
@@ -15,6 +18,14 @@
             &:first-child{
                 text-align: left;
             }
+        }
+
+        tr:nth-child(odd){
+            background-color: $white-color; /* Beyaz */
+        }
+
+        tr:nth-child(even) {
+            background-color: #cce5ff; /* Mavi */
         }
     }
     

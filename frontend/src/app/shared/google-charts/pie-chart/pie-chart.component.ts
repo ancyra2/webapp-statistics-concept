@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { DataTableService } from '../../../services/data-table.service';
 
 declare var google: any;  // Google Charts'ın global API'sine erişmek için
 
@@ -11,6 +12,17 @@ declare var google: any;  // Google Charts'ın global API'sine erişmek için
 })
 export class PieChartComponent implements OnInit{
 
+  data!: Array<any>;
+  
+  constructor(dataTableService: DataTableService) {
+    this.data = dataTableService.getPieChartData('Company', 'Percentage');
+    const pieData = [['Company', 'Percentage']];
+    this.data.forEach(item =>{
+      pieData.push([item.pieName, item.metricUnit]);
+    });
+    this.data = pieData;
+  } 
+  
   ngOnInit(): void {
     this.loadGoogleCharts();
   }
@@ -21,13 +33,7 @@ export class PieChartComponent implements OnInit{
   }
 
   drawChart = () => {
-    const data = google.visualization.arrayToDataTable([
-      ['Browser', 'Percentage'],
-      ['Getir', 27.5],
-      ['Yemeksepeti', 22.5],
-      ['Trendyol Yemek', 35],
-      ['Migros Yemek', 15],
-    ]);
+    const data = google.visualization.arrayToDataTable(this.data);
 
     const options = {
       title: 'Electronic Food Market Share',
