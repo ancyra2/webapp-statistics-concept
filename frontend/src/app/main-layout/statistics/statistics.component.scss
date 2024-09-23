@@ -100,17 +100,46 @@
 .data-about-content-source,
 .data-about-content-date,
 .data-about-content-unit {
-    margin-top: 1rem;
+  margin-top: 1rem;
 }
 
-.data-statistics-section{
-    margin-top: 2rem;
-    margin-bottom: 2rem;
+.data-statistics-section {
+  margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
-.data-statistics-header{
-    flex: 1;
+.data-statistics-header {
+  flex: 1;
   h2 {
     font-size: 1.75rem !important;
   }
 }
+
+.data-statistics-content {
+  flex: 2;
+}
+
+.data-statistics{
+  margin-top: 1rem;
+}
+
+.data-statistics-content div:first-child{
+  margin-top: 0;
+}
+
+.data-statistics div:first-child {
+  font-size: 0.85em;
+  font-weight: 500;
+  color: $text-gray-color;
+}
+
+.data-statistics div:nth-child(2) {
+  font-size: 0.85em;
+  color: $text-first-color;
+}
+
+.hr-separator{
+    border-top: 1px solid $border-color;
+    margin: 2rem 0;
+}
+
