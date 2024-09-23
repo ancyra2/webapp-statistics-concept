@@ -7,6 +7,7 @@ import { ReportComponent } from './main-layout/report/report.component';
 import { ComponentsComponent } from './main-layout/components/components.component';
 import { PagesComponent } from './admin-layout/pages/pages.component';
 import { StatisticsComponent } from './main-layout/statistics/statistics.component';
+import { LatestComponent } from './main-layout/latest/latest.component';
 
 export const routes: Routes = [
     {
@@ -18,6 +19,7 @@ export const routes: Routes = [
             {path: 'reports', component: ReportComponent },
             {path: 'components', component: ComponentsComponent },
             {path: 'statistics', component: StatisticsComponent},
+            {path: 'latest', component: LatestComponent}
         ]
     },
     {
