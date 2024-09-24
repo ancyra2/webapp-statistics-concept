@@ -1,1 +1,28 @@
-<p>latest works!</p>
+<div class="latest-wrapper">
+
+    <div class="layout-container">
+        <div class="layout-row">
+            <div class="layout-col">
+                <div class="last-studies-container">
+                    @for (item of paginatedData; track $index) {
+                    <app-last-studies [imgSrc]="item.cardImg" [contentHeader]="item.cardHeader"
+                        [content]="item.cardContent"></app-last-studies>
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="layout-container paginator-container">
+        <div class="layout-row">
+            <div class="layout-col ">
+                <div>
+                    <mat-paginator [length]="dataSource.data.length" [pageSize]="pageSize" [hidePageSize]="true" [showFirstLastButtons]="true"
+                        aria-label="Select page" (page)="updatePageData()">
+                    </mat-paginator>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>

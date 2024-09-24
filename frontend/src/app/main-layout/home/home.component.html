@@ -21,9 +21,9 @@
     </div>
     <div class="last-studies-carousel-container">
         <app-carousel [width]="'800px'" [height]="'400px'" [itemWidth]="(275)" [itemHeight]="400"
-            (currentIndexEvent)="currentIndexChange($event)">
+            (currentIndexEvent)="currentIndexChange($event)" >
             @for (item of cardData; track $index) {
-            <app-last-studies [imgSrc]="item.cardImg" [contentHeader]="item.cardHeader" [content]="item.cardContent"></app-last-studies>
+            <app-last-studies [imgSrc]="item.cardImg" [contentHeader]="item.cardHeader" [content]="item.cardContent" style="margin-right: 25px;"></app-last-studies>
         }
         </app-carousel>
     </div>

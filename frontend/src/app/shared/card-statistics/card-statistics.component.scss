@@ -7,11 +7,14 @@
      min-block-size: 120px;
      flex-direction: row;
      border: 0;
+     border-radius: 0;
      background-color: #fff;
      .mat-card-image{
         inline-size: 30%;
         min-inline-size: 100px;
         block-size: 100%;
+        border: 1px solid $border-color;
+        border-right: 0;
      }
      .mat-card-statistics-wrapper{
         display: flex;
@@ -20,10 +23,17 @@
         mat-card-header{
             font-weight: 500;
             padding-bottom: 8px;
+            border: 1px solid $border-color;
+            border-bottom: 0;
+            border-left: 0;
         }
         mat-card-content{ 
-            padding: 0 0 0 16px;
+            padding: 0 0 24px 16px;
             line-height: 3ch;
+            border: 1px solid $border-color;
+            border-top: 0;
+            border-left: 0;
+            background-color: #fff;
             p{
                 font-size: 0.85rem;
             }

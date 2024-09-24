@@ -25,7 +25,7 @@
         font-weight: 500;
     }
     .card-statistics-container{
-        block-size: 300px;
+        min-block-size: 300px;
         display: flex;
         justify-content: center;
         margin-block-start: 2rem;
