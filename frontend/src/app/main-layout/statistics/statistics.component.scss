@@ -55,6 +55,7 @@
   flex: 1;
   h2 {
     font-size: 1.75rem !important;
+    color: $text-first-color;
   }
 }
 .data-about-content {
@@ -66,7 +67,7 @@
 .data-about-content-unit > div:first-child {
   font-size: 0.85em;
   font-weight: 500;
-  color: $text-gray-color;
+  color: $text-first-color;
 }
 
 .data-about-content-header > div:nth-child(2),
@@ -83,7 +84,7 @@
     div:first-child {
       font-size: 0.85em;
       font-weight: 500;
-      color: $text-gray-color;
+      color: $text-first-color;
     }
 
     div:nth-child(2) {
@@ -112,6 +113,7 @@
   flex: 1;
   h2 {
     font-size: 1.75rem !important;
+    color: $text-first-color;
   }
 }
 
@@ -130,7 +132,7 @@
 .data-statistics div:first-child {
   font-size: 0.85em;
   font-weight: 500;
-  color: $text-gray-color;
+  color: $text-first-color;
 }
 
 .data-statistics div:nth-child(2) {
