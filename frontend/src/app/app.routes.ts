@@ -8,6 +8,7 @@ import { ComponentsComponent } from './main-layout/components/components.compone
 import { PagesComponent } from './admin-layout/pages/pages.component';
 import { StatisticsComponent } from './main-layout/statistics/statistics.component';
 import { LatestComponent } from './main-layout/latest/latest.component';
+import { FootballStatsComponent } from './main-layout/football-stats/football-stats.component';
 
 export const routes: Routes = [
     {
@@ -15,11 +16,11 @@ export const routes: Routes = [
         component: MainLayoutComponent,
         children:[
             {path: '', component: HomeComponent },
-            {path: 'home', component: HomeComponent },
             {path: 'reports', component: ReportComponent },
             {path: 'components', component: ComponentsComponent },
             {path: 'statistics', component: StatisticsComponent},
-            {path: 'latest', component: LatestComponent}
+            {path: 'latest', component: LatestComponent},
+            {path: 'statistics/football', component: FootballStatsComponent},
         ]
     },
     {

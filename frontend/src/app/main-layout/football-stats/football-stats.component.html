@@ -1,0 +1,259 @@
+<div class="layout-container stat-header-container">
+    <div class="layout-row">
+        <div class="layout-col stat-header-wrapper">
+            <header class="stat-header">
+                <h1>The Most Goal Scorers</h1>
+            </header>
+
+        </div>
+    </div>
+</div>
+
+<div class="layout-container">
+    <div class="layout-row">
+        <div class="layout-col footballer-wrapper">
+
+            <div class="footballer">
+                <img src="images/ronaldo5.png" alt="">
+                <div class="rank">
+                    <div>#1 Cristiano Ronaldo</div>
+                    <div>(850 Goals)</div>
+                </div>
+            </div>
+
+            <div class="footballer">
+                <img src="images/messi2.png" alt="">
+                <div class="rank">
+                    <div>#2 Lionel Messi</div>
+                    <div>(820 Goals)</div>
+                </div>
+            </div>
+
+            <div class="footballer">
+                <img src="images/neymar2.png" alt="">
+                <div class="rank">
+                    <div>#3 Neymar Jr.</div>
+                    <div>(850 Goals)</div>
+                </div>
+            </div>
+
+            <div class="footballer">
+                <img src="images/ronaldinho.png" alt="">
+                <div class="rank">
+                    <div>#4 Ronaldinho</div>
+                    <div>(850 Goals)</div>
+                </div>
+            </div>
+
+            <div class="footballer">
+                <img src="images/mbappe2.png" alt="">
+                <div class="rank">
+                    <div>#5 Mbappe</div>
+                    <div>(850 Goals)</div>
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!-- <div class="layout-container ranking-container">
+    <div class="layout-row">
+        <div class="layout-col ranking-wrapper">
+
+            <div class="first-rank">
+                <div><mat-icon>emoji_events</mat-icon></div>
+                <div>1st</div>
+            </div>
+
+            <div class="second-rank">
+                <div><mat-icon>emoji_events</mat-icon></div>
+                <div>2nd</div>
+            </div>
+
+            <div class="third-rank">
+                <div><mat-icon>emoji_events</mat-icon></div>
+                <div>3rd</div>
+            </div>
+
+            <div class="fourth-rank">
+                <div><mat-icon>emoji_events</mat-icon></div>
+                <div>4th</div>
+            </div>
+
+            <div class="fifth-rank">
+                <div><mat-icon>emoji_events</mat-icon></div>
+                <div>5th</div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+<!-- <div class="layout-container jersey-container">
+    <div class="layout-row">
+        <div class="layout-col jersey-wrapper">
+
+            <div class="first-jersey">
+                <div class="">
+                    <img src="images/ronaldo-jersey.png" alt="">
+                </div>
+            </div>
+
+            <div class="second-jersey">
+                <div>
+                    <img src="images/messi-jersey.png" alt="">
+                </div>
+            </div>
+
+            <div class="third-jersey">
+                <div>
+                    <img src="images/jersey.png" alt="">
+                </div>
+            </div>
+
+            <div class="fourth-jersey">
+                <div>
+                    <img src="images/jersey.png" alt="">
+                </div>
+            </div>
+
+            <div class="fifth-jersey">
+                <div>
+                    <img src="images/jersey.png" alt="">
+                </div>
+            </div>
+
+        </div>
+    </div>
+</div> -->
+
+<div class="layout-container stat-header-container">
+    <div class="layout-row">
+        <div class="layout-col stat-header-wrapper">
+            <header class="stat-header">
+                <h2>The Most Goal Scorers & Assists With Table</h2>
+            </header>
+
+        </div>
+    </div>
+</div>
+
+
+<div class="layout-container">
+    <div class="layout-row">
+
+        <div class="layout-col">
+
+            <!-- Table -->
+            <div class="layout-container table-container ">
+                <div class="layout-row">
+                    <div class="layout-col table-wrapper">
+
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="player">
+                                <th mat-header-cell *matHeaderCellDef> Player </th>
+                                <td mat-cell *matCellDef="let element" class="table-player-container">
+                                    <div class="table-player-wrapper">
+                                        <img src="images/{{element.image}}" alt="">
+                                        <div class="table-player-features-wrapper">
+                                            <div class="table-player-name">{{element.name}}</div>
+                                            <div class="table-player-role">{{element.role}}</div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="goals">
+                                <th mat-header-cell *matHeaderCellDef> Goals </th>
+                                <td mat-cell *matCellDef="let element"> {{element.goals}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="country">
+                                <th mat-header-cell *matHeaderCellDef> Country </th>
+                                <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                    </div>
+                </div>
+            </div>
+            <!-- Table -->
+        </div>
+
+        <div class="layout-col">
+            <!-- Table -->
+            <div class="layout-container table-container ">
+
+                <div class="layout-row">
+                    <div class="layout-col table-wrapper">
+
+                        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+
+                            <ng-container matColumnDef="position">
+                                <th mat-header-cell *matHeaderCellDef> No. </th>
+                                <td mat-cell *matCellDef="let element"> {{element.position}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="player">
+                                <th mat-header-cell *matHeaderCellDef> Player </th>
+                                <td mat-cell *matCellDef="let element" class="table-player-container">
+                                    <div class="table-player-wrapper">
+                                        <img src="images/{{element.image}}" alt="">
+                                        <div class="table-player-features-wrapper">
+                                            <div class="table-player-name">{{element.name}}</div>
+                                            <div class="table-player-role">{{element.role}}</div>
+                                        </div>
+                                    </div>
+
+                                </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="goals">
+                                <th mat-header-cell *matHeaderCellDef> Assists </th>
+                                <td mat-cell *matCellDef="let element"> {{element.goals}} </td>
+                            </ng-container>
+
+                            <ng-container matColumnDef="country">
+                                <th mat-header-cell *matHeaderCellDef> Country </th>
+                                <td mat-cell *matCellDef="let element"> {{element.country}} </td>
+                            </ng-container>
+
+                            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+                            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+                        </table>
+
+                    </div>
+                </div>
+
+            </div>
+            <!-- Table -->
+        </div>
+
+    </div>
+
+    <div class="layout-row pitch-container">
+        <div class="layout-col pitch-wrapper">
+
+            <img src="images/football-pitch3.png" alt="">
+
+            <div class="pitch-footballer">
+                <ng-container *ngFor="let item of dataSource; let i = index">
+                    <img *ngIf="i < 3" src="images/{{item.image}}" alt="">
+                </ng-container>
+            </div>
+
+        </div>
+    </div>
+
+</div>
