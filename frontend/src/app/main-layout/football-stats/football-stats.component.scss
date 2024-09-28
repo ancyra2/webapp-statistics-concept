@@ -1,6 +1,19 @@
 @import "../../../styles/layouts";
 @import "../../../styles/variables";
 
+::ng-deep .app-content-container {
+  max-inline-size: calc(100vw - 30px) !important;
+}
+
+.footballer-container {
+  background: linear-gradient(
+    135deg,
+    rgba(0, 115, 230, 1),
+    rgba(255, 165, 0, 1)
+  );
+  border-radius: 5px;
+  overflow-x: scroll;
+}
 .footballer {
   width: 208px;
   height: 410px;
@@ -12,10 +25,11 @@
 }
 .footballer-wrapper {
   display: flex;
-  gap: 10px;
+  gap: 30px;
   flex-direction: row;
   margin-top: 3.75rem;
   justify-content: center;
+  margin-bottom: 3.75rem;
 }
 .footballer {
   img {
@@ -52,12 +66,8 @@
 .footballer::before {
   content: " "; /* Boş içerik tanımlaması */
   width: 210px;
-  height: 410px;
-  background: linear-gradient(
-    135deg,
-    rgba(0, 115, 230, 0.8),
-    rgba(255, 165, 0, 0.8)
-  );
+  height: 410px;  
+  background: purple;
   clip-path: polygon(0% 10%, 100% 0%, 100% 90%, 0% 100%);
   position: absolute;
   z-index: -1; /* Pseudo-elementin z-index'i */
@@ -86,12 +96,12 @@
   color: $text-white-color;
   height: 100px;
   justify-content: center;
-  border: 2px solid;
   border-radius: 5px;
-  width: calc(100% - 4px);
+  width: calc(100%);
   margin-top: 2rem;
 }
 .stat-header {
+  padding: 16px;
   h1 {
     padding-left: 1rem;
     margin-bottom: 0;
@@ -313,44 +323,123 @@
 }
 
 .pitch-container {
-  width: 100%;
-  height: 500px;
+  height: 600px;
   margin-top: 2rem;
+  justify-content: center;
+  align-items: center;
 }
 
 .pitch-wrapper {
-  width: 100%;
-  height: 100%;
   justify-content: center;
   align-items: center;
   position: relative;
-  img{
-    width: calc(100%);
+  width: 80%;
+  height: 100%;
+  flex-basis: 80%;
+  img.pitch-img {
+    width: 100%;
     height: 100%;
+    border: 2px solid;
+    border-image: linear-gradient(
+        135deg,
+        rgba(0, 115, 230, 0.8),
+        rgba(255, 165, 0, 0.8)
+      )
+      1 !important;
   }
 }
 
-.pitch-footballer{
-  img{
+.pitch-footballer {
+  img {
     width: 72px;
     height: 144px;
   }
-  img:first-child{
+  img:first-child {
     position: absolute;
     z-index: 100;
-    top: 180px;
-    right: 150px;
+    top: 200px;
+    right: 9%;
   }
-  img:nth-child(2){
+  img:nth-child(2) {
     position: absolute;
     z-index: 100;
     bottom: 30px;
-    right: 220px;
+    right: 12%;
   }
-  img:nth-child(3){
+  img:nth-child(3) {
     position: absolute;
     z-index: 100;
     top: 30px;
-    right: 220px;
+    right: 12%;
+  }
+}
+
+.pitch-header {
+  width: 300px;
+  height: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  background: linear-gradient(
+    135deg,
+    rgba(0, 115, 230, 1),
+    rgba(255, 165, 0, 1)
+  );
+  position: absolute;
+  right: 40%;
+  top: 110px;
+  color: $text-white-color;
+  padding: 16px;
+  ul {
+    padding-left: 0;
+    padding-right: 3rem;
+  }
+  li {
+    list-style-type: none;
+    font-size: 1.25rem;
+    padding-bottom: 0.5rem;
+  }
+}
+
+.footballer-label-wrapper {
+  .label {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 0 8px;
+    background: linear-gradient(
+      135deg,
+      rgba(0, 115, 230, 1),
+      rgba(255, 165, 0, 1)
+    );
+    color: $text-white-color;
+    font-size: 0.75rem;
+  }
+
+  .label:first-child {
+    position: absolute;
+    z-index: 100;
+    top: 230px;
+    right: 15%;
+  }
+
+  .label:nth-child(2) {
+    position: absolute;
+    z-index: 100;
+    bottom: 80px;
+    right: 18%;
+  }
+
+  .label:nth-child(3) {
+    position: absolute;
+    z-index: 100;
+    top: 80px;
+    right: 18%;
+  }
+
+  .label-name {
+    font-weight: 500;
   }
 }
