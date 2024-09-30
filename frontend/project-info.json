@@ -15,6 +15,24 @@
                 "reason": "Helps maintain code quality and consistency by integrating ESLint with Angular projects, replacing TSLint, and ensuring adherence to best practices and coding standards.",
                 "installation": "ng add @angular-eslint/schematics",
                 "version": "18.3.1"  
+            },
+            {
+                "name": "Prettier",
+                "reason": "Code formatter that enforces a consistent style by parsing your code and re-printing it with its own rules.",
+                "installation": "npm install prettier --save-dev",
+                "version": "^3.3.3"  
+            },
+            {
+                "name": " Prettier & ESLint Integration",
+                "reason": "Integrates Prettier with ESLint to avoid conflicts between formatting and linting rules.",
+                "installation": "npm install eslint-config-prettier eslint-plugin-prettier --save-dev",
+                "version": "^9.1.0"  
+            },
+            {
+                "name": "VS Code ESLint extension",
+                "reason": "Helps maintain code quality and consistency by integrating ESLint with Angular projects, replacing TSLint, and ensuring adherence to best practices and coding standards.",
+                "installation": "npm install eslint (npx eslint --init used for Eslint configuration)",
+                "version": "^9.11.1 (some packages were double installed and should be removed)"
             }
         ]
     },
@@ -22,7 +40,8 @@
         "start": "ng serve",
         "build": "ng build",
         "watch": "ng build --watch --configuration development",
-        "test": "ng test"
+        "test": "ng test",
+        "lint": "ng lint"
     },
     "maintainers": [
         {

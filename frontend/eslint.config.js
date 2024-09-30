@@ -2,6 +2,7 @@
 const eslint = require("@eslint/js");
 const tseslint = require("typescript-eslint");
 const angular = require("angular-eslint");
+const prettier = require("eslint-config-prettier");
 
 module.exports = tseslint.config(
   {
@@ -11,6 +12,7 @@ module.exports = tseslint.config(
       ...tseslint.configs.recommended,
       ...tseslint.configs.stylistic,
       ...angular.configs.tsRecommended,
+      prettier,
     ],
     processor: angular.processInlineTemplates,
     rules: {
@@ -30,6 +32,9 @@ module.exports = tseslint.config(
           style: "kebab-case",
         },
       ],
+      "no-multiple-empty-lines": ["error", { max: 1 }], // Birden fazla boş satır için hata verir.
+      "indent": ["error", 2], // İki boşlukla girinti.
+      "space-in-parens": ["error", "never"], // Parantez içindeki boşluk istemez.
     },
   },
   {
@@ -38,6 +43,9 @@ module.exports = tseslint.config(
       ...angular.configs.templateRecommended,
       ...angular.configs.templateAccessibility,
     ],
-    rules: {},
+    rules: {
+      "no-multiple-empty-lines": ["error", { max: 1 }], // HTML için de aynı kural
+      "indent": ["error", 2], // HTML girintisi
+    },
   }
 );
