@@ -10,34 +10,34 @@ export class CatsService {
   constructor(
     @InjectRepository(Cat)
     private catsRepository: Repository<Cat>,
-  ){}
-  
-  async create(createCatDto: CreateCatDto): Promise<Cat>{
+  ) {}
+
+  async create(createCatDto: CreateCatDto): Promise<Cat> {
     const cat = this.catsRepository.create(createCatDto);
     return await this.catsRepository.save(cat);
   }
 
-  async findAll(): Promise<Cat[]>{
-    return this.catsRepository.find()
+  async findAll(): Promise<Cat[]> {
+    return this.catsRepository.find();
   }
 
   async findOne(id: number) {
-    const cat = await this.catsRepository.findOneBy({id});
+    const cat = await this.catsRepository.findOneBy({ id });
     if (!cat) {
-      throw new Error(`Cat with id ${id} not found`); 
+      throw new Error(`Cat with id ${id} not found`);
     }
     return cat;
   }
 
   async update(id: number, updateCatDto: UpdateCatDto): Promise<Cat> {
     await this.catsRepository.update(id, updateCatDto);
-    return this.findOne(id); 
+    return this.findOne(id);
   }
 
   async remove(id: number): Promise<void> {
     const result = await this.catsRepository.delete(id);
     if (result.affected === 0) {
-      throw new Error(`Cat with id ${id} not found`); 
+      throw new Error(`Cat with id ${id} not found`);
     }
   }
 }
