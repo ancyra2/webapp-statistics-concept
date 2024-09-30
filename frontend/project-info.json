@@ -9,6 +9,12 @@
                 "reason": "UI component infrastructure and Material Design components for mobile and desktop Angular web applications.",
                 "installation": "ng add @angular/material",
                 "version": "^18.2.2"
+            },
+            {
+                "name": "Angular Eslint",
+                "reason": "Helps maintain code quality and consistency by integrating ESLint with Angular projects, replacing TSLint, and ensuring adherence to best practices and coding standards.",
+                "installation": "ng add @angular-eslint/schematics",
+                "version": "18.3.1"  
             }
         ]
     },
