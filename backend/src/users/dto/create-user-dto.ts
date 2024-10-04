@@ -1,10 +1,11 @@
 export class createUserDto {
-  id: number;
-  name: string;
-  password: string;
-  email: string;
-  role: string;
-  created_at: Date;
-  updated_at: Date;
-  deleted_at: Date;
+  Id: number;
+  Name: string;
+  Password: string;
+  Email: string;
+  Roles: string[];
+  Permissions: string[];
+  Created_at: Date;
+  Updated_at: Date;
+  Deleted_at: Date;
 }

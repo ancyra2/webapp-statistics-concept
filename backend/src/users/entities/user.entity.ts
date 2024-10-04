@@ -10,26 +10,29 @@ import {
 @Entity()
 export class User {
   @PrimaryGeneratedColumn()
-  id: number;
+  Id: number;
 
   @Column()
-  name: string;
+  Name: string;
 
   @Column()
-  password: string;
+  Password: string;
 
   @Column()
-  email: string;
+  Email: string;
 
-  @Column()
-  role: string;
+  @Column('simple-array')
+  Roles: string[];
+
+  @Column('simple-array')
+  Permissions: string[];
 
   @CreateDateColumn()
-  created_at: Date;
+  Created_at: Date;
 
   @UpdateDateColumn()
-  updated_at: Date;
+  Updated_at: Date;
 
   @DeleteDateColumn()
-  deleted_at: Date;
+  Deleted_at: Date;
 }

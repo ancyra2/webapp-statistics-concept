@@ -10,8 +10,8 @@ import {
 import { CatsService } from './cats.service';
 import { CreateCatDto } from './dto/create-cat.dto';
 import { UpdateCatDto } from './dto/update-cat.dto';
-import { Roles } from '../role/roles.decorator';
-import { Role } from '../role/role.enum';
+import { Roles } from '../authorization/decorators/roles.decorator';
+import { Role } from '../authorization/enums/role.enum';
 
 @Controller('cats')
 export class CatsController {

@@ -21,10 +21,18 @@ export class UsersService {
     return this.usersReporsitory.find();
   }
 
-  async findOne(id: number) {
-    const user = await this.usersReporsitory.findOneBy({ id });
+  async findOne(Id: number) {
+    const user = await this.usersReporsitory.findOneBy({ Id });
     if (!user) {
-      throw new Error(`User with id ${id} not found`);
+      throw new Error(`User with id ${Id} not found`);
+    }
+    return user;
+  }
+
+  async findOnebyName(Name: string) {
+    const user = await this.usersReporsitory.findOneBy({ Name });
+    if (!user) {
+      throw new Error(`User with name ${Name} not found`);
     }
     return user;
   }
@@ -40,7 +48,4 @@ export class UsersService {
       throw new Error(`User with id ${id} not found`);
     }
   }
-  /*async findOne(userName: string): Promise<User | undefined> {
-    return this.users.find((user) => user.userName === userName);
-  }*/
 }
