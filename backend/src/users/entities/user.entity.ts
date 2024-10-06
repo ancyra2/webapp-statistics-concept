@@ -6,33 +6,34 @@ import {
   UpdateDateColumn,
   DeleteDateColumn,
 } from 'typeorm';
+import { IEntity } from './entity.interface';
 
 @Entity()
-export class User {
+export class User implements IEntity {
   @PrimaryGeneratedColumn()
-  Id: number;
+  id: number;
 
   @Column()
-  Name: string;
+  username: string;
 
   @Column()
-  Password: string;
+  password: string;
 
   @Column()
-  Email: string;
+  email: string;
 
   @Column('simple-array')
-  Roles: string[];
+  roles: string[];
 
   @Column('simple-array')
-  Permissions: string[];
+  permissions: string[];
 
   @CreateDateColumn()
-  Created_at: Date;
+  created_at: Date;
 
   @UpdateDateColumn()
-  Updated_at: Date;
+  updated_at: Date;
 
   @DeleteDateColumn()
-  Deleted_at: Date;
+  deleted_at: Date;
 }

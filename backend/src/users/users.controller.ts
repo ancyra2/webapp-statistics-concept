@@ -7,23 +7,31 @@ import {
   Patch,
   Post,
 } from '@nestjs/common';
-import { Roles } from '../authorization/decorators/roles.decorator';
-import { createUserDto } from './dto/create-user-dto';
+//import { Roles } from '../authorization/decorators/roles.decorator';
+import { CreateUserDto } from './dto/create-user-dto';
 import { UsersService } from './users.service';
-import { Role } from '../authorization/enums/role.enum';
+//import { Role } from '../authorization/enums/role.enum';
 import { UpdateUserDto } from './dto/update-user-dto';
-import { Permissions } from 'src/authorization/decorators/permissions.decorator';
-import { Permission } from 'src/authorization/enums/permission.enum';
+//import { Permissions } from '../authorization/decorators/permissions.decorator';
+//import { Permission } from '../authorization/enums/permission.enum';
+import { UserLoggerService } from '../logging/services/user-logger.service';
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(
+    private readonly usersService: UsersService,
+    private readonly userLoggerService: UserLoggerService,
+  ) {}
 
   @Post()
-  @Roles(Role.Admin)
-  @Permissions(Permission.ALL)
-  create(@Body() createUserDto: createUserDto) {
-    return this.usersService.create(createUserDto);
+  //@Roles(Role.Admin)
+  //@Permissions(Permission.ALL)
+  create(@Body() createUserDto: CreateUserDto) {
+    const user = this.usersService.create(createUserDto);
+    if (user) {
+      this.userLoggerService.log('User created', user);
+    }
+    return user;
   }
 
   @Get()
