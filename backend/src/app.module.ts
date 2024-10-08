@@ -8,6 +8,7 @@ import { CatsModule } from './cats/cats.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
+import { CategoriesModule } from './categories/categories.module';
 import * as path from 'path';
 
 @Module({
@@ -45,6 +46,7 @@ import * as path from 'path';
     AuthModule,
     UsersModule,
     ReportsModule,
+    CategoriesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
