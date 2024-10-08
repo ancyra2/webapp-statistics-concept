@@ -5,11 +5,11 @@ import {
   UnauthorizedException,
 } from '@nestjs/common';
 import { Reflector } from '@nestjs/core';
-import { ROLES_KEY } from '../decorators/roles.decorator';
-import { Role } from '../enums/role.enum';
-import { Permission } from '../enums/permission.enum';
-import { PERMISSIONS_KEY } from '../decorators/permissions.decorator';
-import { User } from 'src/users/entities/user.entity';
+import { ROLES_KEY } from './decorators/roles.decorator';
+import { Role } from './enums/role.enum';
+import { Permission } from './enums/permission.enum';
+import { PERMISSIONS_KEY } from './decorators/permissions.decorator';
+import { User } from '../users/entities/user.entity';
 
 @Injectable()
 export class RolesGuard implements CanActivate {
@@ -51,7 +51,7 @@ export class RolesGuard implements CanActivate {
   }
 
   private hasRequiredRoles(user: User, requiredRoles: Role[]): boolean {
-    return requiredRoles.some((role) => user.Roles?.includes(role));
+    return requiredRoles.some((role) => user.roles?.includes(role));
   }
 
   private hasRequiredPermissions(
@@ -59,7 +59,7 @@ export class RolesGuard implements CanActivate {
     requiredPermissions: Permission[],
   ): boolean {
     return requiredPermissions.some((permission) =>
-      user.Permissions?.includes(permission),
+      user.permissions?.includes(permission),
     );
   }
 }
