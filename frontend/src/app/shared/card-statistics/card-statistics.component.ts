@@ -9,7 +9,7 @@ import {MatCardModule} from '@angular/material/card';
   styleUrl: './card-statistics.component.scss'
 })
 export class CardStatisticsComponent {
-@Input() imgSrc : string = "";
-@Input() content: string = "";
-@Input() contentHeader: string = "";  
+@Input() imgSrc  = "";
+@Input() content = "";
+@Input() contentHeader = "";  
 }

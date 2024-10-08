@@ -4,9 +4,10 @@ import { PieChartComponent } from '../../shared/google-charts/pie-chart/pie-char
 import { DescriptiveTableComponent } from '../../shared/descriptive-table/descriptive-table.component';
 import { ReportCardComponent } from '../../shared/report-card/report-card.component';
 import { RankingComponent } from '../../shared/reports/ranking/ranking.component';
-import { FootballService } from '../../services/sport/football.service';
 
+// eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
 declare var google: any;
+
 @Component({
   selector: 'app-report',
   standalone: true,
@@ -15,25 +16,11 @@ declare var google: any;
   styleUrl: './report.component.scss'
 })
 export class ReportComponent  implements OnInit{
-  
-  personData: any;
 
-  constructor(private footballService: FootballService) {}
   ngOnInit(): void {
     this.loadGoogleCharts();
-    this.getPersonData();
+  }
 
-  }
-  getPersonData(): void{
-    this.footballService.getPersonData().subscribe(data => {
-      this.personData = data;
-      console.log(this.personData);
-    },
-    error =>{
-      console.log('fetch error', error)
-    }
-  )
-  }
   loadGoogleCharts() {
     google.charts.load('current', { 'packages': ['corechart'] });
     google.charts.setOnLoadCallback(this.drawChart);
@@ -65,5 +52,6 @@ export class ReportComponent  implements OnInit{
     };
     const chart = new google.visualization.BarChart(document.getElementById('barchart_values'));
     chart.draw(data, options);
+    
   }
 }

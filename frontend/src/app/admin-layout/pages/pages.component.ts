@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { AfterViewInit, Component, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
@@ -42,7 +42,7 @@ const ELEMENT_DATA = [
 export class PagesComponent implements AfterViewInit {
   displayedColumns: string[] = ['id', 'name', 'actions'];
   dataSource = new MatTableDataSource(ELEMENT_DATA); // Örnek veri
-  showFormContainer: boolean = true; // Form görünürlüğü kontrolü için boolean değişken
+  showFormContainer = true; // Form görünürlüğü kontrolü için boolean değişken
   pageForm: FormGroup;
   activeFormIndex = 0;
 
@@ -61,19 +61,20 @@ export class PagesComponent implements AfterViewInit {
     this.dataSource.sort = this.sort;
   }
 
-  applyFilter(event: any) {
-    if (event.value) {
-      this.dataSource.filter = event.value.trim().toLowerCase();
+  applyFilter(event: Event) {
+    const inputElement = event.target as HTMLInputElement | null;
+    if (inputElement && inputElement.value) {
+      this.dataSource.filter = inputElement.value.trim().toLowerCase();
     } else {
-      this.dataSource.filter = ''; // Boş filtre uygulaması
+      this.dataSource.filter = '';
     }
   }
 
-  edit(element: any) {
+  edit(element: Element) {
     console.log('Düzenleniyor:', element);
   }
 
-  delete(element: any) {
+  delete(element: Element) {
     console.log('Siliniyor:', element);
   }
 

@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 
+// eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
 declare var google: any;
 
 @Component({

@@ -11,7 +11,7 @@ import { MatMenuModule } from '@angular/material/menu';
   styleUrl: './admin-header.component.scss'
 })
 export class AdminHeaderComponent {
-  @Output() toggleSidenav: EventEmitter<void> = new EventEmitter();
+  @Output() toggleSidenav = new EventEmitter<void>();
 
   onToggleSidenav() {
     this.toggleSidenav.emit(); 

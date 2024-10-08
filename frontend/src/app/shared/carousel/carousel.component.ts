@@ -1,4 +1,4 @@
-import { Component, ElementRef, EventEmitter, Input, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, Input, Output, ViewChild, AfterViewInit } from '@angular/core';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { LastStudiesComponent } from '../last-studies/last-studies.component';
@@ -9,18 +9,18 @@ import { LastStudiesComponent } from '../last-studies/last-studies.component';
   templateUrl: './carousel.component.html',
   styleUrl: './carousel.component.scss'
 })
-export class CarouselComponent {
+export class CarouselComponent implements AfterViewInit {
   @ViewChild('slider') slider!: ElementRef;
   currentPosition = 0;
   currentIndex = 0;
   itemsLength = 0;
   sliderReference!: any;
 
-  @Input() width: string = '100%';
-  @Input() height: string = '300px';
+  @Input() width = '100%';
+  @Input() height = '300px';
   @Input() itemsReferenceName = '';
-  @Input() itemHeight: number = 0;
-  @Input() itemWidth: number = 0;
+  @Input() itemHeight = 0;
+  @Input() itemWidth = 0;
   @Output() currentIndexEvent = new EventEmitter<number>();
 
   ngAfterViewInit() {

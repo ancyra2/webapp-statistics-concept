@@ -9,10 +9,7 @@ metricUnit: number,
   providedIn: 'root'
 })
 
-
 export class DataTableService {
-
-  constructor() { }
 
   getPieChartData(pieHeader: string, pieMetricUnitName: string): PieChartData[]{
     return [

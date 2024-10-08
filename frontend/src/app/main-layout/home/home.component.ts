@@ -6,7 +6,6 @@ import { CardStatisticsComponent } from '../../shared/card-statistics/card-stati
 import { LastStudiesComponent } from '../../shared/last-studies/last-studies.component';
 import { CarouselComponent } from '../../shared/carousel/carousel.component';
 
-
 interface CardStatistics{
   cardImg: string;
   cardHeader: string;
@@ -25,7 +24,7 @@ interface CardStatistics{
 })
 export class HomeComponent {
   carouselCurrentIndex!: number;
-  cardData: Array<CardStatistics> = [
+  cardData: CardStatistics[] = [
     {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
     {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
     {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },

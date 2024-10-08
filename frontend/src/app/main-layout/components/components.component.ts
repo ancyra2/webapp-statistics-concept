@@ -8,7 +8,6 @@ import { CarouselComponent } from '../../shared/carousel/carousel.component';
 import { SearchBarComponent } from '../../shared/search-bar/search-bar.component';
 import { SearchLinksComponent } from '../../shared/search-links/search-links.component';
 
-
 @Component({
   selector: 'app-components',
   standalone: true,

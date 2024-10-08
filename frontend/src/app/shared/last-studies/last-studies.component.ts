@@ -9,7 +9,7 @@ import { MatCardModule } from '@angular/material/card';
   styleUrl: './last-studies.component.scss'
 })
 export class LastStudiesComponent {
-  @Input() imgSrc: string = "";
-  @Input() content: string = "";
-  @Input() contentHeader: string = "";
+  @Input() imgSrc = "";
+  @Input() content = "";
+  @Input() contentHeader = "";
 }

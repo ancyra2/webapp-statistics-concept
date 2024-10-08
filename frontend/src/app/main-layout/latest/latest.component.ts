@@ -19,61 +19,61 @@ export class LatestComponent implements AfterViewInit{
   
 @ViewChild(MatPaginator) paginator!: MatPaginator;
 
-  cardData: Array<CardStatistics> = [
-    {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
-    {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+cardData: CardStatistics[] = [
+  {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c4.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c1.jpg", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c3.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
+  {cardImg: "c2.png", cardHeader: "Statistic Field", cardContent: "Leading semiconductor companies worldwide as of August 18, 2024, by market capitalization" },
 
-  ]
+]
 
-  dataSource = new MatTableDataSource(this.cardData)
+dataSource = new MatTableDataSource(this.cardData)
 
-  ngAfterViewInit(): void {
-    this.dataSource.paginator = this.paginator;
-    this.updatePageData();
-  }
+ngAfterViewInit(): void {
+  this.dataSource.paginator = this.paginator;
+  this.updatePageData();
+}
 
-  paginatedData: CardStatistics[] = [];
-  pageSize = 12;
+paginatedData: CardStatistics[] = [];
+pageSize = 12;
 
-  updatePageData() {
-    const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
-    const endIndex = startIndex + this.paginator.pageSize;
-    this.paginatedData = this.cardData.slice(startIndex, endIndex);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  }
+updatePageData() {
+  const startIndex = this.paginator.pageIndex * this.paginator.pageSize;
+  const endIndex = startIndex + this.paginator.pageSize;
+  this.paginatedData = this.cardData.slice(startIndex, endIndex);
+  window.scrollTo({ top: 0, behavior: 'smooth' });
+}
 }

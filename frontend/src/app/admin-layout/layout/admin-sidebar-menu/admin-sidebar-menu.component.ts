@@ -15,7 +15,7 @@ import { RouterModule } from '@angular/router';
   styleUrl: './admin-sidebar-menu.component.scss'
 })
 export class AdminSidebarMenuComponent {
-  opened: boolean = true;
+  opened = true;
 
   @ViewChild('sidenav') sidenav!: MatSidenav;
 

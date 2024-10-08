@@ -14,11 +14,10 @@ import { GeoChartComponent } from "../../shared/google-charts/geo-chart/geo-char
   styleUrl: './statistics.component.scss'
 })
 export class StatisticsComponent {
-dataDetailIndex = 0;
+  dataDetailIndex = 0;
 
-setDetailIndex (index: number){
-  this.dataDetailIndex = index;
+  setDetailIndex (index: number){
+    this.dataDetailIndex = index;
+  }
 }
-}
-
 

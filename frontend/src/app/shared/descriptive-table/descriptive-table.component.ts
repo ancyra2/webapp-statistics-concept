@@ -16,8 +16,6 @@ export interface PeriodicElement {
   styleUrl: './descriptive-table.component.scss'
 })
 
-
-
 export class DescriptiveTableComponent {
 
   ELEMENT_DATA: PeriodicElement[] = [

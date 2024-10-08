@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { DataTableService } from '../../../services/data-table.service';
 
+// eslint-disable-next-line no-var, @typescript-eslint/no-explicit-any
 declare var google: any;  // Google Charts'ın global API'sine erişmek için
 
 @Component({
@@ -12,7 +13,8 @@ declare var google: any;  // Google Charts'ın global API'sine erişmek için
 })
 export class PieChartComponent implements OnInit{
 
-  data!: Array<any>;
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  data!: any[];
   
   constructor(dataTableService: DataTableService) {
     this.data = dataTableService.getPieChartData('Company', 'Percentage');
@@ -44,6 +46,4 @@ export class PieChartComponent implements OnInit{
     chart.draw(data, options);
   }
 }
-
-
 
