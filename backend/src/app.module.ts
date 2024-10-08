@@ -4,7 +4,6 @@ import { AppService } from './app.service';
 import { TypeOrmModule } from '@nestjs/typeorm';
 import { ConfigModule, ConfigService } from '@nestjs/config';
 import { MongooseModule } from '@nestjs/mongoose';
-import { CatsModule } from './cats/cats.module';
 import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
@@ -42,7 +41,6 @@ import * as path from 'path';
       }),
       inject: [ConfigService],
     }),
-    CatsModule,
     AuthModule,
     UsersModule,
     ReportsModule,

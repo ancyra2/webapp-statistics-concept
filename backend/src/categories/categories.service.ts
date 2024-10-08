@@ -55,16 +55,28 @@ export class CategoriesService {
     return await this.subCategoryRepository.save(subCategory);
   }
 
-  async findAllSubCategories() {
+  async findAllSubCategories(): Promise<SubCategory[]> {
     return this.subCategoryRepository.find();
   }
 
-  async findOneSubCategory(id: number) {
+  async findSubCategory(id: number): Promise<SubCategory> {
     const subCategory = await this.subCategoryRepository.findOneBy({ id });
     if (!subCategory) {
       throw new Error(`SubCategory with id ${id} not found`);
     }
     return subCategory;
+  }
+
+  async findSubCategoriesByCategoryId(
+    categoryId: number,
+  ): Promise<SubCategory[]> {
+    const subcategories = await this.subCategoryRepository.find({
+      where: { category: { id: categoryId } },
+    });
+    if (!subcategories) {
+      throw new Error(`SubCategories with categoryId ${categoryId} not found`);
+    }
+    return subcategories;
   }
 
   async updateSubCategory(
@@ -73,6 +85,19 @@ export class CategoriesService {
   ) {
     await this.subCategoryRepository.update(id, updateSubCategoryDto);
     return this.findOne(id);
+  }
+
+  async updateSubCategoryByCategoryId(category_id: number) {
+    const subcategories = await this.findSubCategoriesByCategoryId(category_id);
+    if (!subcategories) {
+      throw new Error(`SubCategories with categoryId ${category_id} not found`);
+    }
+    for (const subCategory of subcategories) {
+      await this.subCategoryRepository.update(
+        subCategory.id,
+        UpdateSubCategoryDto,
+      );
+    }
   }
 
   async removeSubCategory(id: number) {

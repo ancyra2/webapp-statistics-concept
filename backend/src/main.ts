@@ -10,11 +10,9 @@ async function bootstrap() {
 
   // Swagger yapılandırmasını tanımla
   const config = new DocumentBuilder()
-    .setTitle('Cats example')
-    .setDescription('The cats API description')
+    .setTitle('The Api Documentation')
+    .setDescription('The Api description')
     .setVersion('1.0')
-    .addTag('cats')
-    .addTag('users')
     .build();
 
   // Swagger dokümanını oluştur

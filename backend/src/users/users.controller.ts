@@ -15,7 +15,11 @@ import { UpdateUserDto } from './dto/update-user-dto';
 //import { Permissions } from '../authorization/decorators/permissions.decorator';
 //import { Permission } from '../authorization/enums/permission.enum';
 import { UserLoggerService } from '../logging/services/user-logger.service';
+import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
+import { User } from './entities/user.entity';
 
+@ApiExtraModels(CreateUserDto, UpdateUserDto)
+@ApiTags('Users')
 @Controller('users')
 export class UsersController {
   constructor(
@@ -35,6 +39,7 @@ export class UsersController {
   }
 
   @Get()
+  @ApiResponse({ status: 200, description: 'Return all users.', type: [User] })
   findAll() {
     return this.usersService.findAll();
   }
