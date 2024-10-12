@@ -16,10 +16,17 @@ import { RouterModule } from '@angular/router';
 })
 export class AdminSidebarMenuComponent {
   opened = true;
-
+  subMenuOpened = false;
   @ViewChild('sidenav') sidenav!: MatSidenav;
 
   toggle() {
     this.sidenav.toggle(); // Sidenav'ı açıp kapatıyoruz
   }
+
+  toggleSubMenu(event: Event){
+    event.preventDefault();
+    this.subMenuOpened = !this.subMenuOpened;
+    
+  }
+
 }

@@ -1,18 +1,30 @@
-<div class="sidenav-wrapper">
-    <mat-sidenav-container class="sidenav-container">
-      <mat-sidenav 
-        #sidenav 
-        mode="side" 
-        [(opened)]="opened" >
-        <div class="sidenav-list">
-          <ul>
-            <li><a [routerLink] = "['/admin']"><span>Dashboard</span><mat-icon>dashboard</mat-icon></a></li>
-            <li><a [routerLink] = "['/admin/pages']"><span>Pages Management</span><mat-icon>description</mat-icon></a></li>  
-          </ul>
-        </div>
-      </mat-sidenav>
-      <mat-sidenav-content>
-        <!-- Main content goes here -->
-      </mat-sidenav-content>
-    </mat-sidenav-container>
-  </div>
+<nav class="sidenav-wrapper">
+  <mat-sidenav-container class="sidenav-container">
+    <mat-sidenav 
+      #sidenav 
+      mode="side" 
+      [(opened)]="opened" >
+      <div class="sidenav-list">
+        <ul>
+          <li><a [routerLink] = "['/admin']"><span>Dashboard</span><mat-icon>dashboard</mat-icon></a></li>
+          <li><a [routerLink] = "['/admin/pages']"><span>Pages Management</span><mat-icon>description</mat-icon></a></li>  
+          <li><a [routerLink]="['/admin/contents']"><span>Content Management</span><mat-icon>description</mat-icon></a></li>
+          <li class="sidenav-extendable-list" [ngClass]="{'extend': subMenuOpened}">
+            <a href="#" (click)="toggleSubMenu($event)"><span>Content Management A</span><mat-icon>description</mat-icon></a>
+            <ul class="sidenav-sub-list"  [ngClass]="{'close': !subMenuOpened, 'open': subMenuOpened}" >
+              <li><a [routerLink]="['/admin/contents/categories']">Categories</a></li>
+              <li><a href="">Pages</a></li>
+            </ul>
+          </li>
+          <li><a [routerLink]="['/admin/contents']"><span>Content Management</span><mat-icon>description</mat-icon></a></li>
+        </ul>
+      </div>
+    </mat-sidenav>
+    <mat-sidenav-content>
+      <!-- Main content goes here -->
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</nav>
+
+
+
