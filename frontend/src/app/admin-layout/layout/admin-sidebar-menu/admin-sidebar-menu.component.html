@@ -12,8 +12,8 @@
           <li class="sidenav-extendable-list" [ngClass]="{'extend': subMenuOpened}">
             <a href="#" (click)="toggleSubMenu($event)"><span>Content Management A</span><mat-icon>description</mat-icon></a>
             <ul class="sidenav-sub-list"  [ngClass]="{'close': !subMenuOpened, 'open': subMenuOpened}" >
-              <li><a [routerLink]="['/admin/contents/categories']">Categories</a></li>
-              <li><a href="">Pages</a></li>
+              <li><a [routerLink]="['/admin/contents/categories']"  (click)="toggleSubMenu($event)">Categories</a></li>
+              <li><a href=""  (click)="toggleSubMenu($event)">Pages</a></li>
             </ul>
           </li>
           <li><a [routerLink]="['/admin/contents']"><span>Content Management</span><mat-icon>description</mat-icon></a></li>

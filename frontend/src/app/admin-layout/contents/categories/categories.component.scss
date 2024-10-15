@@ -1,0 +1,66 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/layouts';
+
+.categories-container {
+  width: 100%;
+  margin-top: 75px;
+}
+
+.categories-table {
+  box-shadow: none;
+  background-color: $white-color;
+  border: 1px solid $border-color;
+}
+.form-container {
+  margin-top: 2rem;
+}
+
+.form-wrapper {
+  form {
+    display: flex;
+    flex-direction: column;
+  }
+  [formArrayName='subcategories'] {
+    display: flex;
+    flex-direction: column;
+  }
+}
+
+.add-category-container {
+  height: 80px;
+  .add-category-wrapper {
+    flex-direction: row;
+    justify-content: flex-end;
+    button {
+      width: 60px;
+      margin-right: 1rem;
+      mat-icon {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        margin: 0;
+      }
+    }
+  }
+}
+
+.add-sub-field {
+  position: relative;
+}
+
+.remove-sub-btn {
+  position: absolute;
+  right: 0;
+  top: 7.5px;
+  background-color: red;
+  mat-icon {
+    color: white;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0;
+  }
+  &:hover {
+    background-color: lighten($color: red, $amount: 5%);
+  }
+}

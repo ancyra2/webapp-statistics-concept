@@ -10,6 +10,7 @@ import { StatisticsComponent } from './main-layout/statistics/statistics.compone
 import { LatestComponent } from './main-layout/latest/latest.component';
 import { FootballStatsComponent } from './main-layout/football-stats/football-stats.component';
 import { ContentsComponent } from './admin-layout/contents/contents.component';
+import { CategoriesComponent } from './admin-layout/contents/categories/categories.component';
 
 export const routes: Routes = [
   {
@@ -30,7 +31,8 @@ export const routes: Routes = [
     children:[
       {path: '', component: PanelComponent},
       {path: 'pages', component: PagesComponent},
-      {path: 'contents', component: ContentsComponent}
+      {path: 'contents', component: ContentsComponent},
+      {path: 'contents/categories', component: CategoriesComponent},
     ]
   }
    
