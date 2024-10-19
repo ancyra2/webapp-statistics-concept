@@ -7,10 +7,10 @@
       <div class="sidenav-list">
         <ul>
           <li><a [routerLink] = "['/admin']"><span>Dashboard</span><mat-icon>dashboard</mat-icon></a></li>
-          <li><a [routerLink] = "['/admin/pages']"><span>Pages Management</span><mat-icon>description</mat-icon></a></li>  
-          <li><a [routerLink]="['/admin/contents']"><span>Content Management</span><mat-icon>description</mat-icon></a></li>
+          <li><a [routerLink] = "['/admin/pages']"><span>Pages </span><mat-icon>description</mat-icon></a></li>  
+          <li><a [routerLink]="['/admin/contents']"><span>Contents</span><mat-icon>description</mat-icon></a></li>
           <li class="sidenav-extendable-list" [ngClass]="{'extend': subMenuOpened}">
-            <a href="#" (click)="toggleSubMenu($event)"><span>Content Management A</span><mat-icon>description</mat-icon></a>
+            <a href="#" (click)="toggleSubMenu($event)"><span>Contents A</span><mat-icon>description</mat-icon></a>
             <ul class="sidenav-sub-list"  [ngClass]="{'close': !subMenuOpened, 'open': subMenuOpened}" >
               <li><a [routerLink]="['/admin/contents/categories']"  (click)="toggleSubMenu($event)">Categories</a></li>
               <li><a href=""  (click)="toggleSubMenu($event)">Pages</a></li>
