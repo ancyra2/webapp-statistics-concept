@@ -13,9 +13,12 @@
 }
 .form-container {
   margin-top: 2rem;
+  margin-bottom: 2rem;
 }
 
+
 .form-wrapper {
+  max-width: 800px;
   form {
     display: flex;
     flex-direction: column;
@@ -27,13 +30,20 @@
 }
 
 .add-category-container {
-  height: 80px;
+  margin-bottom: 30px;
+
   .add-category-wrapper {
     flex-direction: row;
-    justify-content: flex-end;
+    align-items: center;
+    position: relative;
+    h1{
+      
+    }
     button {
       width: 60px;
       margin-right: 1rem;
+      position: absolute;
+      right: 0;
       mat-icon {
         display: flex;
         justify-content: center;

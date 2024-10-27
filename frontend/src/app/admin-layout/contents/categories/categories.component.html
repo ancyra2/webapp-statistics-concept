@@ -1,20 +1,29 @@
 <div class="categories-container">
-  
+
   <div class="c-container add-category-container">
+
     <div class="c-row">
+
       <div class="c-col add-category-wrapper">
+
+        <h1>Categories</h1>
         <button mat-flat-button (click)="addSubCategory()" mat-button>
           <mat-icon>add</mat-icon>
         </button>
+
       </div>
+
     </div>
+
   </div>
 
-  <div class="c-container">
+  <div class="c-container ">
+
     <div class="c-row">
+
       <div class="c-col ">
 
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 categories-table" >
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 categories-table">
 
           <ng-container matColumnDef="id">
             <th mat-header-cell *matHeaderCellDef> No. </th>
@@ -42,13 +51,16 @@
           <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
         </table>
 
+
       </div>
+
     </div>
+
   </div>
 
   <ng-container *ngIf="isEditMode">
     <div class="c-container form-container">
-      <div class="c-row">
+      <div class="c-row ">
         <div class="c-col form-wrapper">
           <h2>Edit Categories</h2>
 
@@ -94,14 +106,19 @@
               <input matInput formControlName="name">
             </mat-form-field>
 
+            <button mat-flat-button (click)="addSubCategory()" mat-button>
+              <mat-icon>add</mat-icon>
+            </button>
+
             <hr>
 
             <div formArrayName="subcategories">
-              <mat-form-field class="add-sub-field" *ngFor="let subcategory of getSubcategories.controls; let i = index">
+              <mat-form-field class="add-sub-field"
+                *ngFor="let subcategory of getSubcategories.controls; let i = index">
                 <mat-label>Subcategory {{i + 1}}</mat-label>
                 <input matInput [formControlName]="i">
-                <button class="remove-sub-btn" mat-flat-button (click)="removeSubCategory(i)" >
-                  <mat-icon >remove</mat-icon>
+                <button class="remove-sub-btn" mat-flat-button (click)="removeSubCategory(i)">
+                  <mat-icon>remove</mat-icon>
                 </button>
               </mat-form-field>
             </div>

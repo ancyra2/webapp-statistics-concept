@@ -1,3 +1,4 @@
+@import 'variables';
 .c-container {
     width: 100%;    
     height: calc(100%);
@@ -17,6 +18,10 @@
     display: flex;
     flex: 1 1 100%;
     flex-direction: column;
+    background-color: $alice-blue-color;
+    border-radius: 10px;
+    border: 1px solid $border-color;
+    padding: 5px;
 }
 
 @media (min-width: 768px) {

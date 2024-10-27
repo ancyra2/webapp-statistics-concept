@@ -62,6 +62,10 @@ export class CategoriesComponent {
       name: element.name,
     });
 
+    if (this.isAddMode) {
+      this.isAddMode = false;
+    }
+
     // Alt kategorileri güncelle
     const subcategoriesArray = this.categoryForm.get('subcategories') as FormArray;
     subcategoriesArray.clear(); // Mevcut kontrolleri temizle
@@ -73,8 +77,13 @@ export class CategoriesComponent {
 
   addSubCategory(){
     const subcategories = this.getSubcategories;
-    subcategories.push(new FormControl(''));
     this.isAddMode = true;
+
+    if (this.isEditMode) {
+      this.isEditMode = false;
+    }
+  
+    subcategories.push(new FormControl(''));
   }
 
   removeSubCategory(index: number){
