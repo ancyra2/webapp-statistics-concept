@@ -13,6 +13,7 @@ import { UpdateCategoryDto } from './dto/update-category.dto';
 import { CreateSubCategoryDto } from './dto/create-subcategory.dto';
 import { UpdateSubCategoryDto } from './dto/update-subcategory.dto';
 import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
+import { Public } from '../auth/constant';
 
 @ApiExtraModels(
   CreateCategoryDto,
@@ -21,10 +22,10 @@ import { ApiExtraModels, ApiTags } from '@nestjs/swagger';
   UpdateSubCategoryDto,
 )
 @ApiTags('Categories')
+@Public()
 @Controller('categories')
 export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
-
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
     return this.categoriesService.create(createCategoryDto);
