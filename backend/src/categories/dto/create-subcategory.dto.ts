@@ -8,5 +8,5 @@ export class CreateSubCategoryDto {
     description: 'The unique identifier of the category',
     example: 1,
   })
-  category_id: number;
+  categoryId: number;
 }

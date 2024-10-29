@@ -12,6 +12,12 @@ export class SubCategory {
   @ApiProperty({ description: 'The name of the subcategory' })
   name: string;
 
+  @Column()
+  @ApiProperty({
+    description: 'The ID of the category this subcategory belongs to',
+  })
+  categoryId: number;
+
   @ManyToOne(() => Category, (category) => category.subcategories)
   @ApiProperty({
     type: () => Category,

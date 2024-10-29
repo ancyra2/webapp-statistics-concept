@@ -17,16 +17,18 @@ export class CategoriesService {
     private subCategoryRepository: Repository<SubCategory>,
   ) {}
 
-  async create(createCategoryDto: CreateCategoryDto): Promise<Category> {
+  async createCategory(
+    createCategoryDto: CreateCategoryDto,
+  ): Promise<Category> {
     const category = this.categoryRepository.create(createCategoryDto);
     return await this.categoryRepository.save(category);
   }
 
-  findAll() {
+  async findAllCategories() {
     return this.categoryRepository.find({ relations: ['subcategories'] });
   }
 
-  async findOne(id: number) {
+  async findOneCategory(id: number) {
     const category = await this.categoryRepository.findOne({
       where: { id },
       relations: ['subcategories'],
@@ -37,15 +39,15 @@ export class CategoriesService {
     return category;
   }
 
-  async update(
+  async updateCategory(
     id: number,
     updateCategoryDto: UpdateCategoryDto,
   ): Promise<Category> {
     await this.categoryRepository.update(id, updateCategoryDto);
-    return this.findOne(id);
+    return this.findOneCategory(id);
   }
 
-  async remove(id: number) {
+  async removeCategory(id: number) {
     const result = await this.categoryRepository.delete(id);
     if (result.affected === 0) {
       throw new NotFoundException(`Category with id ${id} not found`);

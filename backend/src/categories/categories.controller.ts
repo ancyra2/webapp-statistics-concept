@@ -28,30 +28,30 @@ export class CategoriesController {
   constructor(private readonly categoriesService: CategoriesService) {}
   @Post()
   create(@Body() createCategoryDto: CreateCategoryDto) {
-    return this.categoriesService.create(createCategoryDto);
+    return this.categoriesService.createCategory(createCategoryDto);
   }
 
   @Get()
-  findAll() {
-    return this.categoriesService.findAll();
+  findAllCategories() {
+    return this.categoriesService.findAllCategories();
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string) {
-    return this.categoriesService.findOne(+id);
+  findOneCategory(@Param('id') id: string) {
+    return this.categoriesService.findOneCategory(+id);
   }
 
   @Patch(':id')
-  update(
+  updateCategory(
     @Param('id') id: string,
     @Body() updateCategoryDto: UpdateCategoryDto,
   ) {
-    return this.categoriesService.update(+id, updateCategoryDto);
+    return this.categoriesService.updateCategory(+id, updateCategoryDto);
   }
 
   @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.categoriesService.remove(+id);
+  removeCategory(@Param('id') id: string) {
+    return this.categoriesService.removeCategory(+id);
   }
 
   //Subcategories
