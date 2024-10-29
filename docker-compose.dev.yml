@@ -11,7 +11,7 @@ services:
     volumes:
       - ./frontend:/usr/src/app
       - /usr/src/app/node_modules
-    command: ng serve --host ${FRONTEND_HOST} --port ${FRONTEND_PORT}
+    command: ng serve --host ${FRONTEND_HOST} --port ${FRONTEND_PORT} --configuration=development
     networks:
       - my-network
 
