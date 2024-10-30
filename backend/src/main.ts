@@ -8,6 +8,11 @@ async function bootstrap() {
     logger: ['log', 'fatal', 'error', 'warn', 'debug', 'verbose'],
   });
 
+  app.enableCors({
+    origin: 'http://localhost:4200',
+    methods: 'GET,HEAD,PUT,PATCH,POST,DELETE',
+  });
+
   // Swagger yapılandırmasını tanımla
   const config = new DocumentBuilder()
     .setTitle('The Api Documentation')
