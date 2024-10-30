@@ -6,6 +6,7 @@ import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
+import { CategoriesService } from '../../../services/categories.service';
 
 export interface Categories {
   id: number;
@@ -46,11 +47,14 @@ export class CategoriesComponent {
   categoryForm: FormGroup;
   editElement!: Categories;
 
-  constructor(private fb: FormBuilder) {
+  constructor(private fb: FormBuilder, categoriesService: CategoriesService) {
+    
     this.categoryForm = this.fb.group({
       name: [''],
       subcategories: this.fb.array([]),
     });
+
+    categoriesService.getCategories();
   }
 
   editCategory(element: Categories) {
