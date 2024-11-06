@@ -55,13 +55,31 @@ export class CategoriesService {
   }
 
   async createSubCategory(
+    categoryId: number,
     createSubCategoryDto: CreateSubCategoryDto,
   ): Promise<SubCategory> {
-    const subCategory = this.subCategoryRepository.create(createSubCategoryDto);
-    return await this.subCategoryRepository.save(subCategory);
+    const category = await this.categoryRepository.findOneBy({
+      id: categoryId,
+    });
+
+    if (!category) {
+      throw new NotFoundException(`Category with id ${categoryId} not found`);
+    }
+    try {
+      const subCategory = this.subCategoryRepository.create({
+        ...createSubCategoryDto,
+        category,
+      });
+
+      return await this.subCategoryRepository.save(subCategory);
+    } catch (error) {
+      console.log('DTO: ', createSubCategoryDto);
+      console.log('DB Error: ', error);
+      throw error;
+    }
   }
 
-  async findAllSubCategories(): Promise<SubCategory[]> {
+  async findAllSubCategories() {
     return this.subCategoryRepository.find();
   }
 
@@ -82,11 +100,31 @@ export class CategoriesService {
   }
 
   async updateSubCategory(
-    id: number,
+    categoryId: number,
+    subCategoryId: number,
     updateSubCategoryDto: UpdateSubCategoryDto,
   ): Promise<SubCategory> {
-    await this.subCategoryRepository.update(id, updateSubCategoryDto);
-    return this.findSubCategory(id);
+    const subCategory = await this.subCategoryRepository.findOne({
+      where: { id: subCategoryId, category: { id: categoryId } },
+    });
+
+    if (!subCategory) {
+      throw new NotFoundException(
+        `SubCategory with id ${subCategoryId} not found in category with id ${categoryId}`,
+      );
+    }
+    try {
+      await this.subCategoryRepository.update(
+        subCategoryId,
+        updateSubCategoryDto,
+      );
+
+      return this.findSubCategory(subCategoryId);
+    } catch (error) {
+      console.log('DTO: ', updateSubCategoryDto);
+      console.log('DB Error: ', error);
+      throw error;
+    }
   }
 
   async updateSubCategoryByCategoryId(

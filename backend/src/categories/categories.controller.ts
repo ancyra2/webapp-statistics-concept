@@ -55,29 +55,36 @@ export class CategoriesController {
   }
 
   //Subcategories
-  @Post(':category_id/subcategories')
-  createSubCategory(@Body() createSubCategoryDto: CreateSubCategoryDto) {
-    return this.categoriesService.createSubCategory(createSubCategoryDto);
+  @Post(':categoryId/subcategories')
+  createSubCategory(
+    @Param('categoryId') categoryId: string,
+    @Body() createSubCategoryDto: CreateSubCategoryDto,
+  ) {
+    return this.categoriesService.createSubCategory(
+      +categoryId,
+      createSubCategoryDto,
+    );
   }
 
-  @Get('/subcategories')
+  @Get('subcategories/all')
   findAllSubCategories() {
     return this.categoriesService.findAllSubCategories();
   }
 
-  @Get(':category_id/subcategories')
-  findSubCategoriesOfCategories(@Param('category_id') category_id: string) {
-    return this.categoriesService.findSubCategoriesByCategoryId(+category_id);
+  @Get(':categoryId/subcategories')
+  findSubCategoriesOfCategories(@Param('categoryId') categoryId: string) {
+    return this.categoriesService.findSubCategoriesByCategoryId(+categoryId);
   }
 
-  @Patch(':category_id/subcategories')
+  @Patch(':categoryId/subcategories/:subCategoryId')
   updateSubCategory(
-    @Param('category_id') category_id: string,
-    @Param('sub_category_id') sub_category_id: string,
+    @Param('categoryId') categoryId: string,
+    @Param('subCategoryId') subCategoryId: string,
     @Body() updateSubCategoryDto: UpdateSubCategoryDto,
   ) {
     return this.categoriesService.updateSubCategory(
-      +category_id,
+      +categoryId,
+      +subCategoryId,
       updateSubCategoryDto,
     );
   }

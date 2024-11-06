@@ -1,29 +1,14 @@
 import { CommonModule } from '@angular/common';
 import { Component } from '@angular/core';
-import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule } from '@angular/forms';
+import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule } from '@angular/forms';
 import { MatButtonModule } from '@angular/material/button';
 import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatTableModule } from '@angular/material/table';
-import { CategoriesService } from '../../../services/categories.service';
-
-export interface Categories {
-  id: number;
-  name: string;
-  subcategories: string[]; 
-}
-
-const ELEMENT_DATA: Categories[] = [
-  { id: 1, name: 'World', subcategories: ['Politics', 'Economy', 'Culture']},
-  { id: 2, name: 'Football', subcategories: ['Premier League', 'La Liga', 'Serie A'] },
-  { id: 3, name: 'Stock Market', subcategories: ['NASDAQ', 'NYSE', 'DAX'] },
-  { id: 4, name: 'Technology', subcategories: ['AI', 'Blockchain', 'Cybersecurity'] },
-  { id: 5, name: 'Health', subcategories: ['Nutrition', 'Diseases', 'Mental Health'] },
-  { id: 6, name: 'Science', subcategories: ['Physics', 'Chemistry', 'Biology'] },
-  { id: 7, name: 'Travel', subcategories: ['Destinations', 'Tips', 'Guides'] },
-  { id: 8, name: 'Entertainment', subcategories: ['Movies', 'Music', 'TV Shows'] },
-];
+import { CategoriesService} from '../../../services/categories.service';
+import { Category } from '../../../models/category';
+import { SubCategory } from '../../../models/subcategory';
 
 @Component({
   selector: 'app-categories',
@@ -41,45 +26,72 @@ const ELEMENT_DATA: Categories[] = [
 })
 export class CategoriesComponent {
   displayedColumns: string[] = ['id', 'name', 'subcategories', 'actions'];
-  dataSource = ELEMENT_DATA;
+  dataSource!: Category[];
   isEditMode = false;
   isAddMode = false;
   categoryForm: FormGroup;
-  editElement!: Categories;
+  editElement!: Category;
 
-  constructor(private fb: FormBuilder, categoriesService: CategoriesService) {
+  constructor(private fb: FormBuilder, private categoriesService: CategoriesService) {
     
     this.categoryForm = this.fb.group({
+      id: ['null'],
       name: [''],
       subcategories: this.fb.array([]),
     });
 
-    categoriesService.getCategories();
+    categoriesService.getCategories().subscribe((data) => {
+      this.dataSource = data;
+    });
   }
 
-  editCategory(element: Categories) {
-    this.editElement = element;
+  get getSubcategories(): FormArray {
+    return this.categoryForm.get('subcategories') as FormArray;
+  }
+
+  toggleAddMode() {
+    this.isAddMode = !this.isAddMode;
+    if(this.isAddMode){
+      this.isEditMode = false;
+    };
+  }
+  
+  createSubCategoryGroup(subCategory?: SubCategory): FormGroup{
+
+    return this.fb.group({
+      id: [subCategory ? subCategory.id : null],
+      name: [subCategory ? subCategory.name : ''],
+      categoryId: [subCategory ? subCategory.categoryId: null]
+    })
+
+  }
+
+  editCategory(category: Category) {
+    this.editElement = category;
     this.isEditMode = true;
 
-    // Formu güncelle
     this.categoryForm.patchValue({
-      name: element.name,
+      id: category.id,
+      name: category.name,
     });
 
     if (this.isAddMode) {
       this.isAddMode = false;
     }
 
-    // Alt kategorileri güncelle
     const subcategoriesArray = this.categoryForm.get('subcategories') as FormArray;
-    subcategoriesArray.clear(); // Mevcut kontrolleri temizle
+    subcategoriesArray.clear();
 
-    element.subcategories.forEach(subcategory => {
-      subcategoriesArray.push(new FormControl(subcategory));
-    });
+    category.subcategories.forEach(subcategory => {
+      const sub = subcategory as unknown as SubCategory;
+      
+      subcategoriesArray.push(this.createSubCategoryGroup(sub));
+
+    })
+
   }
 
-  addSubCategory(){
+  addSubCategoryControl(){
     const subcategories = this.getSubcategories;
     this.isAddMode = true;
 
@@ -87,7 +99,7 @@ export class CategoriesComponent {
       this.isEditMode = false;
     }
   
-    subcategories.push(new FormControl(''));
+    subcategories.push(this.createSubCategoryGroup());
   }
 
   removeSubCategory(index: number){
@@ -95,12 +107,30 @@ export class CategoriesComponent {
     subcategories.removeAt(index);
   }
 
-  // FormArray'yi döndüren bir yardımcı fonksiyon
-  get getSubcategories(): FormArray {
-    return this.categoryForm.get('subcategories') as FormArray;
+  onSubmit() {
+    if(this.isAddMode){
+      const formContent = this.categoryForm.value;
+  
+      this.categoriesService.addCategory(formContent.name)
+        .subscribe((data) => {
+          const categoryId = data.id;
+  
+          formContent.subcategories.forEach((subcategory: { name: string }) => {
+            this.categoriesService.addSubcategory(categoryId, subcategory.name).subscribe();
+          });
+        });
+
+    }else if(this.isEditMode) {
+      const formContent = this.categoryForm.value;
+      
+      this.categoriesService.updateCategory(formContent.id, formContent.name).subscribe();
+
+      formContent.subcategories.forEach((subcategory: SubCategory) => {
+    
+        this.categoriesService.updateSubcategory(formContent.id, subcategory.id, subcategory.name).subscribe();
+      });
+    }
+    
   }
 
-  onSubmit() {
-    console.log('Form data:', this.categoryForm.value);
-  }
 }

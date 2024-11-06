@@ -1,4 +1,10 @@
-import { Column, Entity, ManyToOne, PrimaryGeneratedColumn } from 'typeorm';
+import {
+  Column,
+  Entity,
+  JoinColumn,
+  ManyToOne,
+  PrimaryGeneratedColumn,
+} from 'typeorm';
 import { Category } from './category.entity';
 import { ApiProperty } from '@nestjs/swagger';
 
@@ -12,13 +18,16 @@ export class SubCategory {
   @ApiProperty({ description: 'The name of the subcategory' })
   name: string;
 
-  @Column()
+  @Column({ name: 'categoryId' })
   @ApiProperty({
     description: 'The ID of the category this subcategory belongs to',
   })
   categoryId: number;
 
-  @ManyToOne(() => Category, (category) => category.subcategories)
+  @ManyToOne(() => Category, (category) => category.subcategories, {
+    onDelete: 'CASCADE',
+  })
+  @JoinColumn({ name: 'categoryId' })
   @ApiProperty({
     type: () => Category,
     description: 'The category this subcategory belongs to',

@@ -7,7 +7,7 @@
       <div class="c-col add-category-wrapper">
 
         <h1>Categories</h1>
-        <button mat-flat-button (click)="addSubCategory()" mat-button>
+        <button mat-flat-button (click)="toggleAddMode()" mat-button>
           <mat-icon>add</mat-icon>
         </button>
 
@@ -37,7 +37,11 @@
 
           <ng-container matColumnDef="subcategories">
             <th mat-header-cell *matHeaderCellDef> Subcategories </th>
-            <td mat-cell *matCellDef="let element"> {{element.subcategories.join(', ')}} </td>
+            <td mat-cell *matCellDef="let element">
+              <span *ngFor="let sub of element.subcategories">
+                {{sub.name + ''}}
+              </span>
+            </td>
           </ng-container>
 
           <ng-container matColumnDef="actions">
@@ -66,19 +70,30 @@
 
           <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
 
-
             <mat-form-field>
               <mat-label>Category</mat-label>
               <input matInput formControlName="name">
             </mat-form-field>
 
+            <button mat-flat-button (click)="addSubCategoryControl()" type="button" mat-button>
+              <mat-icon>add</mat-icon>
+            </button>
+            
             <hr>
 
             <div formArrayName="subcategories">
-              <mat-form-field *ngFor="let subcategory of getSubcategories.controls; let i = index">
-                <mat-label>Subcategory {{i + 1}}</mat-label>
-                <input matInput [formControlName]="i">
-              </mat-form-field>
+
+              <div *ngFor="let subcategory of getSubcategories.controls; let i= index" [formGroupName]="i">
+
+                <input type="hidden" formControlName="id">
+
+                <mat-form-field>
+                  <mat-label>Subcategory {{i + 1}}</mat-label>
+                  <input matInput formControlName="name">
+                </mat-form-field>
+              </div>
+
+
             </div>
 
             <button mat-button type="submit">Save</button>
@@ -106,21 +121,25 @@
               <input matInput formControlName="name">
             </mat-form-field>
 
-            <button mat-flat-button (click)="addSubCategory()" mat-button>
+            <button mat-flat-button (click)="addSubCategoryControl()" type="button" mat-button>
               <mat-icon>add</mat-icon>
             </button>
 
             <hr>
 
             <div formArrayName="subcategories">
-              <mat-form-field class="add-sub-field"
-                *ngFor="let subcategory of getSubcategories.controls; let i = index">
+              <div *ngFor="let subcategory of getSubcategories.controls; let i = index" [formGroupName]="i">
+
+              
+              <mat-form-field class="add-sub-field">
                 <mat-label>Subcategory {{i + 1}}</mat-label>
-                <input matInput [formControlName]="i">
+                <input matInput formControlName="name">
                 <button class="remove-sub-btn" mat-flat-button (click)="removeSubCategory(i)">
                   <mat-icon>remove</mat-icon>
                 </button>
               </mat-form-field>
+
+            </div>
             </div>
 
             <button mat-button type="submit">Save</button>
