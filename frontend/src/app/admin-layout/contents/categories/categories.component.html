@@ -1,88 +1,113 @@
+<!-- Main Category Page Container-->
 <div class="categories-container">
 
-  <div class="c-container add-category-container">
+  <!-- Spinner -->
+  <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
+  <!-- Spinner -->
 
-    <div class="c-row">
+  <!--Confirm Dialog-->
+  <ng-template #confirmDialogTemplate>
+    <div class="c-container confirm-container">
+      <div class="c-row">
+        <div class="c-col confirm-wrapper">
 
-      <div class="c-col add-category-wrapper">
+          <h1>Are you sure?</h1>
+          <mat-dialog-content>
+            You are about to delete the selected categories. This action cannot be undone.
+          </mat-dialog-content>
 
-        <h1>Categories</h1>
-        <button mat-flat-button (click)="toggleAddMode()" mat-button>
-          <mat-icon>add</mat-icon>
-        </button>
+          <mat-dialog-actions align="center">
+            <button mat-button (click)="onCancel()">İptal</button>
+            <button mat-raised-button color="primary" (click)="onConfirm()">Onayla</button>
+          </mat-dialog-actions>
 
+        </div>
       </div>
-
     </div>
+  </ng-template>
+  <!--Confirm Dialog-->
 
-  </div>
-
-  <div class="c-container ">
-
-    <div class="c-row">
-
-      <div class="c-col ">
-
-        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 categories-table">
-
-          <ng-container matColumnDef="id">
-            <th mat-header-cell *matHeaderCellDef> No. </th>
-            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="name">
-            <th mat-header-cell *matHeaderCellDef> Categories </th>
-            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
-          </ng-container>
-
-          <ng-container matColumnDef="subcategories">
-            <th mat-header-cell *matHeaderCellDef> Subcategories </th>
-            <td mat-cell *matCellDef="let element">
-              <span *ngFor="let sub of element.subcategories">
-                {{sub.name + ''}}
-              </span>
-            </td>
-          </ng-container>
-
-          <ng-container matColumnDef="actions">
-            <th mat-header-cell *matHeaderCellDef> Actions </th>
-            <td mat-cell *matCellDef="let element">
-              <button mat-button (click)="editCategory(element)">Edit</button>
-            </td>
-          </ng-container>
-
-          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-        </table>
-
-
-      </div>
-
-    </div>
-
-  </div>
-
-  <ng-container *ngIf="isEditMode">
+  <!--Form Dialog Add-->
+  <ng-template #categoryAddFormDialogTemplate>
     <div class="c-container form-container">
-      <div class="c-row ">
+      <div class="c-row">
         <div class="c-col form-wrapper">
-          <h2>Edit Categories</h2>
+
+          <h1>Add Form</h1>
 
           <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
 
             <mat-form-field>
               <mat-label>Category</mat-label>
               <input matInput formControlName="name">
+              <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">
+                Category name is required.
+              </mat-error>
+              <mat-error *ngIf="categoryForm.get('name')?.hasError('maxLength')">
+                Category name can not be longer than 50 characters.
+              </mat-error>
             </mat-form-field>
 
-            <button mat-flat-button (click)="addSubCategoryControl()" type="button" mat-button>
-              <mat-icon>add</mat-icon>
-            </button>
-            
+            <button mat-flat-button (click)="addSubCategoryControl()" type="button" mat-button>Add Subcategory</button>
+
             <hr>
 
             <div formArrayName="subcategories">
+              <div *ngFor="let subcategory of getSubcategories.controls; let i = index" [formGroupName]="i">
 
+                <mat-form-field class="add-sub-field">
+                  <mat-label>Subcategory {{i + 1}}</mat-label>
+                  <input matInput formControlName="name">
+                  <mat-error *ngIf="subcategory.get('name')?.hasError('required')">
+                    Subcategory name is required.
+                  </mat-error>
+                  <mat-error *ngIf="subcategory.get('name')?.hasError('maxlength')">
+                    Subcategory name can not be longer than 50 characters.
+                  </mat-error>
+                  <button class="remove-sub-btn" mat-flat-button (click)="removeSubCategory(i)" type="button">
+                    <mat-icon>remove</mat-icon>
+                  </button>
+                </mat-form-field>
+
+              </div>
+            </div>
+
+            <button mat-button type="submit">Save</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!--Form Dialog Add-->
+
+  <!--Form Dialog Edit-->
+  <ng-template #categoryEditFormDialogTemplate>
+    <div class="c-container form-container">
+      <div class="c-row">
+        <div class="c-col form-wrapper">
+
+          <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+
+            <mat-form-field>
+              <mat-label>Category</mat-label>
+              <input matInput formControlName="name">
+              <mat-error *ngIf="categoryForm.get('name')?.hasError('required')">
+                Category name is required.
+              </mat-error>
+              <mat-error *ngIf="categoryForm.get('name')?.hasError('maxLength')">
+                Category name can not be longer than 50 characters.
+              </mat-error>
+            </mat-form-field>
+
+            <button mat-flat-button (click)="addSubCategoryControl()" type="button" mat-button>
+              Add Subcategory
+            </button>
+
+            <hr>
+
+            <div formArrayName="subcategories">
               <div *ngFor="let subcategory of getSubcategories.controls; let i= index" [formGroupName]="i">
 
                 <input type="hidden" formControlName="id">
@@ -90,65 +115,130 @@
                 <mat-form-field>
                   <mat-label>Subcategory {{i + 1}}</mat-label>
                   <input matInput formControlName="name">
+                  <mat-error *ngIf="subcategory.get('name')?.hasError('required')">
+                    Subcategory name is required.
+                  </mat-error>
+                  <mat-error *ngIf="subcategory.get('name')?.hasError('maxlength')">
+                    Subcategory name can not be longer than 50 characters.
+                  </mat-error>
+                  <button class="remove-sub-btn" mat-flat-button (click)="removeSubCategory(i)" type="button">
+                    <mat-icon>remove</mat-icon>
+                  </button>
                 </mat-form-field>
+
               </div>
-
-
             </div>
 
             <button mat-button type="submit">Save</button>
 
           </form>
-
         </div>
       </div>
     </div>
+  </ng-template>
+  <!--Form Dialog Edit-->
 
-  </ng-container>
+  <!-- Category Toolbar -->
+  <div class="c-container action-menu-container">
+    <div class="c-row">
+      <div class="c-col action-menu-wrapper">
 
-  <ng-container *ngIf="isAddMode">
+        <mat-toolbar>
 
-    <div class="c-container form-container">
-      <div class="c-row">
-        <div class="c-col form-wrapper">
-          <h2>Add Categories</h2>
+          <span>Kategoriler</span>
+          <span class="spacer"></span>
 
-          <form [formGroup]="categoryForm" (ngSubmit)="onSubmit()">
+          <button mat-raised-button style="margin-right: 1rem;" 
+            *ngIf="isEditMode && isAnySelected() && this.selection.selected.length === 1" 
+            (click)="editCategory()">
+            Edit
+          </button>
 
+          <button mat-icon-button (click)="openDialogCategoryAdd()">
+            <mat-icon>add</mat-icon>
+          </button>
 
-            <mat-form-field>
-              <mat-label>Category</mat-label>
-              <input matInput formControlName="name">
-            </mat-form-field>
+          <button mat-icon-button (click)="toggleEditMode()">
+            <mat-icon>edit</mat-icon>
+          </button>
 
-            <button mat-flat-button (click)="addSubCategoryControl()" type="button" mat-button>
-              <mat-icon>add</mat-icon>
-            </button>
+          <button *ngIf="isEditMode && isAnySelected()" mat-icon-button (click)="openDeleteConfirmDialog()">
+            <mat-icon>delete</mat-icon>
+          </button>
 
-            <hr>
-
-            <div formArrayName="subcategories">
-              <div *ngFor="let subcategory of getSubcategories.controls; let i = index" [formGroupName]="i">
-
-              
-              <mat-form-field class="add-sub-field">
-                <mat-label>Subcategory {{i + 1}}</mat-label>
-                <input matInput formControlName="name">
-                <button class="remove-sub-btn" mat-flat-button (click)="removeSubCategory(i)">
-                  <mat-icon>remove</mat-icon>
-                </button>
-              </mat-form-field>
-
-            </div>
-            </div>
-
-            <button mat-button type="submit">Save</button>
-
-          </form>
-
-        </div>
+        </mat-toolbar>
       </div>
     </div>
+  </div>
+  <!-- Category Toolbar -->
 
-  </ng-container>
+  <!-- Category Table -->
+  <div class="c-container " style="margin-top: 1.25rem;">
+    <div class="c-row">
+      <div class="c-col ">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 categories-table">
+
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+
+            <th mat-header-cell *matHeaderCellDef
+              [ngStyle]="{'width': isEditMode ? '80px' : '0', 'transition': 'width 0.4s ease-in-out'}">
+              <mat-checkbox *ngIf="isEditMode" (change)="$event ? masterToggle() : null" [checked]="isAllSelected()"
+                [indeterminate]="isAnySelected()"></mat-checkbox>
+            </th>
+            
+            <td mat-cell *matCellDef="let element"
+              [ngStyle]="{'width': isEditMode ? '80px' : '0', 'transition': 'width 0.4s ease-in-out'}">
+              <mat-checkbox *ngIf="isEditMode" (click)="$event.stopPropagation()"
+                (change)="$event ? toggleSelection(element): null"
+                [checked]="selection.isSelected(element)"></mat-checkbox>
+            </td>
+
+          </ng-container>
+
+          <!-- ID Column -->
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <!-- Name Column -->
+          <ng-container matColumnDef="name">
+            <th mat-header-cell *matHeaderCellDef> Category </th>
+            <td mat-cell *matCellDef="let element"> {{element.name}} </td>
+          </ng-container>
+
+          <!-- Subcategories Column -->
+          <ng-container matColumnDef="subcategories">
+            <th mat-header-cell *matHeaderCellDef> Subcategories </th>
+            <td mat-cell *matCellDef="let element">
+              <span *ngFor="let sub of element.subcategories">{{sub.name + ", "}}</span>
+            </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <!-- Category Table -->
+
+  <!-- Paginator -->
+  <div class="c-container paginator-container">
+    <div class="c-row">
+      <div class="c-col ">
+
+        <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+        
+      </div>
+    </div>
+  </div>
+  <!-- Paginator -->
+
 </div>
+<!-- Main Category Page Container-->

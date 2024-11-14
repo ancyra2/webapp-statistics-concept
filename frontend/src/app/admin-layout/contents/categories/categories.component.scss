@@ -16,7 +16,6 @@
   margin-bottom: 2rem;
 }
 
-
 .form-wrapper {
   max-width: 800px;
   form {
@@ -39,9 +38,6 @@
     flex-direction: row;
     align-items: center;
     position: relative;
-    h1{
-      
-    }
     button {
       width: 60px;
       margin-right: 1rem;
@@ -75,5 +71,44 @@
   }
   &:hover {
     background-color: lighten($color: red, $amount: 5%);
+  }
+}
+
+.spacer {
+  flex: 1 1 auto;
+}
+
+.action-menu-wrapper {
+  mat-toolbar {
+    background-color: $alice-blue-color;
+  }
+}
+
+.mat-mdc-table {
+  max-height: 650px;
+  min-height: 650px;
+}
+
+.confirm-container {
+  justify-content: center;
+  align-items: center;
+  background-color: $white-color;
+}
+
+.spinner {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+
+  width: 50px !important;
+  height: 50px !important;
+}
+
+.paginator-container {
+  margin-top: 1.25rem;
+
+  .mat-mdc-paginator {
+    background-color: $alice-blue-color !important;
   }
 }

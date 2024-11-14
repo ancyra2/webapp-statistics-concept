@@ -50,7 +50,6 @@ export class CategoriesService {
 
   addSubcategory(categoryId: number, name: string)  {
     const url = this.configService.apiConfig.apiUrl + this.configService.apiConfig.getEndPoint(ApiEndpoints.SUBCATEGORIES, { categoryId: categoryId});
-    console.log(url);
     return this.http.post(url, 
       {
         name: name
