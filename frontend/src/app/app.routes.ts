@@ -5,7 +5,6 @@ import { PanelComponent } from './admin-layout/panel/panel.component';
 import { HomeComponent } from './main-layout/home/home.component';
 import { ReportComponent } from './main-layout/report/report.component';
 import { ComponentsComponent } from './main-layout/components/components.component';
-import { PagesComponent } from './admin-layout/pages/pages.component';
 import { StatisticsComponent } from './main-layout/statistics/statistics.component';
 import { LatestComponent } from './main-layout/latest/latest.component';
 import { FootballStatsComponent } from './main-layout/football-stats/football-stats.component';
@@ -30,7 +29,6 @@ export const routes: Routes = [
     component: AdminLayoutComponent,
     children:[
       {path: '', component: PanelComponent},
-      {path: 'pages', component: PagesComponent},
       {path: 'contents', component: ContentsComponent},
       {path: 'contents/categories', component: CategoriesComponent},
     ]
