@@ -1,10 +1,15 @@
+@import '../../styles/variables';
+@import "../../styles/layouts";
+
 .app-admin-container{
     display: flex;
-    overflow-x:hidden;
     nav{
         max-width: 200px;
     }
+
     main{
+        position: relative;
+        top: $admin-header-height;
         flex: 1 1 auto;
     }
 }

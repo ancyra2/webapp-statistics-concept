@@ -3,7 +3,6 @@
 
 .categories-container {
   width: 100%;
-  margin-top: 75px;
 }
 
 .categories-table {
@@ -106,9 +105,9 @@
 }
 
 .paginator-container {
-  margin-top: 1.25rem;
 
   .mat-mdc-paginator {
     background-color: $alice-blue-color !important;
   }
+  
 }

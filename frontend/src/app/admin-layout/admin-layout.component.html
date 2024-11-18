@@ -1,11 +1,15 @@
 <header>
     <app-admin-header (toggleSidenav)="handleToggleSidenav()"></app-admin-header>
 </header>
+
 <div class="app-admin-container">
+    
     <nav>
         <app-admin-sidebar-menu></app-admin-sidebar-menu>
     </nav>
+
     <main class="app-admin">
         <router-outlet/> 
     </main>
+    
 </div>
