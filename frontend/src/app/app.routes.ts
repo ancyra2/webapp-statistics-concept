@@ -10,6 +10,7 @@ import { LatestComponent } from './main-layout/latest/latest.component';
 import { FootballStatsComponent } from './main-layout/football-stats/football-stats.component';
 import { ContentsComponent } from './admin-layout/contents/contents.component';
 import { CategoriesComponent } from './admin-layout/contents/categories/categories.component';
+import { UsersComponent } from './admin-layout/users/users.component';
 
 export const routes: Routes = [
   {
@@ -31,6 +32,7 @@ export const routes: Routes = [
       {path: '', component: PanelComponent},
       {path: 'contents', component: ContentsComponent},
       {path: 'contents/categories', component: CategoriesComponent},
+      {path: 'users', component: UsersComponent}
     ]
   }
    

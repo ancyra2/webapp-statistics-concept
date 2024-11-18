@@ -12,6 +12,8 @@
 
           <li><a [routerLink] = "['/admin']"><span>Dashboard</span><mat-icon>dashboard</mat-icon></a></li>
 
+          <li><a [routerLink] = "['/admin/users']"><span>Users</span><mat-icon>group</mat-icon></a></li>
+
           <li class="sidenav-extendable-list" [ngClass]="{'extend': subMenuOpened}">
             
             <a href="#" (click)="toggleSubMenu($event)"><span>Contents</span><mat-icon>description</mat-icon></a>

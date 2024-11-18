@@ -1,0 +1,12 @@
+@import '../../../styles/variables';
+@import '../../../styles/layouts';
+
+.spacer {
+    flex: 1 1 auto;
+  }
+  
+  .action-menu-wrapper {
+    mat-toolbar {
+      background-color: $alice-blue-color;
+    }
+  }
