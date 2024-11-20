@@ -17,9 +17,11 @@ import { UpdateUserDto } from './dto/update-user-dto';
 import { UserLoggerService } from '../logging/services/user-logger.service';
 import { ApiExtraModels, ApiResponse, ApiTags } from '@nestjs/swagger';
 import { User } from './entities/user.entity';
+import { Public } from '../auth/constant';
 
 @ApiExtraModels(CreateUserDto, UpdateUserDto)
 @ApiTags('Users')
+@Public()
 @Controller('users')
 export class UsersController {
   constructor(
@@ -32,9 +34,9 @@ export class UsersController {
   //@Permissions(Permission.ALL)
   create(@Body() createUserDto: CreateUserDto) {
     const user = this.usersService.create(createUserDto);
-    if (user) {
+    /*if (user) {
       this.userLoggerService.log('User created', user);
-    }
+    }*/
     return user;
   }
 
