@@ -11,6 +11,7 @@ import { FootballStatsComponent } from './main-layout/football-stats/football-st
 import { ContentsComponent } from './admin-layout/contents/contents.component';
 import { CategoriesComponent } from './admin-layout/contents/categories/categories.component';
 import { UsersComponent } from './admin-layout/users/users.component';
+import { PagesComponent } from './admin-layout/contents/pages/pages.component';
 
 export const routes: Routes = [
   {
@@ -32,6 +33,7 @@ export const routes: Routes = [
       {path: '', component: PanelComponent},
       {path: 'contents', component: ContentsComponent},
       {path: 'contents/categories', component: CategoriesComponent},
+      {path: 'contents/pages', component: PagesComponent},
       {path: 'users', component: UsersComponent}
     ]
   }

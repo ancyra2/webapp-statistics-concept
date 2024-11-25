@@ -21,7 +21,7 @@
             <ul class="sidenav-sub-list"  [ngClass]="{'close': !subMenuOpened, 'open': subMenuOpened}" >
 
               <li><a [routerLink]="['/admin/contents/categories']"  (click)="toggleSubMenu($event)">Categories</a></li>
-              <li><a href=""  (click)="toggleSubMenu($event)">Pages</a></li>
+              <li><a [routerLink]="['/admin/contents/pages']"  (click)="toggleSubMenu($event)">Pages</a></li>
 
             </ul>
 
