@@ -1,3 +1,30 @@
 @mixin spacer {
   flex: 1 1 auto;
 }
+
+@mixin spinner{
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 50px !important;
+  height: 50px !important;
+}
+
+@mixin table{
+  box-shadow: none;
+  background-color: $white-color;
+  border: 1px solid $border-color;
+  max-height: 650px;
+  min-height: 650px;
+}
+
+@mixin toolbar{
+  background-color: $alice-blue-color;
+}
+
+@mixin paginator{
+  .mat-mdc-paginator {
+    background-color: $alice-blue-color !important;
+  }
+}

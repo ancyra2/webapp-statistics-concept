@@ -1,15 +1,15 @@
 @import '../../../../styles/variables';
 @import '../../../../styles/layouts';
+@import '../../../../styles/mixins';
 
 .categories-container {
   width: 100%;
 }
 
 .categories-table {
-  box-shadow: none;
-  background-color: $white-color;
-  border: 1px solid $border-color;
+ @include table;
 }
+
 .form-container {
   margin-top: 2rem;
   margin-bottom: 2rem;
@@ -74,18 +74,13 @@
 }
 
 .spacer {
-  flex: 1 1 auto;
+  @include spacer;
 }
 
 .action-menu-wrapper {
   mat-toolbar {
     background-color: $alice-blue-color;
   }
-}
-
-.mat-mdc-table {
-  max-height: 650px;
-  min-height: 650px;
 }
 
 .confirm-container {
@@ -95,19 +90,9 @@
 }
 
 .spinner {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
-
-  width: 50px !important;
-  height: 50px !important;
+  @include spinner;
 }
 
 .paginator-container {
-
-  .mat-mdc-paginator {
-    background-color: $alice-blue-color !important;
-  }
-  
+  @include paginator;
 }
