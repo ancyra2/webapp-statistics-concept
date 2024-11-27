@@ -1,0 +1,42 @@
+@import '../../../../styles/variables';
+@import '../../../../styles/layouts';
+@import '../../../../styles/mixins';
+
+.spacer {
+    @include spacer;
+  }
+
+.spinner{
+  @include spinner;
+}
+
+  .categories-table {
+    @include table;
+   } 
+  
+  .action-menu-wrapper {
+    mat-toolbar {
+      @include toolbar;
+    }
+  }
+
+  .paginator-container {
+    @include paginator;
+  }
+
+  .form-container{
+
+  }
+
+  .form-wrapper{
+
+    form{
+      display: flex;
+      flex-direction: column;
+    }
+
+    .form-checkbox-wrapper{
+      display: flex;
+    }
+
+  }

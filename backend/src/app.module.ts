@@ -8,6 +8,7 @@ import { AuthModule } from './auth/auth.module';
 import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { CategoriesModule } from './categories/categories.module';
+import { PagesModule } from './pages/pages.module';
 import * as path from 'path';
 
 @Module({
@@ -45,6 +46,7 @@ import * as path from 'path';
     UsersModule,
     ReportsModule,
     CategoriesModule,
+    PagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
