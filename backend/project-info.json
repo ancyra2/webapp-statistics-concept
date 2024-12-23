@@ -34,6 +34,12 @@
                 "reason": "JWT token",
                 "installation": "npm install --save @nestjs/jwt",
                 "version": "^10.2.0"
+            },
+            {
+                "name": "Nestjs Multer",
+                "reason": "File upload",
+                "installation": "npm i -D @types/multer",
+                "version": "^1.4.12"
             }
         ]
     },
