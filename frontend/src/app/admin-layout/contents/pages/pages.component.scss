@@ -24,10 +24,6 @@
     @include paginator;
   }
 
-  .form-container{
-
-  }
-
   .form-wrapper{
 
     form{
@@ -39,4 +35,65 @@
       display: flex;
     }
 
+    .subform-wrapper{
+      display: flex;
+      flex-direction: column;
+    }
   }
+
+  .tab-wrapper{
+    margin-top: 1rem;
+    display: flex;
+    flex-direction: column;
+    
+    mat-toolbar {
+      @include toolbar;
+    }
+  }
+  
+  .editor-toolbar-wrapper{
+    margin-bottom: 2.75rem;
+  }
+
+  .editor-content{
+    min-height: 300px;
+    resize: none;
+  }
+
+  .editor-p-select{
+    width: 150px;
+  }
+
+  .content-container{
+    min-height: 485px;
+    max-height: 485px;
+    overflow-y: scroll;
+    background-color: $white-color;
+  }
+  .content-wrapper{
+    display: flex;
+    flex-direction: column;
+    textarea{
+      height: 60px;
+      resize: none;
+      background-color: transparent;
+    }
+    
+  }
+  
+  .content-field {
+    textarea{
+      background-color: none;
+    }
+    mat-label{
+      color: $border-color;
+    }
+  }
+
+  ::ng-deep .mdc-text-field {
+    background-color: transparent !important; /* İstediğiniz renk */
+  }
+
+  ::ng-deep .mdc-line-ripple::before {
+    border-bottom-width: 0 !important;
+}

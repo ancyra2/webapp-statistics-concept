@@ -12,6 +12,7 @@ import { ContentsComponent } from './admin-layout/contents/contents.component';
 import { CategoriesComponent } from './admin-layout/contents/categories/categories.component';
 import { UsersComponent } from './admin-layout/users/users.component';
 import { PagesComponent } from './admin-layout/contents/pages/pages.component';
+import { EditorComponent } from './admin-layout/editor/editor.component';
 
 export const routes: Routes = [
   {
@@ -34,7 +35,8 @@ export const routes: Routes = [
       {path: 'contents', component: ContentsComponent},
       {path: 'contents/categories', component: CategoriesComponent},
       {path: 'contents/pages', component: PagesComponent},
-      {path: 'users', component: UsersComponent}
+      {path: 'users', component: UsersComponent},
+      {path: 'editor', component: EditorComponent}
     ]
   }
    

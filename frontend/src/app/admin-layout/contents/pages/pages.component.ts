@@ -1,13 +1,11 @@
 import { Component, inject, TemplateRef, ViewChild } from '@angular/core';
 import { MatTableDataSource, MatTableModule } from '@angular/material/table';
-import { User } from '../../../models/user';
-import { FormArray, FormBuilder, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
+import { FormArray, FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators } from '@angular/forms';
 import { SelectionModel } from '@angular/cdk/collections';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { MatDialog, MatDialogModule } from '@angular/material/dialog';
 import { MatPaginator, MatPaginatorModule, PageEvent } from '@angular/material/paginator';
 import { forkJoin } from 'rxjs';
-import { UserService } from '../../../services/user.service';
 import { DialogModule } from '@angular/cdk/dialog';
 import { CommonModule } from '@angular/common';
 import { MatButtonModule } from '@angular/material/button';
@@ -17,6 +15,15 @@ import { MatIconModule } from '@angular/material/icon';
 import { MatInputModule } from '@angular/material/input';
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { MatToolbarModule } from '@angular/material/toolbar';
+import { PageService } from '../../../services/page.service';
+import { Page } from '../../../models/page';
+import { MatTab, MatTabGroup } from '@angular/material/tabs';
+import { MatMenuModule } from '@angular/material/menu';
+import { MatSelectModule } from '@angular/material/select';
+
+export interface ControlObjects{
+  type: string;
+}
 
 @Component({
   selector: 'app-pages',
@@ -25,60 +32,143 @@ import { MatToolbarModule } from '@angular/material/toolbar';
     MatTableModule, MatButtonModule, CommonModule,
     MatFormFieldModule, ReactiveFormsModule, MatInputModule,
     MatIconModule, MatToolbarModule, MatCheckboxModule, DialogModule,
-    MatDialogModule, MatProgressSpinnerModule, MatPaginatorModule
+    MatDialogModule, MatProgressSpinnerModule, MatPaginatorModule, MatTabGroup, 
+    MatTab, MatMenuModule, MatSelectModule
   ],
   templateUrl: './pages.component.html',
   styleUrl: './pages.component.scss'
 })
 export class PagesComponent {
-  displayedColumns: string[] = ['select', 'id', 'username', 'email', 'roles', 'permissions'];
-  dataSource = new MatTableDataSource<User>();
+  displayedColumns: string[] = ['select', 'id', 'title', 'slug', 'isPublished', 'publishedAt', 'authorId', 'category', 'tags'];
+  dataSource = new MatTableDataSource<Page>();
   isEditMode = false;
   isAddMode = false;
-  userForm: FormGroup;
-  editElement!: User;
-  deleteElement!: User;
+  form: FormGroup;
+  editElement!: Page;
+  deleteElement!: Page;
   editElementSelection = false;
-  selection = new SelectionModel<User>(true, []);
+  selection = new SelectionModel<Page>(true, []);
   yes = null;
   no = null;
   isLoading = false;
   roles = ['Admin', 'User'];
   permissions = ['Read', 'Write'];
   private _snackBar = inject(MatSnackBar);
-
+  controlObjects: ControlObjects[] = [];
+  //content: Block[] = [];
+  
   @ViewChild(MatPaginator) paginator!: MatPaginator;
-  @ViewChild('userAddFormDialogTemplate') userAddFormDialogTemplate!: TemplateRef<unknown>;
-  @ViewChild('userEditFormDialogTemplate') userEditFormDialogTemplate!: TemplateRef<unknown>;
+  @ViewChild('AddFormDialogTemplate') AddFormDialogTemplate!: TemplateRef<unknown>;
+  @ViewChild('EditFormDialogTemplate') EditFormDialogTemplate!: TemplateRef<unknown>;
   @ViewChild('confirmDialogTemplate') confirmDialogTemplate!: TemplateRef<unknown>;
 
   constructor(
     private fb: FormBuilder,
-    private userService: UserService,
-    private userFormDialog: MatDialog,
+    private pageService: PageService,
+    private formDialog: MatDialog,
   ){
-    this.userForm = this.fb.group({
+    this.form = this.fb.group({
       id:[''],
-      username: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(50)]],
-      password: ['', 
-        [
-          Validators.required,
-          Validators.minLength(8),
-          Validators.pattern('(?=.*[A-Z])(?=.*[a-z])(?=.*[0-9]).*')
-        ]
-      ],
-      email: ['', [Validators.required, Validators.email]],
-      roles: this.fb.array(this.roles.map(() => this.fb.control(false))),
-      permissions: this.fb.array(this.permissions.map(() => this.fb.control(false))),
+      title: ['', Validators.required],
+      slug: ['', Validators.required],
+      authorId: ['', Validators.required],
+      isPublished: [false],
+      tags: ['', Validators.required],
+      category: ['', Validators.required],
+      seo: this.fb.group({
+        title: ['', Validators.required],
+        description: ['', Validators.required],
+        keywords: ['', Validators.required],
+        canonicalUrl: ['', Validators.required]
+      }),
+      content: this.fb.array([]),
+
     });
 
-    this.loadUsers();
+    this.loadPages();
   }
 
-  loadUsers() {
+  get content(): FormArray{
+    return this.form.get('content') as FormArray;
+  }
+
+  /* isListBlock(block: Block): block is ListBlock {
+    return block.type === 'list';
+  }
+
+  isParagraph(block: Block): block is ParagraphBlock{
+    return block.type === 'paragraph';
+  }*/
+
+  /*addParagraph(){
+    const newControl = new FormControl('');
+    this.content.push(newControl);
+    this.listenToSingleControlChanges(newControl, this.content.length - 1);
+
+    this.controlObjects.push({
+      type: 'paragraph',
+    })
+
+  }
+
+  addHeader(type: string){
+    const newControl = new FormControl('');
+    this.content.push(newControl);
+    this.listenToSingleControlChanges(newControl, this.content.length - 1);
+
+    this.controlObjects.push({
+      type: type,
+    })
+
+  }
+
+  listenToFormArrayChanges(){
+    this.content.controls.forEach((control, index) =>{
+      this.listenToSingleControlChanges(control as FormControl, index);
+    });
+  }
+
+  /*listenToSingleControlChanges(control: FormControl, index: number){
+    control.valueChanges.subscribe((control) => {
+      
+    })
+  }
+*/
+  isHeader(type: string): boolean {
+    return ['h1', 'h2', 'h3', 'h4', 'h5'].includes(type);
+  }
+
+  get contentControls(){
+    return (this.form.get('content') as FormArray).controls;
+  }
+
+  addBlock(type: string){
+    const blocks = this.form.get('content') as FormArray;
+    const block = this.fb.group({
+      type: [type, Validators.required],
+      data: this.fb.group({
+        text: [''], // Varsayılan olarak "text" alanı, blok türüne göre değişir
+        level: [1], // Başlık seviyeleri için
+        src: [''], // Resimler için
+        alt: [''], // Resim açıklamaları
+        url: [''], // Videolar için
+        items: this.fb.array([]) // Listeler için
+      })
+    });
+    blocks.push(block);
+  }
+
+  addListItem(blockIndex: number){
+    const blocks = this.form.get('content') as FormArray;
+    const block = blocks.at(blockIndex);
+    const items = block.get('data.items') as FormArray;
+    items.push(this.fb.control(''));
+  }
+
+  loadPages() {
     this.isLoading = true;
 
-    this.userService.getUsers().subscribe((data) =>{
+    this.pageService.getPages().subscribe((data) =>{
       this.dataSource.data = data;
       this.isLoading = false;
       this.selection.clear();
@@ -103,8 +193,8 @@ export class PagesComponent {
     }
   }
 
-  toggleSelection(user: User): void{
-    this.selection.toggle(user);
+  toggleSelection(page: Page): void{
+    this.selection.toggle(page);
 
     if (this.editElementSelection) {
       this.editElementSelection = false;
@@ -118,16 +208,15 @@ export class PagesComponent {
 
   onPageChange(event: PageEvent) {
     console.log(event.pageIndex);
-    //this.loadCategories(event.pageIndex, event.pageSize);
   }
   
   onCancel(): void {
-    this.userFormDialog.closeAll();
+    this.formDialog.closeAll();
   }
 
   onConfirm(): void {
     this.deleteUser();
-    this.userFormDialog.closeAll();
+    this.formDialog.closeAll();
     this.selection.clear();
   }
 
@@ -146,31 +235,33 @@ export class PagesComponent {
   }
   
   get rolesFormArray() {
-    return this.userForm.get('roles') as FormArray;
+    return this.form.get('roles') as FormArray;
   }
 
   get permissionsFormArray() {
-    return this.userForm.get('permissions') as FormArray;
+    return this.form.get('permissions') as FormArray;
   }
 
-  get selectedUsers(): User[] {
+  get selectedUsers(): Page[] {
     return this.selection.selected;
   }
 
-  openDialogUserAdd() {
-    this.userForm.reset();
-    this.userFormDialog.open(this.userAddFormDialogTemplate,
+  openDialogAdd() {
+    this.form.reset();
+    this.formDialog.open(this.AddFormDialogTemplate,
       {
-        width: '600px',
-        height: '600px',
+        width: '1000px',
+        height: '800px',
+        maxWidth: 'none', 
+        maxHeight: 'none',
       }
     );
     this.toggleAddMode();
   }
 
-  openDialogUserEdit() {
-    this.userForm.reset();
-    this.userFormDialog.open(this.userEditFormDialogTemplate,
+  openDialogEdit() {
+    this.form.reset();
+    this.formDialog.open(this.EditFormDialogTemplate,
       {
         width: '600px',
         height: '600px',
@@ -180,7 +271,7 @@ export class PagesComponent {
   }
 
   openDeleteConfirmDialog() {
-    this.userFormDialog.open(this.confirmDialogTemplate, {
+    this.formDialog.open(this.confirmDialogTemplate, {
       width: '500px',
       height: '230px',
     });
@@ -189,32 +280,32 @@ export class PagesComponent {
 
   onSubmit() {
   
-    if (this.userForm.invalid) {
+    if (this.form.invalid) {
       alert('invalid form');
-      this.userFormDialog.closeAll();
-      this.userForm.reset();
+      this.formDialog.closeAll();
+      this.form.reset();
       return;
     }
 
     if (this.isAddMode) {
-      this.addUser();
+      this.addPage();
       this.toggleAddMode();
     }
     else if (this.isEditMode) {
-      this.updateUser();
+      this.updatePage();
       this.toggleEditMode();
     }
 
   }
   
-  addUser() {
+  addPage() {
 
-    const userPayload = this.userForm.value;
+    const payload = this.form.value;
     this.isLoading = true;
 
-    this.userService.addUser(userPayload).subscribe({
+    this.pageService.addPage(payload).subscribe({
       next: () => {
-        this.loadUsers();
+        this.loadPages();
         this._snackBar.open('Kullanıcı başarıyla eklendi', 'Kapat', { duration: 3000 });
       },
       error: (error) => {
@@ -223,21 +314,21 @@ export class PagesComponent {
       },
       complete: () => {
         this.isLoading = false;
-        this.userFormDialog.closeAll();
-        this.userForm.reset()
+        this.formDialog.closeAll();
+        this.form.reset()
       }
     });
 
   }
 
-  updateUser() {
+  updatePage() {
 
-    const userPayload = this.userForm.value;
+    const payload = this.form.value;
     this.isLoading = true;
 
-    this.userService.updateUser(userPayload).subscribe({
+    this.pageService.updatePage(payload).subscribe({
       next: () => {
-        this.loadUsers();
+        this.loadPages();
         this._snackBar.open('Kullanıcı başarıyla güncellendi', 'Kapat', { duration: 3000 });
       },
       error: (error) => {
@@ -246,8 +337,8 @@ export class PagesComponent {
       },
       complete: () => {
         this.isLoading = false;
-        this.userFormDialog.closeAll();
-        this.userForm.reset();
+        this.formDialog.closeAll();
+        this.form.reset();
       }
     });
   }
@@ -255,13 +346,13 @@ export class PagesComponent {
   deleteUser() {
     this.isLoading = true;
     
-    const deleteRequests = this.selectedUsers.map((user: User) => 
-      this.userService.deleteUser(user.id)
+    const deleteRequests = this.selectedUsers.map((page: Page) => 
+      this.pageService.deletePage(page.id)
     );
 
     forkJoin([...deleteRequests]).subscribe({
       next: () => {
-        this.loadUsers();
+        this.loadPages();
         this._snackBar.open('Kullanıcı başarıyla silindi', 'Kapat', { duration: 3000 });
       },
       error: (error) => {
@@ -282,18 +373,18 @@ export class PagesComponent {
       this.isAddMode = false;
     }
     
-    this.openDialogUserEdit();
+    this.openDialogEdit();
 
-    const user = this.editElement;
+    //const page = this.editElement;
     this.isEditMode = true;
 
-    this.userForm.patchValue({
+    /*this.userForm.patchValue({
       id: user.id,
       username: user.username,
       email: user.email,
       roles: user.roles,
       permissions: user.permissions
-    })
+    })*/
     
   }
 }

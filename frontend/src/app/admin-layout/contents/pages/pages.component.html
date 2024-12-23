@@ -1,300 +1,396 @@
 <!-- Main Users Container-->
 <div class="users-container">
 
-    <!-- Spinner -->
-    <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
-    <!-- Spinner -->
-       
-    <!-- Category Toolbar -->
-    <div class="c-container action-menu-container">
-      <div class="c-row">
-        <div class="c-col action-menu-wrapper">
-  
-          <mat-toolbar>
-  
-            <span>Pages</span>
-            <span class="spacer"></span>
-  
-            <button mat-raised-button style="margin-right: 1rem;"
-              *ngIf="isEditMode && isAnySelected() && this.selection.selected.length === 1" 
-              (click)="editUser()">
-              Edit
-            </button>
-  
-            <button mat-icon-button (click)="openDialogUserAdd()">
-              <mat-icon>add</mat-icon>
-            </button>
-  
-            <button mat-icon-button (click)="toggleEditMode()">
-              <mat-icon>edit</mat-icon>
-            </button>
-  
-            <button mat-icon-button *ngIf="isEditMode && isAnySelected()" (click)="openDeleteConfirmDialog()">
-              <mat-icon>delete</mat-icon>
-            </button>
-  
-          </mat-toolbar>
-        </div>
+  <!-- Spinner -->
+  <mat-spinner *ngIf="isLoading" class="spinner"></mat-spinner>
+  <!-- Spinner -->
+
+  <!-- Category Toolbar -->
+  <div class="c-container action-menu-container">
+    <div class="c-row">
+      <div class="c-col action-menu-wrapper">
+
+        <mat-toolbar>
+
+          <span>Pages</span>
+          <span class="spacer"></span>
+
+          <button mat-raised-button style="margin-right: 1rem;"
+            *ngIf="isEditMode && isAnySelected() && this.selection.selected.length === 1" (click)="editUser()">
+            Edit
+          </button>
+
+          <button mat-icon-button (click)="openDialogAdd()">
+            <mat-icon>add</mat-icon>
+          </button>
+
+          <button mat-icon-button (click)="toggleEditMode()">
+            <mat-icon>edit</mat-icon>
+          </button>
+
+          <button mat-icon-button *ngIf="isEditMode && isAnySelected()" (click)="openDeleteConfirmDialog()">
+            <mat-icon>delete</mat-icon>
+          </button>
+
+        </mat-toolbar>
       </div>
     </div>
-    <!-- Category Toolbar -->
-  
-  
-    <!-- Users Table -->
-    <div class="c-container " style="margin-top: 1.25rem;">
-      <div class="c-row">
-        <div class="c-col ">
-  
-          <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 categories-table">
-  
-            <!-- Checkbox Column -->
-            <ng-container matColumnDef="select">
-  
-              <th mat-header-cell *matHeaderCellDef
-                [ngStyle]="{'width': isEditMode ? '80px' : '0', 'transition': 'width 0.4s ease-in-out'}">
-                <mat-checkbox *ngIf="isEditMode" (change)="$event ? masterToggle() : null" [checked]="isAllSelected()"
-                  [indeterminate]="isAnySelected()"></mat-checkbox>
-              </th>
-  
-              <td mat-cell *matCellDef="let element"
-                [ngStyle]="{'width': isEditMode ? '80px' : '0', 'transition': 'width 0.4s ease-in-out'}">
-                <mat-checkbox *ngIf="isEditMode" (click)="$event.stopPropagation()"
-                  (change)="$event ? toggleSelection(element): null"
-                  [checked]="selection.isSelected(element)"></mat-checkbox>
-              </td>
-  
-            </ng-container>
-  
-            <!-- ID Column -->
-            <ng-container matColumnDef="id">
-              <th mat-header-cell *matHeaderCellDef> No. </th>
-              <td mat-cell *matCellDef="let element"> {{element.id}} </td>
-            </ng-container>
-  
-            <!-- Username Column -->
-            <ng-container matColumnDef="username">
-              <th mat-header-cell *matHeaderCellDef> User </th>
-              <td mat-cell *matCellDef="let element"> {{element.username}} </td>
-            </ng-container>
-  
-            <!-- e-Mail Column -->
-            <ng-container matColumnDef="email">
-              <th mat-header-cell *matHeaderCellDef> e-Mail </th>
-              <td mat-cell *matCellDef="let element"> {{element.email}} </td>
-            </ng-container>
-  
-            <!-- e-Mail Column -->
-            <ng-container matColumnDef="roles">
-              <th mat-header-cell *matHeaderCellDef> Roles </th>
-              <td mat-cell *matCellDef="let element"> {{element.roles}} </td>
-            </ng-container>
-  
-            <!-- e-Mail Column -->
-            <ng-container matColumnDef="permissions">
-              <th mat-header-cell *matHeaderCellDef> Permissions </th>
-              <td mat-cell *matCellDef="let element"> {{element.permissions}} </td>
-            </ng-container>
-  
-            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-            <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
-          </table>
-  
-        </div>
-      </div>
-    </div>
-    <!-- Users Table -->
-  
-    <!-- Paginator -->
-    <div class="c-container paginator-container">
-      <div class="c-row">
-        <div class="c-col ">
-  
-          <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
-            (page)="onPageChange($event)">
-          </mat-paginator>
-  
-        </div>
-      </div>
-    </div>
-    <!-- Paginator -->
-  
-    <!--Confirm Dialog-->
-    <ng-template #confirmDialogTemplate>
-      <div class="c-container confirm-container">
-        <div class="c-row">
-          <div class="c-col confirm-wrapper">
-  
-            <h1>Are you sure?</h1>
-            <mat-dialog-content>
-              You are about to delete the selected users. This action cannot be undone.
-            </mat-dialog-content>
-  
-            <mat-dialog-actions align="center">
-              <button mat-button (click)="onCancel()">Cancel</button>
-              <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
-            </mat-dialog-actions>
-  
-          </div>
-        </div>
-      </div>
-    </ng-template>
-    <!--Confirm Dialog-->
-  
-    <!--Form Dialog Add-->
-    <ng-template #userAddFormDialogTemplate>
-      <div class="c-container form-container">
-        <div class="c-row">
-          <div class="c-col form-wrapper">
-  
-            <h1>Add User</h1>
-  
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  
-              <mat-form-field>
-                <mat-label>Username</mat-label>
-                <input matInput formControlName="username">
-                <mat-error *ngIf="userForm.get('username')?.hasError('required')">
-                  Username is required.
-                </mat-error>
-                <mat-error *ngIf="userForm.get('username')?.hasError('maxLength')">
-                  Username can not be longer than 50 characters.
-                </mat-error>
-                <mat-error *ngIf="userForm.get('username')?.hasError('minLength')">
-                  Username can not be shorter than 3 characters.
-                </mat-error>
-              </mat-form-field>
-  
-              <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" type="email" />
-                <mat-error *ngIf="userForm.get('email')?.hasError('required')">
-                  Email gerekli.
-                </mat-error>
-                <mat-error *ngIf="userForm.get('email')?.hasError('email')">
-                  Geçerli bir email adresi girin.
-                </mat-error>
-              </mat-form-field>
-  
-              <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password">
-                <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-                  Şifre gerekli.
-                </mat-error>
-                <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
-                  Şifre en az 8 karakter olmalı.
-                </mat-error>
-                <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
-                  Şifre büyük harf, küçük harf ve rakam içermeli.
-                </mat-error>
-              </mat-form-field>
-  
-              <div formArrayName="roles">
-                <label>Roles</label>
-                <div class="form-checkbox-wrapper">
-                  <div *ngFor="let role of roles; let i = index" >
-                    <mat-checkbox [formControlName]="i">{{role}}</mat-checkbox>
-                  </div>
-                </div>
-              </div>
-  
-              <div formArrayName="permissions">
-                <label>Permissions</label>
-                <div class="form-checkbox-wrapper">
-                  <div *ngFor="let permission of permissions; let i = index" class="form-checkbox">
-                    <mat-checkbox [formControlName]="i">{{ permission }}</mat-checkbox>
-                  </div>
-                </div>
-              </div>
-  
-              <button mat-button type="submit">Save</button>
-  
-            </form>
-  
-          </div>
-        </div>
-      </div>
-    </ng-template>
-    <!--Form Dialog Add-->
-  
-     <!--Form Dialog Edit-->
-     <ng-template #userEditFormDialogTemplate>
-      <div class="c-container form-container">
-        <div class="c-row">
-          <div class="c-col form-wrapper">
-  
-            <h1>Edit User</h1>
-  
-            <form [formGroup]="userForm" (ngSubmit)="onSubmit()">
-  
-              <input type="hidden" formControlName="id">
-              
-              <mat-form-field>
-                <mat-label>Username</mat-label>
-                <input matInput formControlName="username">
-                <mat-error *ngIf="userForm.get('username')?.hasError('required')">
-                  Username is required.
-                </mat-error>
-                <mat-error *ngIf="userForm.get('username')?.hasError('maxLength')">
-                  Username can not be longer than 50 characters.
-                </mat-error>
-                <mat-error *ngIf="userForm.get('username')?.hasError('minLength')">
-                  Username can not be shorter than 3 characters.
-                </mat-error>
-              </mat-form-field>
-  
-              <mat-form-field>
-                <mat-label>Email</mat-label>
-                <input matInput formControlName="email" type="email" />
-                <mat-error *ngIf="userForm.get('email')?.hasError('required')">
-                  Email gerekli.
-                </mat-error>
-                <mat-error *ngIf="userForm.get('email')?.hasError('email')">
-                  Geçerli bir email adresi girin.
-                </mat-error>
-              </mat-form-field>
-  
-              <mat-form-field>
-                <mat-label>Password</mat-label>
-                <input matInput formControlName="password" type="password">
-                <mat-error *ngIf="userForm.controls['password'].hasError('required')">
-                  Şifre gerekli.
-                </mat-error>
-                <mat-error *ngIf="userForm.controls['password'].hasError('minlength')">
-                  Şifre en az 8 karakter olmalı.
-                </mat-error>
-                <mat-error *ngIf="userForm.controls['password'].hasError('pattern')">
-                  Şifre büyük harf, küçük harf ve rakam içermeli.
-                </mat-error>
-              </mat-form-field>
-  
-              <div formArrayName="roles">
-                <label>Roles</label>
-                <div class="form-checkbox-wrapper">
-                  <div *ngFor="let role of roles; let i = index" >
-                    <mat-checkbox [formControlName]="i">{{role}}</mat-checkbox>
-                  </div>
-                </div>
-              </div>
-  
-              <div formArrayName="permissions">
-                <label>Permissions</label>
-                <div class="form-checkbox-wrapper">
-                  <div *ngFor="let permission of permissions; let i = index" class="form-checkbox">
-                    <mat-checkbox [formControlName]="i">{{ permission }}</mat-checkbox>
-                  </div>
-                </div>
-              </div>
-  
-              <button mat-button type="submit">Save</button>
-  
-            </form>
-  
-          </div>
-        </div>
-      </div>
-    </ng-template>
-    <!--Form Dialog Edit-->
-  
   </div>
-  <!-- Main Users Container-->
+  <!-- Category Toolbar -->
+
+
+  <!-- Pages Table -->
+  <div class="c-container " style="margin-top: 1.25rem;">
+    <div class="c-row">
+      <div class="c-col ">
+
+        <table mat-table [dataSource]="dataSource" class="mat-elevation-z8 categories-table">
+
+          <!-- Checkbox Column -->
+          <ng-container matColumnDef="select">
+
+            <th mat-header-cell *matHeaderCellDef
+              [ngStyle]="{'width': isEditMode ? '80px' : '0', 'transition': 'width 0.4s ease-in-out'}">
+              <mat-checkbox *ngIf="isEditMode" (change)="$event ? masterToggle() : null" [checked]="isAllSelected()"
+                [indeterminate]="isAnySelected()"></mat-checkbox>
+            </th>
+
+            <td mat-cell *matCellDef="let element"
+              [ngStyle]="{'width': isEditMode ? '80px' : '0', 'transition': 'width 0.4s ease-in-out'}">
+              <mat-checkbox *ngIf="isEditMode" (click)="$event.stopPropagation()"
+                (change)="$event ? toggleSelection(element): null"
+                [checked]="selection.isSelected(element)"></mat-checkbox>
+            </td>
+
+          </ng-container>
+
+          <ng-container matColumnDef="id">
+            <th mat-header-cell *matHeaderCellDef> No. </th>
+            <td mat-cell *matCellDef="let element"> {{element.id}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="title">
+            <th mat-header-cell *matHeaderCellDef> Title </th>
+            <td mat-cell *matCellDef="let element"> {{element.title}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="slug">
+            <th mat-header-cell *matHeaderCellDef> Slug </th>
+            <td mat-cell *matCellDef="let element"> {{element.slug}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="isPublished">
+            <th mat-header-cell *matHeaderCellDef> Published Status </th>
+            <td mat-cell *matCellDef="let element"> {{element.isPublished}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="publishedAt">
+            <th mat-header-cell *matHeaderCellDef> Published Time</th>
+            <td mat-cell *matCellDef="let element"> {{element.publishedAt}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="authorId">
+            <th mat-header-cell *matHeaderCellDef> Author Id</th>
+            <td mat-cell *matCellDef="let element"> {{element.authorId}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="category">
+            <th mat-header-cell *matHeaderCellDef> Category </th>
+            <td mat-cell *matCellDef="let element"> {{element.category}} </td>
+          </ng-container>
+
+          <ng-container matColumnDef="tags">
+            <th mat-header-cell *matHeaderCellDef> Tags </th>
+            <td mat-cell *matCellDef="let element"> {{element.tags}} </td>
+          </ng-container>
+
+          <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+          <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+        </table>
+
+      </div>
+    </div>
+  </div>
+  <!-- Pages Table -->
+
+  <!-- Paginator -->
+  <div class="c-container paginator-container">
+    <div class="c-row">
+      <div class="c-col ">
+
+        <mat-paginator [length]="dataSource.data.length" [pageSize]="10" [pageSizeOptions]="[5, 10, 25, 100]"
+          (page)="onPageChange($event)">
+        </mat-paginator>
+
+      </div>
+    </div>
+  </div>
+  <!-- Paginator -->
+
+  <!--Confirm Dialog-->
+  <ng-template #confirmDialogTemplate>
+    <div class="c-container confirm-container">
+      <div class="c-row">
+        <div class="c-col confirm-wrapper">
+
+          <h1>Are you sure?</h1>
+          <mat-dialog-content>
+            You are about to delete the selected users. This action cannot be undone.
+          </mat-dialog-content>
+
+          <mat-dialog-actions align="center">
+            <button mat-button (click)="onCancel()">Cancel</button>
+            <button mat-raised-button color="primary" (click)="onConfirm()">Confirm</button>
+          </mat-dialog-actions>
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!--Confirm Dialog-->
+
+  <!--Form Dialog Add-->
+  <ng-template #AddFormDialogTemplate>
+    <div class="c-container form-container">
+      <div class="c-row">
+        <div class="c-col form-wrapper">
+
+          <h1>Page Editor</h1>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <mat-tab-group>
+
+              <!-- Content Tab -->
+              <mat-tab label="Content">
+                <div class="tab-wrapper">
+
+                  <mat-toolbar class="editor-toolbar-wrapper">
+                    <!--Paragraphs-->
+                    <button type="button" mat-icon-button [matMenuTriggerFor]="addParagraphMenu">
+                      <mat-icon>subject</mat-icon>
+                    </button>
+
+                    <mat-menu #addParagraphMenu="matMenu">
+
+                     <!-- <button mat-menu-item (click)="addParagraph()">
+                        <mat-icon>subject</mat-icon> Paragraph
+                      </button>
+
+                      <button mat-menu-item (click)="addHeader('h1')"> 
+                        <mat-icon>title</mat-icon> Başlık 1 (H1)
+                      </button>
+                      <button mat-menu-item (click)="addHeader('h2')">
+                        <mat-icon>text_fields</mat-icon> Başlık 2 (H2)
+                      </button>
+                      <button mat-menu-item (click)="addHeader('h3')">
+                        <mat-icon>format_size</mat-icon> Başlık 3 (H3)
+                      </button>
+                      <button mat-menu-item (click)="addHeader('h4')">
+                        <mat-icon>short_text</mat-icon> Başlık 4 (H4)
+                      </button>
+                      <button mat-menu-item (click)="addHeader('h5')">
+                        <mat-icon>segment</mat-icon> Başlık 5 (H5)
+                      </button>-->
+
+                    </mat-menu>
+                    <!--Paragraphs-->
+
+                    <!--Resources-->
+                      <button type="button" mat-icon-button [matMenuTriggerFor]="addResourcesMenu">
+                        <mat-icon>widgets</mat-icon>
+                      </button>
+  
+                      <mat-menu #addResourcesMenu="matMenu">
+                        <button mat-menu-item type="button"><mat-icon>insert_photo</mat-icon> Resim</button>
+                        <button mat-menu-item type="button"><mat-icon>videocam</mat-icon> Video</button>
+                        <button mat-menu-item type="button"><mat-icon>link</mat-icon> Bağlantı</button>
+                        <button mat-menu-item type="button"><mat-icon>table_chart</mat-icon> Tablo</button>
+                      </mat-menu>
+                    <!--Resources-->
+
+                    <button mat-icon-button matTooltip="make bold" type="button">
+                      <mat-icon>format_bold</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_italic</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_underlined</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_list_bulleted</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_list_numbered</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_quote</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_align_left</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_align_center</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_align_right</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                      <mat-icon>format_align_justify</mat-icon>
+                    </button>
+
+                  </mat-toolbar>
+
+                  <div formArrayName="content" class="content-container">
+                    
+                    <div *ngFor="let block of controlObjects; let i = index" class="content-wrapper">
+
+                      <mat-form-field class="content-field">
+                        
+                        <ng-container *ngIf="block.type === 'paragraph'">
+                        <textarea matInput id="paragraph-{{ i }}" [formControlName]="i"></textarea>
+                       </ng-container>
+
+                       <ng-container *ngIf="isHeader(block.type)">
+                        <input matInput type="text"  id="header-{{ i }}" [formControlName]="i"/>
+                       </ng-container>
+
+                      </mat-form-field>
+                      
+                    </div>
+                    
+                  </div>
+                </div>
+              </mat-tab>
+              <!-- Content Tab -->
+
+              <!-- General Form Group -->
+              <mat-tab label="General">
+                <div class="tab-wrapper">
+
+                  <mat-form-field>
+                    <mat-label>Title</mat-label>
+                    <input matInput formControlName="title">
+                    <mat-error *ngIf="form.get('title')?.hasError('required')">
+                      Title is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Slug</mat-label>
+                    <input matInput formControlName="slug">
+                    <mat-error *ngIf="form.get('slug')?.hasError('required')">
+                      Slug is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <input type="hidden" formControlName="id">
+
+                  <mat-checkbox formControlName="isPublished">
+                    Published
+                  </mat-checkbox>
+
+                  <mat-error *ngIf="form.get('isPublished')?.hasError('required')">
+                    Published status is required.
+                  </mat-error>
+
+                  <mat-form-field>
+                    <mat-label>Tags</mat-label>
+                    <input matInput formControlName="tags">
+                    <mat-error *ngIf="form.get('tags')?.hasError('required')">
+                      Tags is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Category</mat-label>
+                    <input matInput formControlName="category">
+                    <mat-error *ngIf="form.get('category')?.hasError('required')">
+                      Category is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </mat-tab>
+              <!-- General Form Group -->
+
+              <!-- SEO Form Group -->
+              <mat-tab label="SEO">
+                <div formGroupName="seo" class="subform-wrapper tab-wrapper">
+
+                  <h3>SEO Settings</h3>
+
+                  <mat-form-field>
+                    <mat-label>SEO Title</mat-label>
+                    <input matInput formControlName="title">
+                    <mat-error *ngIf="form.get('seo.title')?.hasError('required')">
+                      SEO Title is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Description</mat-label>
+                    <textarea matInput formControlName="description"></textarea>
+                    <mat-error *ngIf="form.get('seo.description')?.hasError('required')">
+                      Description is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Keywords</mat-label>
+                    <input matInput formControlName="keywords">
+                    <mat-error *ngIf="form.get('seo.keywords')?.hasError('required')">
+                      Keywords are required.
+                    </mat-error>
+                  </mat-form-field>
+
+                  <mat-form-field>
+                    <mat-label>Canonical URL</mat-label>
+                    <input matInput formControlName="canonicalUrl">
+                    <mat-error *ngIf="form.get('seo.canonicalUrl')?.hasError('required')">
+                      Canonical URL is required.
+                    </mat-error>
+                  </mat-form-field>
+
+                </div>
+              </mat-tab>
+              <!-- SEO Form Group -->
+
+            </mat-tab-group>
+
+            <button mat-button type="submit">Save</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!--Form Dialog Add-->
+
+  <!--Form Dialog Edit-->
+  <ng-template #EditFormDialogTemplate>
+    <div class="c-container form-container">
+      <div class="c-row">
+        <div class="c-col form-wrapper">
+
+          <h1>Edit User</h1>
+
+          <form [formGroup]="form" (ngSubmit)="onSubmit()">
+
+            <input type="hidden" formControlName="id">
+
+
+            <button mat-button type="submit">Save</button>
+
+          </form>
+
+        </div>
+      </div>
+    </div>
+  </ng-template>
+  <!--Form Dialog Edit-->
+
+</div>
+<!-- Main Users Container-->

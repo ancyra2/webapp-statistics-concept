@@ -1,0 +1,229 @@
+<div class="editor-container">
+
+    <!--Editor Toolbar-->
+    <div class="c-container">
+        <div class="c-row">
+            <div class="c-col">
+
+                <mat-toolbar class="editor-toolbar-wrapper">
+                    <!--Paragraphs-->
+                    <button type="button" mat-icon-button [matMenuTriggerFor]="addParagraphMenu">
+                        <mat-icon>subject</mat-icon>
+                    </button>
+
+                    <mat-menu #addParagraphMenu="matMenu">
+
+                        <button mat-menu-item (click)="addBlock({
+                                type:'paragraph', 
+                                data: {
+                                    content:[
+                                        {
+                                            text: '',
+                                        }
+                                    ]
+                                }
+                            })">
+                            <mat-icon>subject</mat-icon> Paragraph
+                        </button>
+
+                        <button mat-menu-item (click)="addBlock({
+                            type:'header', 
+                            data: {
+                                text:'',
+                                level: 1
+                            }
+                        })">
+
+                            <mat-icon>title</mat-icon> Başlık 1 (H1)
+                        </button>
+
+                        <button mat-menu-item (click)="addBlock({
+                            type:'header', 
+                            data: {
+                                text:'',
+                                level: 2
+                            }
+                        })">
+
+                            <mat-icon>title</mat-icon> Başlık 2 (H2)
+                        </button>
+                        <button mat-menu-item (click)="addBlock({
+                            type:'header', 
+                            data: {
+                                text:'',
+                                level: 3
+                            }
+                        })">
+
+                            <mat-icon>title</mat-icon> Başlık 3 (H3)
+                        </button>
+                        <button mat-menu-item (click)="addBlock({
+                            type:'header', 
+                            data: {
+                                text:'',
+                                level: 4
+                            }
+                        })">
+
+                            <mat-icon>title</mat-icon> Başlık 4 (H4)
+                        </button>
+
+                        <button mat-menu-item (click)="addBlock({
+                            type:'header', 
+                            data: {
+                                text:'',
+                                level: 5
+                            }
+                        })">
+
+                            <mat-icon>title</mat-icon> Başlık 5 (H5)
+                        </button>
+
+                        <button mat-menu-item (click)="addBlock({
+                            type:'header', 
+                            data: {
+                                text:'',
+                                level: 6
+                            }
+                        })">
+
+                            <mat-icon>title</mat-icon> Başlık 6 (H6)
+                        </button>
+
+                    </mat-menu>
+                    <!--Paragraphs-->
+
+                    <!--Resources-->
+                    <button type="button" mat-icon-button [matMenuTriggerFor]="addResourcesMenu">
+                        <mat-icon>widgets</mat-icon>
+                    </button>
+
+                    <mat-menu #addResourcesMenu="matMenu">
+                        <button mat-menu-item type="button"><mat-icon>insert_photo</mat-icon> Resim</button>
+                        <button mat-menu-item type="button"><mat-icon>videocam</mat-icon> Video</button>
+                        <button mat-menu-item type="button"><mat-icon>link</mat-icon> Bağlantı</button>
+                        <button mat-menu-item type="button"><mat-icon>table_chart</mat-icon> Tablo</button>
+                    </mat-menu>
+                    <!--Resources-->
+
+                    <button mat-icon-button matTooltip="make bold" type="button"
+                        (click)="splitIntoChunks(this.blocksArr[activeBlockIndex])">
+                        <mat-icon>format_bold</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_italic</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_underlined</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_list_bulleted</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_list_numbered</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_quote</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_align_left</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_align_center</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_align_right</mat-icon>
+                    </button>
+                    <button mat-icon-button type="button">
+                        <mat-icon>format_align_justify</mat-icon>
+                    </button>
+
+                </mat-toolbar>
+
+            </div>
+        </div>
+    </div>
+    <!--Editor Toolbar-->
+
+    <div class="c-container content-container">
+        <div class="c-row">
+            <div class="c-col content-wrapper" #BlockElements>
+                <ng-container *ngFor="let block of blocks; let i = index;">
+                    <div class="editor-input-container">
+                        
+                        <ng-container *ngIf="isParagraphData(block.data)">
+                            <span *ngFor="let content of block.data.content; let j = index" contenteditable="true"
+                                class="editor-input-wrapper" appContentEditableModel [model]="content.text"
+                                (modelChange)="updateContentValue($event, block, j)" (mouseup)=setSelectedTextIndexes()
+                                (focus)="activeBlockIndex = i; activeBlockMicroIndex = j"
+                                (keydown) = "controlCaret($event, i, j);"
+                                (keyup) = "deleteMicroBlock($event, i, j);" 
+                                [ngStyle]="{'font-weight': content.style?.bold ? 'bold' : 'normal'}">
+                                {{ content.text }}
+                            </span>
+                        </ng-container>
+
+                        <ng-container *ngIf="isHeaderData(block.data)">
+
+                            <ng-container [ngSwitch]="block.data.level">
+                                <h1 *ngSwitchCase="1"
+                                    contenteditable="true"
+                                    appContentEditableModel
+                                    [model]="block.data.text"
+                                    (modelChange)="updateContentValue($event, block, 0)">
+                                    {{ block.data.text }}
+                                </h1>
+
+                                <h2 *ngSwitchCase="2"
+                                    contenteditable="true"
+                                    appContentEditableModel
+                                    [model]="block.data.text"
+                                    (modelChange)="updateContentValue($event, block, 0)">
+                                    {{ block.data.text }}
+                                </h2>
+
+                                <h3 *ngSwitchCase="3"
+                                    contenteditable="true"
+                                    appContentEditableModel
+                                    [model]="block.data.text"
+                                    (modelChange)="updateContentValue($event, block, 0)">
+                                    {{ block.data.text }}
+                                </h3>
+
+                                <h4 *ngSwitchCase="4"
+                                    contenteditable="true"
+                                    appContentEditableModel
+                                    [model]="block.data.text"
+                                    (modelChange)="updateContentValue($event, block, 0)">
+                                    {{ block.data.text }}
+                                </h4>
+
+                                <h5 *ngSwitchCase="5"
+                                    contenteditable="true"
+                                    appContentEditableModel
+                                    [model]="block.data.text"
+                                    (modelChange)="updateContentValue($event, block, 0)">
+                                    {{ block.data.text }}
+                                </h5>
+
+                                <h6 *ngSwitchCase="6"
+                                    contenteditable="true"
+                                    appContentEditableModel
+                                    [model]="block.data.text"
+                                    (modelChange)="updateContentValue($event, block, 0)">
+                                    {{ block.data.text }}
+                                </h6>
+                                
+                                <p *ngSwitchDefault>
+                                    Invalid header level!
+                                </p>
+                            </ng-container>
+                        </ng-container>
+                        
+                    </div>
+                </ng-container>
+            </div>
+        </div>
+    </div>
+
+</div>

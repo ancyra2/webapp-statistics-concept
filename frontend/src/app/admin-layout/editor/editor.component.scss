@@ -1,0 +1,64 @@
+@import '../../../styles/variables';
+@import '../../../styles/layouts';
+@import '../../../styles/mixins';
+
+.spacer {
+  @include spacer;
+}
+
+.spinner {
+  @include spinner;
+}
+
+.categories-table {
+  @include table;
+}
+
+.action-menu-wrapper {
+  mat-toolbar {
+    @include toolbar;
+  }
+}
+
+.paginator-container {
+  @include paginator;
+}
+
+.editor-toolbar-wrapper {
+  @include toolbar;
+}
+
+.content-container {
+  
+
+  .content-wrapper{
+    min-height: 485px;
+    max-height: 485px;
+    overflow-y: scroll;
+    background-color: $white-color;
+
+  }
+}
+
+.editor-input-container{
+  display: flex;
+  border: 1px solid $border-color;
+  align-items: center;
+  height: 50px;
+  padding: 0 5px;
+  overflow-y: scroll;
+}
+.editor-input-wrapper{
+  display: inline-block;
+  min-width: 10px;
+  line-height: 40px;
+  white-space: pre;
+  &:focus{
+    outline: none;
+  }
+}
+
+.stronger{
+  font-weight: 600;
+}
+
