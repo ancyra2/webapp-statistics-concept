@@ -31,6 +31,9 @@ services:
       - MYSQL_PASSWORD=${MYSQL_PASSWORD}
       - MYSQL_DATABASE=${MYSQL_DATABASE}
       - MONGO_URI=${MONGO_URI}
+      - UPLOADS_DIR=${UPLOADS_DIR}
+      - MAX_FILE_SIZE=${MAX_FILE_SIZE}
+      - ALLOWED_MIME_TYPES=${ALLOWED_MIME_TYPES}
       
     volumes:
       - ./backend:/usr/src/app

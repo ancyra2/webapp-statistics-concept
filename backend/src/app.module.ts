@@ -9,6 +9,7 @@ import { UsersModule } from './users/users.module';
 import { ReportsModule } from './reports/reports.module';
 import { CategoriesModule } from './categories/categories.module';
 import { PagesModule } from './pages/pages.module';
+import { UploadsModule } from './uploads/uploads.module';
 import * as path from 'path';
 
 @Module({
@@ -47,6 +48,7 @@ import * as path from 'path';
     ReportsModule,
     CategoriesModule,
     PagesModule,
+    UploadsModule,
   ],
   controllers: [AppController],
   providers: [AppService],
