@@ -10,6 +10,7 @@ import { ReportsModule } from './reports/reports.module';
 import { CategoriesModule } from './categories/categories.module';
 import { PagesModule } from './pages/pages.module';
 import { UploadsModule } from './uploads/uploads.module';
+import { ImagesModule } from './images/images.module';
 import * as path from 'path';
 
 @Module({
@@ -49,6 +50,7 @@ import * as path from 'path';
     CategoriesModule,
     PagesModule,
     UploadsModule,
+    ImagesModule,
   ],
   controllers: [AppController],
   providers: [AppService],
