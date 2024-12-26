@@ -40,6 +40,12 @@
                 "reason": "File upload",
                 "installation": "npm i -D @types/multer",
                 "version": "^1.4.12"
+            },
+            {
+                "name": "Nestjs Serve Static",
+                "reason": "Serves the static files",
+                "installation": "npm install --save @nestjs/serve-static",
+                "version": "^4.0.2"
             }
         ]
     },

@@ -29,7 +29,7 @@ export class UploadsController {
   uploadFile(@UploadedFile() file: Express.Multer.File) {
     return {
       message: 'File succesfully uploaded',
-      filePath: file.path,
+      filePath: `public/uploads/${file.filename}`,
     };
   }
 }
