@@ -38,10 +38,11 @@ export class MulterConfigService implements MulterOptionsFactory {
     };
   }
 
-  generateUniqueName(orignalName: string): string {
+  generateUniqueName(originalName: string): string {
     const randomString = Math.random().toString(36).substring(2, 10);
     const timestamp = Date.now();
-    const fileExtension = orignalName.split('.').pop();
-    return `${randomString}-${timestamp}.${fileExtension}`;
+    const fileName = originalName.slice(0, originalName.lastIndexOf('.'));
+    const fileExtension = originalName.split('.').pop();
+    return `${fileName}-${randomString}-${timestamp}.${fileExtension}`;
   }
 }
