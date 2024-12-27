@@ -6,10 +6,12 @@ import { MulterModule } from '@nestjs/platform-express';
 import { MulterConfigService } from './multer-config.service';
 import { ServeStaticModule } from '@nestjs/serve-static';
 import { join } from 'path';
+import { ImagesModule } from '../images/images.module';
 
 @Module({
   imports: [
     ConfigModule,
+    ImagesModule,
     MulterModule.registerAsync({
       imports: [ConfigModule],
       useClass: MulterConfigService,
