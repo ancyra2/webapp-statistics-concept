@@ -1,5 +1,5 @@
 import { Injectable } from "@angular/core";
-import { Environment } from "../../environments/environment"
+import { environment } from "../../environments/environment"
 import { ApiEndpoints } from "./endpoints.enum";
 
 @Injectable({
@@ -7,7 +7,7 @@ import { ApiEndpoints } from "./endpoints.enum";
 })
   
 export class ApiConfig{
-  public readonly apiBaseUrl = Environment.apiUrl;
+  public readonly apiBaseUrl = environment.apiUrl;
 
   get apiUrl(): string {
     return this.apiBaseUrl;
