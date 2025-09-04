@@ -43,17 +43,21 @@
 .editor-input-container{
   display: flex;
   border: 1px solid $border-color;
-  align-items: center;
-  height: 50px;
-  padding: 0 5px;
-  overflow-y: scroll;
+  align-items: flex-start; /* Üste hizala ki genişleme görünsün */
+  min-height: 50px;
+  max-height: 300px; /* Çok fazla büyümemesi için bir sınır koy */
+  padding: 5px;
+  overflow-y: auto; /* İçerik büyüdüğünde scroll olmasını sağla */
 }
-.editor-input-wrapper{
-  display: inline-block;
+.editor-input-wrapper {
+  display: inline-block; /* Inline-block yerine block yap */
   min-width: 10px;
-  line-height: 40px;
-  white-space: pre;
-  &:focus{
+  min-height: 40px;
+  line-height: 20px;
+  white-space: pre-wrap;
+  word-break: break-word;
+  vertical-align: top;
+  &:focus {
     outline: none;
   }
 }

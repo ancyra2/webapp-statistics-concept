@@ -1,0 +1,29 @@
+
+[{"Angular is running in development mode."}]
+[{"Angular is"}, [{"running"}], {"in development mode."}]
+[{"Angular is "}, [[{"run"}],{"ning"}] , {"in development mode."}]
+
+/*Cases
+1-) Bloktaki text node sadece tek bir parçadır ve bölünmek istenir.
+    a-) eğer seçilen kısım başlangıç kısımından ise;
+        i-) Bütün metin iki parçaya bölünür -> selected and after
+    b-) eğer seçilen kısım son kısımından ise;
+        i-) Bütün metin iki parçaya bölünür -> before and selected
+    c-) eğer seçilen kısım başlangıç veya son kısımda değilse(Arada bir yerde);
+        i-) Bütün metin üç parçaya bölünür -> before, selected and after
+
+2-) Bloktaki text node daha önce bölünmüştür ve artık dizinin kendi içerisinde bölünme gerçekleştirilir.
+        a-) eğer seçilen kısım başlangıç kısımından ise;
+          i-) Bütün metin iki parçaya bölünür -> selected and after
+        b-) eğer seçilen kısım son kısımından ise;
+          i-) Bütün metin iki parçaya bölünür -> before and selected
+        c-) eğer seçilen kısım başlangıç veya son kısımda değilse(Arada bir yerde);
+          i-) Bütün metin üç parçaya bölünür -> before, selected and after
+
+/*Cases
+1-)Bloktaki text nodelar roottan itibaren herzaman üç node a bölünmeli
+  Sol blok düz metin orta blok metin stillendirilmiş Sağ blok metin düz yani atası gibi
+
+  
+
+

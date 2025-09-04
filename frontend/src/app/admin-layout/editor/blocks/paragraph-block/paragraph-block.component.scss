@@ -1,0 +1,11 @@
+@import '../../../../../styles/variables';
+@import '../../../../../styles/layouts';
+@import '../../../../../styles/mixins';
+
+.editable-paragraph {
+  min-height: 20px;
+  outline: none;
+  padding: 6px;
+  white-space: pre-wrap;
+  border: 1px solid $border-color;
+}

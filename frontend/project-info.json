@@ -34,6 +34,13 @@
                 "installation": "npm install eslint (npx eslint --init used for Eslint configuration)",
                 "version": "^9.11.1 (some packages were double installed and should be removed)"
             }
+            ,
+            {
+                "name": "uuid",
+                "reason": "For the creation of RFC9562 (formerly RFC4122) UUIDs.",
+                "installation": "npm install uuid & npm install --save-dev @types/uuid",
+                "version": "uuid: ^11.1.0 & @types/uuid: ^10.0.0"
+            }
         ]
     },
     "scripts": {

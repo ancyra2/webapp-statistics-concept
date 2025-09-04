@@ -1,0 +1,8 @@
+<p
+  #editable
+  class="editable-paragraph"
+  contenteditable="true"
+  [attr.data-index] = "block?.id"
+  (focus) = "setActiveBlock()"
+  (input) = "spreadTextToNodes($event)"
+></p>

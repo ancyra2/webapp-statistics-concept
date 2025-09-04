@@ -13,80 +13,34 @@
 
                     <mat-menu #addParagraphMenu="matMenu">
 
-                        <button mat-menu-item (click)="addBlock({
-                                type:'paragraph', 
-                                data: {
-                                    content:[
-                                        {
-                                            text: '',
-                                        }
-                                    ]
-                                }
-                            })">
+                        <button mat-menu-item (click) = "addParagraphBlock()">
                             <mat-icon>subject</mat-icon> Paragraph
                         </button>
 
-                        <button mat-menu-item (click)="addBlock({
-                            type:'header', 
-                            data: {
-                                text:'',
-                                level: 1
-                            }
-                        })">
+                        <button mat-menu-item >
 
                             <mat-icon>title</mat-icon> Başlık 1 (H1)
                         </button>
 
-                        <button mat-menu-item (click)="addBlock({
-                            type:'header', 
-                            data: {
-                                text:'',
-                                level: 2
-                            }
-                        })">
+                        <button mat-menu-item >
 
                             <mat-icon>title</mat-icon> Başlık 2 (H2)
                         </button>
-                        <button mat-menu-item (click)="addBlock({
-                            type:'header', 
-                            data: {
-                                text:'',
-                                level: 3
-                            }
-                        })">
+                        <button mat-menu-item >
 
                             <mat-icon>title</mat-icon> Başlık 3 (H3)
                         </button>
-                        <button mat-menu-item (click)="addBlock({
-                            type:'header', 
-                            data: {
-                                text:'',
-                                level: 4
-                            }
-                        })">
+                        <button mat-menu-item >
 
                             <mat-icon>title</mat-icon> Başlık 4 (H4)
                         </button>
 
-                        <button mat-menu-item (click)="addBlock({
-                            type:'header', 
-                            data: {
-                                text:'',
-                                level: 5
-                            }
-                        })">
+                        <button mat-menu-item >
 
                             <mat-icon>title</mat-icon> Başlık 5 (H5)
                         </button>
 
-                        <button mat-menu-item (click)="addBlock({
-                            type:'header', 
-                            data: {
-                                text:'',
-                                level: 6
-                            }
-                        })">
-
+                        <button mat-menu-item >
                             <mat-icon>title</mat-icon> Başlık 6 (H6)
                         </button>
 
@@ -106,8 +60,7 @@
                     </mat-menu>
                     <!--Resources-->
 
-                    <button mat-icon-button matTooltip="make bold" type="button"
-                        (click)="splitIntoChunks(this.blocksArr[activeBlockIndex])">
+                    <button mat-icon-button matTooltip="make bold" type="button" (click) = "addStyle({bold: true})">
                         <mat-icon>format_bold</mat-icon>
                     </button>
                     <button mat-icon-button type="button">
@@ -147,80 +100,18 @@
 
     <div class="c-container content-container">
         <div class="c-row">
-            <div class="c-col content-wrapper" #BlockElements>
-                <ng-container *ngFor="let block of blocks; let i = index;">
-                    <div class="editor-input-container">
-                        
-                        <ng-container *ngIf="isParagraphData(block.data)">
-                            <span *ngFor="let content of block.data.content; let j = index" contenteditable="true"
-                                class="editor-input-wrapper" appContentEditableModel [model]="content.text"
-                                (modelChange)="updateContentValue($event, block, j)" (mouseup)=setSelectedTextIndexes()
-                                (focus)="activeBlockIndex = i; activeBlockMicroIndex = j"
-                                (keydown) = "controlCaret($event, i, j);"
-                                (keyup) = "deleteMicroBlock($event, i, j);" 
-                                [ngStyle]="{'font-weight': content.style?.bold ? 'bold' : 'normal'}">
-                                {{ content.text }}
-                            </span>
-                        </ng-container>
+            <div class="c-col content-wrapper" >
+                  <ng-container *ngFor="let block of blocks()">
+                    <ng-container [ngSwitch]="block.type">
 
-                        <ng-container *ngIf="isHeaderData(block.data)">
+                        <app-paragraph-block 
+                            *ngSwitchCase="'paragraph'"
+                            [content]="getParagraphContent(block)"
+                            [block] = "block"
+                           >
+                        </app-paragraph-block>
 
-                            <ng-container [ngSwitch]="block.data.level">
-                                <h1 *ngSwitchCase="1"
-                                    contenteditable="true"
-                                    appContentEditableModel
-                                    [model]="block.data.text"
-                                    (modelChange)="updateContentValue($event, block, 0)">
-                                    {{ block.data.text }}
-                                </h1>
-
-                                <h2 *ngSwitchCase="2"
-                                    contenteditable="true"
-                                    appContentEditableModel
-                                    [model]="block.data.text"
-                                    (modelChange)="updateContentValue($event, block, 0)">
-                                    {{ block.data.text }}
-                                </h2>
-
-                                <h3 *ngSwitchCase="3"
-                                    contenteditable="true"
-                                    appContentEditableModel
-                                    [model]="block.data.text"
-                                    (modelChange)="updateContentValue($event, block, 0)">
-                                    {{ block.data.text }}
-                                </h3>
-
-                                <h4 *ngSwitchCase="4"
-                                    contenteditable="true"
-                                    appContentEditableModel
-                                    [model]="block.data.text"
-                                    (modelChange)="updateContentValue($event, block, 0)">
-                                    {{ block.data.text }}
-                                </h4>
-
-                                <h5 *ngSwitchCase="5"
-                                    contenteditable="true"
-                                    appContentEditableModel
-                                    [model]="block.data.text"
-                                    (modelChange)="updateContentValue($event, block, 0)">
-                                    {{ block.data.text }}
-                                </h5>
-
-                                <h6 *ngSwitchCase="6"
-                                    contenteditable="true"
-                                    appContentEditableModel
-                                    [model]="block.data.text"
-                                    (modelChange)="updateContentValue($event, block, 0)">
-                                    {{ block.data.text }}
-                                </h6>
-                                
-                                <p *ngSwitchDefault>
-                                    Invalid header level!
-                                </p>
-                            </ng-container>
-                        </ng-container>
-                        
-                    </div>
+                    </ng-container>
                 </ng-container>
             </div>
         </div>
