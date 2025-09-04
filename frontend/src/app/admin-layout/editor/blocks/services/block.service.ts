@@ -15,7 +15,7 @@ export class BlockService {
   activeBlock = signal<Block | null>(null);
   activeElementRef = signal<ElementRef | null>(null);
   activeTextNodeTree = signal<TextNodeTree | null>(null);
-  currentLevel = 0;
+  currentNodeLevel = 0;
 
   addParagraphBlock(): void {
     this.blocks.update(block => [
@@ -67,14 +67,14 @@ export class BlockService {
         tree.addNode({value: selectedText, location: {start: startOffset, end: endOffset}});
         tree.addNode({value: afterText, location: {start: endOffset, end: textLength}});
         
-        this.currentLevel = 1;
+        this.currentNodeLevel = 1;
 
       }
       else{
-        this.currentLevel += 1;
+        this.currentNodeLevel += 1;
         
         const nodeLength = tree.getLength();
-        const nextBoundary = 3 * (Math.pow(3,this.currentLevel) - 1) / 2;  
+        const nextBoundary = 3 * (Math.pow(3,this.currentNodeLevel) - 1) / 2;  
 
         for(let i = nodeLength ; i <= nextBoundary; i++){
           tree.addNode({value: '', location : {start: 0, end: 0}});
